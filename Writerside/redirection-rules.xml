@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="222d4fa1">
+        <description>Created after removal of "2. Sintaxe Básica" from Instance Name</description>
+        <accepts>Empty-MD-Topic.html</accepts>
+    </rule>
+    <rule id="16771000">
+        <description><![CDATA[Created after removal of "<ad.md>" from Instance Name]]></description>
+        <accepts>ad.html</accepts>
+    </rule>
+    <rule id="2cb40b6d">
+        <description>Created after removal of "Projeto Prático" from Instance Name</description>
+        <accepts>11. Projeto-Prático.html</accepts>
+    </rule>
+    <rule id="2a4467ff">
+        <description>Created after removal of "4. POO" from Instance Name</description>
+        <accepts>4-POO.html</accepts>
+    </rule>
+    <rule id="e98ff6c">
+        <description>Created after removal of "6. Tratamento de Exceções" from Instance Name</description>
+        <accepts>6-Exceções.html</accepts>
+    </rule>
+    <rule id="22d2a2d9">
+        <description>Created after removal of "5. Estruturas de Dados" from Instance Name</description>
+        <accepts>5-Estruturas-de-Dados.html</accepts>
+    </rule>
+    <rule id="6a7e1b9d">
+        <description>Created after removal of "1. Introdução ao Java" from Instance Name</description>
+        <accepts>Java.html</accepts>
+    </rule>
+    <rule id="62a2da2e">
+        <description>Created after removal of "7. Trabalho com Arquivos de I/O" from Instance Name</description>
+        <accepts>7-Trabalho-com-Arquivos-de-I-O.html</accepts>
+    </rule>
+    <rule id="18ae4df3">
+        <description>Created after removal of "9. Multithreading e Concorrência" from Instance Name</description>
+        <accepts>9.html</accepts>
+    </rule>
+    <rule id="28f73f7f">
+        <description>Created after removal of "8. Conceitos Avançados" from Instance Name</description>
+        <accepts>8-Conceitos-Avançados.html</accepts>
+    </rule>
+    <rule id="1e93168c">
+        <description>Created after removal of "3. Estruturas de Controle" from Instance Name</description>
+        <accepts>3-Estruturas-de-Controle.html</accepts>
+    </rule>
+    <rule id="5dcbe712">
+        <description>Created after removal of "12. Conclusão e Próximos Passos" from Instance Name</description>
+        <accepts>Conclusões.html</accepts>
+    </rule>
+    <rule id="a752ab4">
+        <description>Created after removal of "Sistemas Distribuidos" from Instance Name</description>
+        <accepts>Sistemas Distribuidos.html</accepts>
+    </rule>
+    <rule id="1845ae7d">
+        <description>Created after removal of "Capitulo 1" from Instance Name</description>
+        <accepts>001 - Introdução.html</accepts>
+    </rule>
+    <rule id="43fdc303">
+        <description>Created after removal of "1.2 Operação do Computador" from Instance Name</description>
+        <accepts>002 - Operação do computador.html</accepts>
+    </rule>
+    <rule id="7c288f13">
+        <description>Created after removal of "Sistema Distribuidos" from Instance Name</description>
+        <accepts>Sistema Distribuidos.html</accepts>
+    </rule>
+    <rule id="32b15b95">
+        <description>Created after removal of "1.5 Arquitetura do Sistema" from Instance Name</description>
+        <accepts>005 - Arquitetura do Sistema.html</accepts>
+    </rule>
+    <rule id="20e39198">
+        <description>Created after removal of "1.3 Estrutura de Armazenamento" from Instance Name</description>
+        <accepts>003 - Estrutura de Armazenamento.html</accepts>
+    </rule>
+    <rule id="54723a91">
+        <description>Created after removal of "1.4 Estrutura de Entrada e Saída" from Instance Name</description>
+        <accepts>004 - Estrutura de IO.html</accepts>
+    </rule>
+    <rule id="690e1fa">
+        <description>Created after removal of "Associação de endereços" from Instance Name</description>
+        <accepts>02 - Associação de endereços.html</accepts>
+    </rule>
+    <rule id="473653e7">
+        <description>Created after removal of "Intro - Gerencia de Memoria" from Instance Name</description>
+        <accepts>00 - Intro Gerencia de Memoria.html</accepts>
+    </rule>
+    <rule id="4ea0563b">
+        <description>Created after removal of "Conceitos Básicos" from Instance Name</description>
+        <accepts>01 - Conceitos Básicos.html</accepts>
+    </rule>
+    <rule id="6692117c">
+        <description>Created after removal of "Intro - Gerencia de Armazenamento" from Instance Name</description>
+        <accepts>00 - Intro.html</accepts>
+    </rule>
+    <rule id="3837e71c">
+        <description><![CDATA[Created after removal of "<01 - Arquivo.md>" from Instance Name]]></description>
+        <accepts>01 - Arquivo.html</accepts>
+    </rule>
+    <rule id="40737d49">
+        <description>Created after removal of "Atributos de Arquivos" from Instance Name</description>
+        <accepts>01.1 - Atributos.html</accepts>
+    </rule>
+    <rule id="2e0f6d07">
+        <description>Created after removal of "Processos" from Instance Name</description>
+        <accepts>3 - Processos.html</accepts>
+    </rule>
+    <rule id="36e31951">
+        <description>Created after removal of "Introdução" from Instance Name</description>
+        <accepts>Capitulo-11_00 - Intro.html</accepts>
+    </rule>
+    <rule id="15551637">
+        <description>Created after removal of "Estrutura do Sistema de Arquivos" from Instance Name</description>
+        <accepts>01 - Estrutura do Sistema de Arquivos.html</accepts>
+    </rule>
+    <rule id="2711c82b">
+        <description>Created after removal of "Segurança" from Instance Name</description>
+        <accepts>Capitulo-15_00 - Intro.html</accepts>
+    </rule>
+    <rule id="434581d">
+        <description>Created after removal of "Threads" from Instance Name</description>
+        <accepts>4 - Threads.html</accepts>
+    </rule>
+    <rule id="f2dd549">
+        <description>Created after removal of "Organização do Processador 🧠" from Instance Name</description>
+        <accepts>06 - Organization of the Processor.html</accepts>
+    </rule>
+    <rule id="74a9b1f2">
+        <description>Created after removal of "Tabela Verdade" from Instance Name</description>
+        <accepts>03 - Truth Table.html</accepts>
+    </rule>
+    <rule id="3f052f4">
+        <description>Created after removal of "Componentes básicos de um PC" from Instance Name</description>
+        <accepts>02 - Components of a Basic PC.html</accepts>
+    </rule>
+    <rule id="6af7772d">
+        <description>Created after removal of "Capitulos" from Instance Name</description>
+        <accepts>_TOC_.html</accepts>
+    </rule>
+    <rule id="7ca9f398">
+        <description>Created after removal of "Barramentos" from Instance Name</description>
+        <accepts>07 - Barrament.html</accepts>
+    </rule>
+    <rule id="60a6f25d">
+        <description>Created after removal of "Evolução dos Computadores 💻" from Instance Name</description>
+        <accepts>00 - Evolution of Computers.html</accepts>
+    </rule>
+    <rule id="659a5444">
+        <description>Created after removal of "Tipos de Memoria" from Instance Name</description>
+        <accepts>05 - Types of Memory.html</accepts>
+    </rule>
+    <rule id="7ae5f9c">
+        <description>Created after removal of "Representação de Dados" from Instance Name</description>
+        <accepts>08 - Data Representation.html</accepts>
+    </rule>
+    <rule id="53b805ff">
+        <description>Created after removal of "🔌 Portas Lógicas" from Instance Name</description>
+        <accepts>04 - Logic Ports.html</accepts>
+    </rule>
+    <rule id="3733078e">
+        <description>Created after removal of "Sistema Numérico" from Instance Name</description>
+        <accepts>01 - Numerical System.html</accepts>
+    </rule>
+    <rule id="305b4b20">
+        <description>Created after removal of "Dispositivos de E/S" from Instance Name</description>
+        <accepts>09 - IO Devices.html</accepts>
+    </rule>
+    <rule id="618a626d">
+        <description>Created after removal of "10. Boas Práticas e Ferramentas Úteis" from Instance Name</description>
+        <accepts>10.html</accepts>
+    </rule>
+    <rule id="dd49aa4">
+        <description>Created after removal of "Arquitetura de Computadores" from Instance Name</description>
+        <accepts>Architeture Computer.html</accepts>
+    </rule>
+    <rule id="1aa438d6">
+        <description>Created after removal of "Referências" from Instance Name</description>
+        <accepts>Referênrcias.html</accepts>
+    </rule>
+    <rule id="77cf138f">
+        <description>Created after removal of "Teste" from Operating System</description>
+        <accepts>Teste.html</accepts>
+    </rule>
+    <rule id="1ab7a429">
+        <description>Created after removal of "8.1 Estrutura do Sistema de Arquivos" from Operating System</description>
+        <accepts>8-1.html</accepts>
+    </rule>
+    <rule id="7a966f5e">
+        <description>Created after removal of "8.6" from Operating System</description>
+        <accepts>8-6.html</accepts>
+    </rule>
+</rules>
