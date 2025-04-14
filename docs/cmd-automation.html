@@ -1,0 +1,176 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#57B747"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-13T23:31:49.979464481"><title>Automa&ccedil;&atilde;o Avan&ccedil;ada: Al&eacute;m dos Scripts | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"automa-o-de-build","level":0,"title":"Automação de Build","anchor":"#automa-o-de-build"},{"id":"monitoramento-automatizado","level":0,"title":"Monitoramento Automatizado","anchor":"#monitoramento-automatizado"},{"id":"integra-o-com-git","level":0,"title":"Integração com Git","anchor":"#integra-o-com-git"},{"id":"deployment-automatizado","level":0,"title":"Deployment Automatizado","anchor":"#deployment-automatizado"},{"id":"automa-o-de-testes","level":0,"title":"Automação de Testes","anchor":"#automa-o-de-testes"},{"id":"automa-o-de-logs","level":0,"title":"Automação de Logs","anchor":"#automa-o-de-logs"},{"id":"integra-o-com-apis","level":0,"title":"Integração com APIs","anchor":"#integra-o-com-apis"},{"id":"scripts-de-manuten-o","level":0,"title":"Scripts de Manutenção","anchor":"#scripts-de-manuten-o"},{"id":"troubleshooting-autom-tico","level":0,"title":"Troubleshooting Automático","anchor":"#troubleshooting-autom-tico"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Automa&ccedil;&atilde;o Avan&ccedil;ada: Al&eacute;m dos Scripts | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/cmd-automation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Automa&ccedil;&atilde;o Avan&ccedil;ada: Al&eacute;m dos Scripts | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/cmd-automation.html#webpage",
+    "url": "writerside-documentation/cmd-automation.html",
+    "name": "Automa&ccedil;&atilde;o Avan&ccedil;ada: Al&eacute;m dos Scripts | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="cmd-automation" data-main-title="Automação Avançada: Além dos Scripts" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="cmd.md|Command Prompt (CMD): O Terminal Clássico do Windows///cmd-advanced.md|Técnicas Avançadas de CMD"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cmd-automation" id="cmd-automation.md">Automação Avançada: Além dos Scripts</h1><div class="code-block" data-lang="none">
+           _         _                        _   _             
+     /\   | |       | |                      | | (_)            
+    /  \  | |_ ___  | |_ __ ___   __ _  __ _| |_ _  ___  _ __  
+   / /\ \ | __/ _ \ | | '_ ` _ \ / _` |/ _` | __| |/ _ \| '_ \ 
+  / ____ \| || (_) || | | | | | | (_| | (_| | |_| | (_) | | | |
+ /_/    \_\\__\___/ |_|_| |_| |_|\__,_|\__,_|\__|_|\___/|_| |_|
+</div><aside class="prompt" data-type="tip" data-title="" id="-73rnv1_4"><p id="-73rnv1_15">&quot;A verdadeira produtividade est&aacute; na automa&ccedil;&atilde;o inteligente.&quot;</p></aside><section class="chapter"><h2 id="automa-o-de-build" data-toc="automa-o-de-build">Automa&ccedil;&atilde;o de Build</h2><div class="code-block" data-lang="batch">
+:: Build automatizado
+@echo off
+setlocal enabledelayedexpansion
+
+:: Configurações
+set BUILD_DIR=build
+set SRC_DIR=src
+set TIMESTAMP=%date:~-4%%date:~3,2%%date:~0,2%_%time:~0,2%%time:~3,2%
+
+:: Limpeza
+rmdir /s /q %BUILD_DIR%
+mkdir %BUILD_DIR%
+
+:: Build
+call npm run build
+if errorlevel 1 (
+    echo Build falhou
+    exit /b 1
+)
+
+:: Arquivamento
+7z a %BUILD_DIR%\build_%TIMESTAMP%.zip %BUILD_DIR%\*
+</div></section><section class="chapter"><h2 id="monitoramento-automatizado" data-toc="monitoramento-automatizado">Monitoramento Automatizado</h2><div class="code-block" data-lang="batch">
+:: Monitor de sistema
+:monitor
+cls
+echo === Status do Sistema ===
+echo Time: %time%
+
+:: CPU e Memória
+wmic cpu get loadpercentage
+wmic OS get FreePhysicalMemory
+
+:: Processos
+tasklist | findstr /i &quot;node npm&quot;
+
+:: Portas
+netstat -ano | findstr &quot;LISTENING&quot;
+
+timeout /t 10 &gt; nul
+goto monitor
+</div></section><section class="chapter"><h2 id="integra-o-com-git" data-toc="integra-o-com-git">Integra&ccedil;&atilde;o com Git</h2><div class="code-block" data-lang="batch">
+:: Auto-commit e push
+:gitSync
+set BRANCH=main
+set COMMIT_MSG=&quot;Auto-sync %date% %time%&quot;
+
+:: Verifica alterações
+git status | findstr &quot;nothing to commit&quot; &gt; nul
+if not errorlevel 1 (
+    echo Nada para sincronizar
+    exit /b 0
+)
+
+:: Commit e push
+git add .
+git commit -m %COMMIT_MSG%
+git push origin %BRANCH%
+</div></section><section class="chapter"><h2 id="deployment-automatizado" data-toc="deployment-automatizado">Deployment Automatizado</h2><div class="code-block" data-lang="batch">
+:: Deploy multi-ambiente
+:deploy
+set ENV=%1
+if &quot;%ENV%&quot;==&quot;&quot; set ENV=dev
+
+:: Configurações por ambiente
+if &quot;%ENV%&quot;==&quot;prod&quot; (
+    set DEPLOY_DIR=\\prod-server\deploy
+    set BACKUP_DIR=\\backup-server\prod
+) else (
+    set DEPLOY_DIR=\\dev-server\deploy
+    set BACKUP_DIR=\\backup-server\dev
+)
+
+:: Backup
+xcopy /s /e %DEPLOY_DIR% %BACKUP_DIR%\backup_%date%
+
+:: Deploy
+robocopy dist %DEPLOY_DIR% /MIR /MT:8
+</div></section><section class="chapter"><h2 id="automa-o-de-testes" data-toc="automa-o-de-testes">Automa&ccedil;&atilde;o de Testes</h2><div class="code-block" data-lang="batch">
+:: Suite de testes
+:testSuite
+echo === Iniciando Testes ===
+
+:: Testes unitários
+call npm test
+if errorlevel 1 goto :testFailed
+
+:: Testes E2E
+call npm run e2e
+if errorlevel 1 goto :testFailed
+
+echo === Testes Concluídos ===
+exit /b 0
+
+:testFailed
+echo === Falha nos Testes ===
+exit /b 1
+</div></section><section class="chapter"><h2 id="automa-o-de-logs" data-toc="automa-o-de-logs">Automa&ccedil;&atilde;o de Logs</h2><div class="code-block" data-lang="batch">
+:: Rotação de logs
+:rotateLogs
+set LOG_DIR=logs
+set MAX_LOGS=5
+
+:: Remove logs antigos
+forfiles /p %LOG_DIR% /m *.log /d -%MAX_LOGS% /c &quot;cmd /c del @path&quot;
+
+:: Compacta logs
+for %%f in (%LOG_DIR%\*.log) do (
+    7z a %LOG_DIR%\%%~nf.zip %%f
+    del %%f
+)
+</div></section><section class="chapter"><h2 id="integra-o-com-apis" data-toc="integra-o-com-apis">Integra&ccedil;&atilde;o com APIs</h2><div class="code-block" data-lang="batch">
+:: Chamadas REST
+:checkAPI
+curl -s -o response.tmp http://api.exemplo.com/status
+findstr &quot;OK&quot; response.tmp &gt; nul
+
+if errorlevel 1 (
+    echo API offline
+    call :notifyTeam
+) else (
+    echo API operacional
+)
+</div></section><section class="chapter"><h2 id="scripts-de-manuten-o" data-toc="scripts-de-manuten-o">Scripts de Manuten&ccedil;&atilde;o</h2><div class="code-block" data-lang="batch">
+:: Manutenção automática
+:maintenance
+echo === Iniciando Manutenção ===
+
+:: Limpeza
+call :cleanTemp
+call :rotateLogs
+call :backupDB
+
+:: Verificações
+call :checkDiskSpace
+call :checkServices
+call :checkCertificates
+
+echo === Manutenção Concluída ===
+</div></section><section class="chapter"><h2 id="troubleshooting-autom-tico" data-toc="troubleshooting-autom-tico">Troubleshooting Autom&aacute;tico</h2><div class="code-block" data-lang="batch">
+:: Diagnóstico automático
+:diagnose
+set REPORT=diagnostic_%date%.txt
+
+:: Coleta informações
+systeminfo &gt;&gt; %REPORT%
+tasklist &gt;&gt; %REPORT%
+netstat -ano &gt;&gt; %REPORT%
+dir /s /b &gt;&gt; %REPORT%
+
+:: Análise
+findstr &quot;Error&quot; *.log &gt;&gt; %REPORT%
+</div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-73rnv1_25" type="1"><li class="list__item" id="-73rnv1_28"><p id="-73rnv1_31"><span id="-73rnv1_32">CI/CD Integration</span></p></li><li class="list__item" id="-73rnv1_29"><p id="-73rnv1_33"><a href="ps-introduction.html" id="-73rnv1_34" data-tooltip="&quot;Bem-vindo ao PowerShell, onde tudo é um objeto e nada é apenas texto.&quot;">PowerShell Migration</a></p></li><li class="list__item" id="-73rnv1_30"><p id="-73rnv1_35"><span id="-73rnv1_36">Cloud Integration</span></p></li></ol><p id="-73rnv1_27"><span class="emphasis" id="-73rnv1_37">&quot;Automatize o presente, controle o futuro.&quot;</span></p></section><div class="last-modified">13 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cmd-networking.html" class="navigation-links__prev">Networking no CMD: Dominando a Rede</a><a href="cmd-security.html" class="navigation-links__next">Seguran&ccedil;a no CMD: Porque Paranoia &eacute; Apenas Bom Senso</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#57B747"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-13T23:31:50.009845999"><title>Comandos B&aacute;sicos: Seu Arsenal Inicial | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"navega-o-no-sistema","level":0,"title":"Navegação no Sistema","anchor":"#navega-o-no-sistema"},{"id":"listagem-e-busca","level":0,"title":"Listagem e Busca","anchor":"#listagem-e-busca"},{"id":"manipula-o-de-arquivos","level":0,"title":"Manipulação de Arquivos","anchor":"#manipula-o-de-arquivos"},{"id":"processos-e-rede","level":0,"title":"Processos e Rede","anchor":"#processos-e-rede"},{"id":"informa-es-do-sistema","level":0,"title":"Informações do Sistema","anchor":"#informa-es-do-sistema"},{"id":"pipes-e-redirecionamento","level":0,"title":"Pipes e Redirecionamento","anchor":"#pipes-e-redirecionamento"},{"id":"scripts-r-pidos-para-dev","level":0,"title":"Scripts Rápidos para Dev","anchor":"#scripts-r-pidos-para-dev"},{"id":"atalhos-de-produtividade","level":0,"title":"Atalhos de Produtividade","anchor":"#atalhos-de-produtividade"},{"id":"dicas-avan-adas","level":0,"title":"Dicas Avançadas","anchor":"#dicas-avan-adas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Comandos B&aacute;sicos: Seu Arsenal Inicial | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/cmd-basic-commands.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Comandos B&aacute;sicos: Seu Arsenal Inicial | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/cmd-basic-commands.html#webpage",
+    "url": "writerside-documentation/cmd-basic-commands.html",
+    "name": "Comandos B&aacute;sicos: Seu Arsenal Inicial | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="cmd-basic-commands" data-main-title="Comandos Básicos: Seu Arsenal Inicial" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="cmd.md|Command Prompt (CMD): O Terminal Clássico do Windows"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cmd-basic-commands" id="cmd-basic-commands.md">Comandos Básicos: Seu Arsenal Inicial</h1><div class="code-block" data-lang="none">
+           _____                              _           
+          / ____|                            | |          
+         | |     ___  _ __ ___   __ _ _ __  | |__   ___  
+         | |    / _ \| '_ ` _ \ / _` | '_ \ | '_ \ / _ \ 
+         | |___| (_) | | | | | | (_| | | | || |_) | (_) |
+          \_____\___/|_| |_| |_|\__,_|_| |_||_.__/ \___/ 
+</div><aside class="prompt" data-type="tip" data-title="" id="hn0t6r_4"><p id="hn0t6r_15">&quot;Conhecimento &eacute; poder. Poder &eacute; controle. Controle &eacute; tudo.&quot;</p></aside><section class="chapter"><h2 id="navega-o-no-sistema" data-toc="navega-o-no-sistema">Navega&ccedil;&atilde;o no Sistema</h2><div class="code-block" data-lang="batch">
+:: Navegação básica
+cd          :: Mostra diretório atual
+cd ..       :: Volta um nível
+cd /d D:    :: Muda drive e diretório
+pushd       :: Salva diretório atual na pilha
+popd        :: Retorna ao último diretório salvo
+</div></section><section class="chapter"><h2 id="listagem-e-busca" data-toc="listagem-e-busca">Listagem e Busca</h2><div class="code-block" data-lang="batch">
+:: Listagem avançada
+dir /a      :: Mostra arquivos ocultos
+dir /s      :: Lista recursivamente
+dir /b /s   :: Formato limpo e recursivo
+
+:: Busca ninja
+where python        :: Localiza executável
+findstr /s /i TODO  :: Busca TODO em todos arquivos
+</div></section><section class="chapter"><h2 id="manipula-o-de-arquivos" data-toc="manipula-o-de-arquivos">Manipula&ccedil;&atilde;o de Arquivos</h2><div class="code-block" data-lang="batch">
+:: Operações básicas
+copy src.txt dst.txt   :: Copia arquivo
+move old.* new\        :: Move arquivos
+del *.tmp              :: Deleta temporários
+ren old.js new.js      :: Renomeia arquivo
+
+:: Operações avançadas
+robocopy src dst /MIR  :: Sincronização espelho
+xcopy /s /e /h        :: Copia preservando atributos
+</div></section><section class="chapter"><h2 id="processos-e-rede" data-toc="processos-e-rede">Processos e Rede</h2><div class="code-block" data-lang="batch">
+:: Gerenciamento de processos
+tasklist | findstr &quot;node&quot;   :: Lista processos node
+taskkill /IM node.exe /F    :: Mata processo
+start &quot;&quot; &quot;http://localhost&quot; :: Abre navegador
+
+:: Comandos de rede
+netstat -ano              :: Portas em uso
+ipconfig /all            :: Config de rede
+ping -t localhost       :: Ping contínuo
+</div></section><section class="chapter"><h2 id="informa-es-do-sistema" data-toc="informa-es-do-sistema">Informa&ccedil;&otilde;es do Sistema</h2><div class="code-block" data-lang="batch">
+:: Debug e diagnóstico
+systeminfo | findstr &quot;Memory&quot;  :: Info de memória
+wmic cpu get name             :: Info do processador
+ver                          :: Versão do Windows
+</div></section><section class="chapter"><h2 id="pipes-e-redirecionamento" data-toc="pipes-e-redirecionamento">Pipes e Redirecionamento</h2><div class="code-block" data-lang="batch">
+:: Manipulação de output
+dir &gt; lista.txt           :: Salva em arquivo
+type file.txt | sort     :: Ordena conteúdo
+findstr &quot;erro&quot; log.txt   :: Filtra conteúdo
+</div></section><section class="chapter"><h2 id="scripts-r-pidos-para-dev" data-toc="scripts-r-pidos-para-dev">Scripts R&aacute;pidos para Dev</h2><div class="code-block" data-lang="batch">
+:: Limpeza de builds
+@echo off
+for /d /r . %%d in (node_modules) do @if exist &quot;%%d&quot; rmdir /s /q &quot;%%d&quot;
+for /d /r . %%d in (dist) do @if exist &quot;%%d&quot; rmdir /s /q &quot;%%d&quot;
+
+:: Monitor de porta
+:check
+netstat -ano | findstr &quot;:3000&quot;
+timeout /t 5
+goto check
+</div></section><section class="chapter"><h2 id="atalhos-de-produtividade" data-toc="atalhos-de-produtividade">Atalhos de Produtividade</h2><div class="table-wrapper"><table class="wide" id="hn0t6r_23"><thead><tr class="ijRowHead" id="hn0t6r_24"><th id="hn0t6r_28"><p>Comando</p></th><th id="hn0t6r_29"><p>Descri&ccedil;&atilde;o</p></th><th id="hn0t6r_30"><p>Uso Dev</p></th></tr></thead><tbody><tr id="hn0t6r_25"><td id="hn0t6r_31"><p><code class="code" id="hn0t6r_34">doskey h=history</code></p></td><td id="hn0t6r_32"><p>Alias para hist&oacute;rico</p></td><td id="hn0t6r_33"><p>Reutilizar comandos</p></td></tr><tr id="hn0t6r_26"><td id="hn0t6r_35"><p><code class="code" id="hn0t6r_38">cls</code></p></td><td id="hn0t6r_36"><p>Limpa tela</p></td><td id="hn0t6r_37"><p>Manter terminal limpo</p></td></tr><tr id="hn0t6r_27"><td id="hn0t6r_39"><p><code class="code" id="hn0t6r_42">echo %PATH%</code></p></td><td id="hn0t6r_40"><p>Mostra path</p></td><td id="hn0t6r_41"><p>Debug de ambiente</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="dicas-avan-adas" data-toc="dicas-avan-adas">Dicas Avan&ccedil;adas</h2><div class="code-block" data-lang="batch">
+:: Execução silenciosa
+start /b programa.exe &gt; nul 2&gt;&amp;1
+
+:: Captura de erros
+comando.exe 2&gt; erro.log
+
+:: Execução condicional
+comando1.exe &amp;&amp; comando2.exe || comando3.exe
+</div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="hn0t6r_44" type="1"><li class="list__item" id="hn0t6r_47"><p id="hn0t6r_50"><a href="cmd-file-operations.html" id="hn0t6r_51" data-tooltip="&quot;Arquivos são dados. Dados são poder. Poder é controle.&quot;">Opera&ccedil;&otilde;es com Arquivos</a></p></li><li class="list__item" id="hn0t6r_48"><p id="hn0t6r_52"><a href="cmd-batch-scripting.html" id="hn0t6r_53" data-tooltip="&quot;Automatização não é futuro, é sobrevivência.&quot;">Scripts Batch</a></p></li><li class="list__item" id="hn0t6r_49"><p id="hn0t6r_54"><a href="cmd-networking.html" id="hn0t6r_55" data-tooltip="&quot;A rede é como um labirinto: você precisa conhecer os caminhos certos para não se perder.&quot;">Networking Avan&ccedil;ado</a></p></li></ol><p id="hn0t6r_46"><span class="emphasis" id="hn0t6r_56">&quot;Mestre dos comandos, mestre do sistema.&quot;</span></p></section><div class="last-modified">13 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cmd-introduction.html" class="navigation-links__prev">CMD: Seu Primeiro Terminal</a><a href="cmd-navigation.html" class="navigation-links__next">Navega&ccedil;&atilde;o no CMD: Perdido no Terminal</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -84,10 +84,10 @@ Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) 
 
 ## 📊 Status do Projeto
 
-![GitHub stars](https://img.shields.io/github/stars/seu-usuario/learn-windows-terminals?style=social)
-![GitHub forks](https://img.shields.io/github/forks/seu-usuario/learn-windows-terminals?style=social)
-![GitHub issues](https://img.shields.io/github/issues/seu-usuario/learn-windows-terminals)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/seu-usuario/learn-windows-terminals)
+![GitHub stars](https://img.shields.io/github/stars/mrpunkdasilva/learn-windows-terminals?style=social)
+![GitHub forks](https://img.shields.io/github/forks/mrpunkdasilva/learn-windows-terminals?style=social)
+![GitHub issues](https://img.shields.io/github/issues/mrpunkdasilva/learn-windows-terminals)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/mrpunkdasilva/learn-windows-terminals)
 
 ---
 

@@ -1,0 +1,140 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#57B747"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-13T23:31:50.017044061"><title>T&eacute;cnicas Avan&ccedil;adas de CMD | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"manipula-o-avan-ada-de-strings","level":0,"title":"Manipulação Avançada de Strings","anchor":"#manipula-o-avan-ada-de-strings"},{"id":"controle-de-fluxo-avan-ado","level":0,"title":"Controle de Fluxo Avançado","anchor":"#controle-de-fluxo-avan-ado"},{"id":"fun-es-avan-adas","level":0,"title":"Funções Avançadas","anchor":"#fun-es-avan-adas"},{"id":"integra-o-com-sistema","level":0,"title":"Integração com Sistema","anchor":"#integra-o-com-sistema"},{"id":"automa-o-avan-ada","level":0,"title":"Automação Avançada","anchor":"#automa-o-avan-ada"},{"id":"networking-avan-ado","level":0,"title":"Networking Avançado","anchor":"#networking-avan-ado"},{"id":"dicas-de-performance","level":0,"title":"Dicas de Performance","anchor":"#dicas-de-performance"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="T&eacute;cnicas Avan&ccedil;adas de CMD | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/cmd-advanced.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="T&eacute;cnicas Avan&ccedil;adas de CMD | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/cmd-advanced.html#webpage",
+    "url": "writerside-documentation/cmd-advanced.html",
+    "name": "T&eacute;cnicas Avan&ccedil;adas de CMD | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="cmd-advanced" data-main-title="Técnicas Avançadas de CMD" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="cmd.md|Command Prompt (CMD): O Terminal Clássico do Windows"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cmd-advanced" id="cmd-advanced.md">Técnicas Avançadas de CMD</h1><aside class="prompt" data-type="tip" data-title="" id="pdugug_3"><p id="pdugug_12">&quot;Para os mestres do terminal, onde cada comando conta uma hist&oacute;ria.&quot;</p></aside><section class="chapter"><h2 id="manipula-o-avan-ada-de-strings" data-toc="manipula-o-avan-ada-de-strings">Manipula&ccedil;&atilde;o Avan&ccedil;ada de Strings</h2><section class="chapter"><h3 id="substrings-e-parsing" data-toc="substrings-e-parsing">Substrings e Parsing</h3><div class="code-block" data-lang="batch">
+:: Extração de substrings
+set str=Hello World
+set sub=%str:~0,5%     :: Retorna &quot;Hello&quot;
+set sub=%str:~6%       :: Retorna &quot;World&quot;
+set sub=%str:~-5%      :: Retorna &quot;World&quot;
+
+:: Substituição de strings
+set result=%str:Hello=Hi% :: Substitui &quot;Hello&quot; por &quot;Hi&quot;
+set result=%str:o=0%     :: Substitui todos &quot;o&quot; por &quot;0&quot;
+</div></section><section class="chapter"><h3 id="processamento-de-texto" data-toc="processamento-de-texto">Processamento de Texto</h3><div class="code-block" data-lang="batch">
+:: Manipulação avançada
+for /f &quot;tokens=1,2 delims=,&quot; %%a in (data.csv) do (
+    echo First: %%a, Second: %%b
+)
+
+:: Parsing de saída de comando
+for /f &quot;tokens=* usebackq&quot; %%i in (`dir /b`) do (
+    echo File: %%i
+)
+</div></section></section><section class="chapter"><h2 id="controle-de-fluxo-avan-ado" data-toc="controle-de-fluxo-avan-ado">Controle de Fluxo Avan&ccedil;ado</h2><section class="chapter"><h3 id="estruturas-complexas" data-toc="estruturas-complexas">Estruturas Complexas</h3><div class="code-block" data-lang="batch">
+:: Loop aninhado com condicionais
+for %%i in (*.txt) do (
+    if exist &quot;backup\%%i&quot; (
+        echo Arquivo existe
+        call :ProcessFile &quot;%%i&quot;
+    ) else (
+        echo Novo arquivo
+        copy &quot;%%i&quot; &quot;backup\%%i&quot;
+    )
+)
+
+:: Goto dinâmico
+set &quot;action=Process&quot;
+goto %action%_Section 2&gt;nul || echo Ação inválida
+
+:Process_Section
+echo Processando...
+exit /b
+</div></section><section class="chapter"><h3 id="tratamento-de-erros" data-toc="tratamento-de-erros">Tratamento de Erros</h3><div class="code-block" data-lang="batch">
+:: Manipulação de erros
+setlocal EnableExtensions EnableDelayedExpansion
+set &quot;err_level=0&quot;
+
+call :RiskyFunction || (
+    set &quot;err_level=!errorlevel!&quot;
+    goto :ErrorHandler
+)
+
+:ErrorHandler
+echo Erro %err_level% ocorreu
+exit /b %err_level%
+</div></section></section><section class="chapter"><h2 id="fun-es-avan-adas" data-toc="fun-es-avan-adas">Fun&ccedil;&otilde;es Avan&ccedil;adas</h2><section class="chapter"><h3 id="biblioteca-de-fun-es" data-toc="biblioteca-de-fun-es">Biblioteca de Fun&ccedil;&otilde;es</h3><div class="code-block" data-lang="batch">
+:: Funções reusáveis
+:Logger
+echo [%date% %time%] %~1 &gt;&gt; log.txt
+exit /b
+
+:BackupFile
+if not exist &quot;backup&quot; mkdir &quot;backup&quot;
+copy &quot;%~1&quot; &quot;backup\%~nx1.bak&quot;
+call :Logger &quot;Backup criado: %~1&quot;
+exit /b
+
+:GetFileSize
+set &quot;size=&quot;
+for %%A in (&quot;%~1&quot;) do set &quot;size=%%~zA&quot;
+exit /b
+</div></section><section class="chapter"><h3 id="callbacks-e-eventos" data-toc="callbacks-e-eventos">Callbacks e Eventos</h3><div class="code-block" data-lang="batch">
+:: Sistema de callbacks
+set &quot;callback=ProcessResult&quot;
+call :%callback% &quot;dados&quot;
+
+:ProcessResult
+echo Processando: %~1
+exit /b
+</div></section></section><section class="chapter"><h2 id="integra-o-com-sistema" data-toc="integra-o-com-sistema">Integra&ccedil;&atilde;o com Sistema</h2><section class="chapter"><h3 id="manipula-o-de-registry" data-toc="manipula-o-de-registry">Manipula&ccedil;&atilde;o de Registry</h3><div class="code-block" data-lang="batch">
+:: Operações de registro
+reg query &quot;HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion&quot;
+reg add &quot;HKCU\Environment&quot; /v Path /t REG_EXPAND_SZ /d &quot;%path%;C:\NewPath&quot;
+reg export &quot;HKLM\SOFTWARE\MyApp&quot; backup.reg
+</div></section><section class="chapter"><h3 id="gerenciamento-de-servi-os" data-toc="gerenciamento-de-servi-os">Gerenciamento de Servi&ccedil;os</h3><div class="code-block" data-lang="batch">
+:: Controle avançado de serviços
+sc config MyService start= delayed-auto
+sc failure MyService reset= 86400 actions= restart/60000/restart/60000//
+sc triggerinfo MyService start/port/80
+</div></section></section><section class="chapter"><h2 id="automa-o-avan-ada" data-toc="automa-o-avan-ada">Automa&ccedil;&atilde;o Avan&ccedil;ada</h2><section class="chapter"><h3 id="monitoramento-de-eventos" data-toc="monitoramento-de-eventos">Monitoramento de Eventos</h3><div class="code-block" data-lang="batch">
+:: Monitor de mudanças
+:WatchDir
+dir /b &gt; dir_new.txt
+fc dir_old.txt dir_new.txt &gt; nul
+if errorlevel 1 (
+    call :ProcessChanges
+)
+move /y dir_new.txt dir_old.txt
+timeout /t 5 &gt; nul
+goto WatchDir
+</div></section><section class="chapter"><h3 id="tasks-agendadas" data-toc="tasks-agendadas">Tasks Agendadas</h3><div class="code-block" data-lang="batch">
+:: Criação de tarefas
+schtasks /create /tn &quot;MyTask&quot; /tr &quot;C:\script.bat&quot; /sc daily /st 09:00
+schtasks /change /tn &quot;MyTask&quot; /enable
+schtasks /query /tn &quot;MyTask&quot; /fo list /v
+</div></section></section><section class="chapter"><h2 id="networking-avan-ado" data-toc="networking-avan-ado">Networking Avan&ccedil;ado</h2><section class="chapter"><h3 id="diagn-stico-de-rede" data-toc="diagn-stico-de-rede">Diagn&oacute;stico de Rede</h3><div class="code-block" data-lang="batch">
+:: Ferramentas avançadas
+netsh trace start capture=yes report=yes
+netsh interface ipv4 show subinterfaces
+netsh advfirewall firewall add rule name=&quot;MyApp&quot; dir=in action=allow
+</div></section><section class="chapter"><h3 id="monitoramento-de-conex-es" data-toc="monitoramento-de-conex-es">Monitoramento de Conex&otilde;es</h3><div class="code-block" data-lang="batch">
+:: Monitor de conexões
+:MonitorConnections
+netstat -nao | findstr &quot;ESTABLISHED&quot; &gt; conn_new.txt
+fc conn_old.txt conn_new.txt &gt; nul
+if errorlevel 1 (
+    call :AlertNewConnection
+)
+move /y conn_new.txt conn_old.txt
+timeout /t 10 &gt; nul
+goto MonitorConnections
+</div></section></section><section class="chapter"><h2 id="dicas-de-performance" data-toc="dicas-de-performance">Dicas de Performance</h2><section class="chapter"><h3 id="otimiza-o" data-toc="otimiza-o">Otimiza&ccedil;&atilde;o</h3><ul class="list _bullet" id="pdugug_39"><li class="list__item" id="pdugug_40"><p id="pdugug_44">Use <code class="code" id="pdugug_45">setlocal EnableExtensions EnableDelayedExpansion</code></p></li><li class="list__item" id="pdugug_41"><p id="pdugug_46">Evite chamadas desnecess&aacute;rias a comandos externos</p></li><li class="list__item" id="pdugug_42"><p id="pdugug_47">Utilize vari&aacute;veis em vez de comandos repetidos</p></li><li class="list__item" id="pdugug_43"><p id="pdugug_48">Minimize uso de <code class="code" id="pdugug_49">goto</code> em loops</p></li></ul></section><section class="chapter"><h3 id="debug-e-profiling" data-toc="debug-e-profiling">Debug e Profiling</h3><div class="code-block" data-lang="batch">
+:: Timer simples
+set &quot;start=%time%&quot;
+call :HeavyFunction
+set &quot;end=%time%&quot;
+call :CalcDuration &quot;%start%&quot; &quot;%end%&quot;
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="pdugug_51" type="1"><li class="list__item" id="pdugug_54"><p id="pdugug_57"><a href="cmd-batch-scripting.html" id="pdugug_58" data-tooltip="&quot;Automatização não é futuro, é sobrevivência.&quot;">Scripting Avan&ccedil;ado</a></p></li><li class="list__item" id="pdugug_55"><p id="pdugug_59"><a href="cmd-integration.html" id="pdugug_60" data-tooltip="&quot;Em um universo de containers e clouds, o CMD ainda insiste em comparecer à festa.&quot;">Integra&ccedil;&atilde;o com DevOps</a></p></li><li class="list__item" id="pdugug_56"><p id="pdugug_61"><a href="ps-introduction.html" id="pdugug_62" data-tooltip="&quot;Bem-vindo ao PowerShell, onde tudo é um objeto e nada é apenas texto.&quot;">PowerShell Migration</a></p></li></ol><p id="pdugug_53"><span class="emphasis" id="pdugug_63">&quot;A verdadeira maestria vem da compreens&atilde;o dos detalhes.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cmd-system-commands.html" class="navigation-links__prev">Comandos do Sistema: Controlando o Windows</a><a href="cmd-batch-scripting.html" class="navigation-links__next">Scripts Batch: Automatize ou Morra Tentando</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

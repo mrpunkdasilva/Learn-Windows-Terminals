@@ -1,0 +1,136 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#57B747"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-13T23:31:50.047144897"><title>Cmdlets: Os Comandos do PowerShell | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"estrutura-dos-cmdlets","level":0,"title":"Estrutura dos Cmdlets","anchor":"#estrutura-dos-cmdlets"},{"id":"cmdlets-essenciais","level":0,"title":"Cmdlets Essenciais","anchor":"#cmdlets-essenciais"},{"id":"par-metros-avan-ados","level":0,"title":"Parâmetros Avançados","anchor":"#par-metros-avan-ados"},{"id":"descoberta-e-ajuda","level":0,"title":"Descoberta e Ajuda","anchor":"#descoberta-e-ajuda"},{"id":"m-dulos-e-extens-es","level":0,"title":"Módulos e Extensões","anchor":"#m-dulos-e-extens-es"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Cmdlets: Os Comandos do PowerShell | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-cmdlets.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Cmdlets: Os Comandos do PowerShell | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-cmdlets.html#webpage",
+    "url": "writerside-documentation/ps-cmdlets.html",
+    "name": "Cmdlets: Os Comandos do PowerShell | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-cmdlets" data-main-title="Cmdlets: Os Comandos do PowerShell" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="powershell.md|PowerShell: A Evolução do Terminal Windows///ps-basics.md|Conceitos Básicos do PowerShell"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-cmdlets" id="ps-cmdlets.md">Cmdlets: Os Comandos do PowerShell</h1><aside class="prompt" data-type="tip" data-title="" id="-begvl7_3"><p id="-begvl7_12">&quot;Cmdlets s&atilde;o as ferramentas que fazem o PowerShell poderoso.&quot;</p></aside><section class="chapter"><h2 id="estrutura-dos-cmdlets" data-toc="estrutura-dos-cmdlets">Estrutura dos Cmdlets</h2><section class="chapter"><h3 id="anatomia" data-toc="anatomia">Anatomia</h3><div class="code-block" data-lang="powershell">
+# Formato: Verbo-Substantivo
+Get-Process
+Set-Location
+New-Item
+
+# Parâmetros comuns
+-WhatIf      # Simulação
+-Confirm     # Confirmação
+-Verbose     # Saída detalhada
+-Debug       # Informações de debug
+</div></section><section class="chapter"><h3 id="verbos-comuns" data-toc="verbos-comuns">Verbos Comuns</h3><div class="table-wrapper"><table class="wide" id="-begvl7_16"><thead><tr class="ijRowHead" id="-begvl7_17"><th id="-begvl7_24"><p>Verbo</p></th><th id="-begvl7_25"><p>Uso</p></th><th id="-begvl7_26"><p>Exemplo</p></th></tr></thead><tbody><tr id="-begvl7_18"><td id="-begvl7_27"><p><code class="code" id="-begvl7_30">Get</code></p></td><td id="-begvl7_28"><p>Obt&eacute;m recursos</p></td><td id="-begvl7_29"><p><code class="code" id="-begvl7_31">Get-Service</code></p></td></tr><tr id="-begvl7_19"><td id="-begvl7_32"><p><code class="code" id="-begvl7_35">Set</code></p></td><td id="-begvl7_33"><p>Modifica recursos</p></td><td id="-begvl7_34"><p><code class="code" id="-begvl7_36">Set-Content</code></p></td></tr><tr id="-begvl7_20"><td id="-begvl7_37"><p><code class="code" id="-begvl7_40">New</code></p></td><td id="-begvl7_38"><p>Cria recursos</p></td><td id="-begvl7_39"><p><code class="code" id="-begvl7_41">New-Item</code></p></td></tr><tr id="-begvl7_21"><td id="-begvl7_42"><p><code class="code" id="-begvl7_45">Remove</code></p></td><td id="-begvl7_43"><p>Remove recursos</p></td><td id="-begvl7_44"><p><code class="code" id="-begvl7_46">Remove-Item</code></p></td></tr><tr id="-begvl7_22"><td id="-begvl7_47"><p><code class="code" id="-begvl7_50">Start</code></p></td><td id="-begvl7_48"><p>Inicia opera&ccedil;&atilde;o</p></td><td id="-begvl7_49"><p><code class="code" id="-begvl7_51">Start-Process</code></p></td></tr><tr id="-begvl7_23"><td id="-begvl7_52"><p><code class="code" id="-begvl7_55">Stop</code></p></td><td id="-begvl7_53"><p>Para opera&ccedil;&atilde;o</p></td><td id="-begvl7_54"><p><code class="code" id="-begvl7_56">Stop-Service</code></p></td></tr></tbody></table></div></section></section><section class="chapter"><h2 id="cmdlets-essenciais" data-toc="cmdlets-essenciais">Cmdlets Essenciais</h2><section class="chapter"><h3 id="sistema-de-arquivos" data-toc="sistema-de-arquivos">Sistema de Arquivos</h3><div class="code-block" data-lang="powershell">
+# Navegação
+Set-Location C:\      # Muda diretório
+Get-Location          # Mostra diretório atual
+Push-Location        # Salva localização atual
+Pop-Location         # Retorna à localização salva
+
+# Manipulação de arquivos
+Get-ChildItem        # Lista conteúdo
+New-Item -Type File  # Cria arquivo
+Copy-Item           # Copia
+Move-Item           # Move
+Remove-Item         # Remove
+</div></section><section class="chapter"><h3 id="processos-e-servi-os" data-toc="processos-e-servi-os">Processos e Servi&ccedil;os</h3><div class="code-block" data-lang="powershell">
+# Processos
+Get-Process         # Lista processos
+Start-Process      # Inicia processo
+Stop-Process       # Para processo
+Wait-Process       # Aguarda processo
+
+# Serviços
+Get-Service        # Lista serviços
+Start-Service     # Inicia serviço
+Stop-Service      # Para serviço
+Restart-Service   # Reinicia serviço
+</div></section><section class="chapter"><h3 id="rede" data-toc="rede">Rede</h3><div class="code-block" data-lang="powershell">
+# Conectividade
+Test-Connection    # Ping avançado
+Test-NetConnection # Teste TCP
+Get-NetAdapter     # Info adaptadores
+Get-NetIPAddress   # Endereços IP
+
+# Web
+Invoke-WebRequest  # Requisição web
+Invoke-RestMethod  # API REST
+</div></section><section class="chapter"><h3 id="sistema" data-toc="sistema">Sistema</h3><div class="code-block" data-lang="powershell">
+# Informações
+Get-ComputerInfo   # Info do sistema
+Get-Disk           # Info de discos
+Get-EventLog       # Logs do sistema
+Get-HotFix         # Updates instalados
+
+# Gerenciamento
+Restart-Computer   # Reinicia
+Stop-Computer      # Desliga
+Clear-Host         # Limpa tela
+</div></section></section><section class="chapter"><h2 id="par-metros-avan-ados" data-toc="par-metros-avan-ados">Par&acirc;metros Avan&ccedil;ados</h2><section class="chapter"><h3 id="par-metros-comuns" data-toc="par-metros-comuns">Par&acirc;metros Comuns</h3><div class="code-block" data-lang="powershell">
+# Controle de execução
+-WhatIf            # Simula execução
+-Confirm           # Pede confirmação
+-Verbose           # Saída detalhada
+-Debug             # Modo debug
+-ErrorAction       # Tratamento de erro
+</div></section><section class="chapter"><h3 id="pipeline-input" data-toc="pipeline-input">Pipeline Input</h3><div class="code-block" data-lang="powershell">
+# Aceita input do pipeline
+Get-Process | Stop-Process
+Get-ChildItem *.txt | Remove-Item
+
+# Filtragem
+Get-Service | Where-Object Status -eq 'Running'
+Get-Process | Sort-Object CPU -Descending
+</div></section></section><section class="chapter"><h2 id="descoberta-e-ajuda" data-toc="descoberta-e-ajuda">Descoberta e Ajuda</h2><section class="chapter"><h3 id="encontrar-cmdlets" data-toc="encontrar-cmdlets">Encontrar Cmdlets</h3><div class="code-block" data-lang="powershell">
+# Busca por verbo
+Get-Command -Verb Get
+Get-Command -Verb Set
+
+# Busca por substantivo
+Get-Command -Noun Process
+Get-Command -Noun Item
+
+# Busca por módulo
+Get-Command -Module Microsoft.PowerShell.Security
+</div></section><section class="chapter"><h3 id="sistema-de-ajuda" data-toc="sistema-de-ajuda">Sistema de Ajuda</h3><div class="code-block" data-lang="powershell">
+# Ajuda básica
+Get-Help Get-Process
+Get-Help Get-Service -Detailed
+Get-Help New-Item -Full
+Get-Help About_Variables
+
+# Exemplos
+Get-Help Get-Process -Examples
+</div></section></section><section class="chapter"><h2 id="m-dulos-e-extens-es" data-toc="m-dulos-e-extens-es">M&oacute;dulos e Extens&otilde;es</h2><section class="chapter"><h3 id="gerenciamento-de-m-dulos" data-toc="gerenciamento-de-m-dulos">Gerenciamento de M&oacute;dulos</h3><div class="code-block" data-lang="powershell">
+# Listar e instalar
+Get-Module -ListAvailable
+Install-Module -Name PSReadLine
+Update-Module -Name PSReadLine
+Remove-Module -Name PSReadLine
+
+# Importar e exportar
+Import-Module Az
+Export-ModuleMember -Function Get-Something
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="seguran-a" data-toc="seguran-a">Seguran&ccedil;a</h3><div class="code-block" data-lang="powershell">
+# Verificar antes de executar
+Get-Process -Name &quot;notepad&quot; | Stop-Process -WhatIf
+
+# Confirmar ações perigosas
+Remove-Item -Path &quot;C:\Important&quot; -Confirm
+
+# Tratar erros
+Get-Process -ErrorAction SilentlyContinue
+</div></section><section class="chapter"><h3 id="performance" data-toc="performance">Performance</h3><div class="code-block" data-lang="powershell">
+# Otimizar pipeline
+Get-Process | 
+    Where-Object {$_.CPU -gt 50} |
+    Sort-Object CPU -Descending |
+    Select-Object -First 5
+
+# Usar parâmetros específicos
+Get-Process -Name &quot;chrome&quot; # Melhor que filtrar depois
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="-begvl7_79" type="1"><li class="list__item" id="-begvl7_80"><p id="-begvl7_83">Gerenciamento de Arquivos</p><ul class="list _bullet" id="-begvl7_84"><li class="list__item" id="-begvl7_85"><p id="-begvl7_88">Liste todos arquivos .txt recursivamente</p></li><li class="list__item" id="-begvl7_86"><p id="-begvl7_89">Copie arquivos com confirma&ccedil;&atilde;o</p></li><li class="list__item" id="-begvl7_87"><p id="-begvl7_90">Mova arquivos usando pipeline</p></li></ul></li><li class="list__item" id="-begvl7_81"><p id="-begvl7_91">Processos e Servi&ccedil;os</p><ul class="list _bullet" id="-begvl7_92"><li class="list__item" id="-begvl7_93"><p id="-begvl7_96">Liste processos por uso de CPU</p></li><li class="list__item" id="-begvl7_94"><p id="-begvl7_97">Gerencie servi&ccedil;os espec&iacute;ficos</p></li><li class="list__item" id="-begvl7_95"><p id="-begvl7_98">Use WhatIf para simular a&ccedil;&otilde;es</p></li></ul></li><li class="list__item" id="-begvl7_82"><p id="-begvl7_99">Descoberta</p><ul class="list _bullet" id="-begvl7_100"><li class="list__item" id="-begvl7_101"><p id="-begvl7_104">Encontre cmdlets por verbo</p></li><li class="list__item" id="-begvl7_102"><p id="-begvl7_105">Explore ajuda e exemplos</p></li><li class="list__item" id="-begvl7_103"><p id="-begvl7_106">Pratique com par&acirc;metros comuns</p></li></ul></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-begvl7_107" type="1"><li class="list__item" id="-begvl7_110"><p id="-begvl7_113"><a href="ps-pipeline.html" id="-begvl7_114" data-tooltip="&quot;O pipeline é o que torna o PowerShell verdadeiramente poderoso.&quot;">Pipeline Avan&ccedil;ado</a></p></li><li class="list__item" id="-begvl7_111"><p id="-begvl7_115"><a href="ps-objects.html" id="-begvl7_116" data-tooltip="&quot;No PowerShell, tudo é um objeto - essa é a chave para sua potência.&quot;">Objetos PowerShell</a></p></li><li class="list__item" id="-begvl7_112"><p id="-begvl7_117"><a href="ps-scripting.html" id="-begvl7_118" data-tooltip="&quot;Scripts são a arte de automatizar o impossível.&quot;">Scripting</a></p></li></ol><p id="-begvl7_109"><span class="emphasis" id="-begvl7_119">&quot;Um bom artes&atilde;o conhece suas ferramentas.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ps-basics.html" class="navigation-links__prev">Conceitos B&aacute;sicos do PowerShell</a><a href="ps-pipeline.html" class="navigation-links__next">Pipeline: O Poder do Encadeamento</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

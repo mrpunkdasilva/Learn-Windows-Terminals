@@ -1,0 +1,131 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#57B747"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-13T23:31:49.978817961"><title>Docker Integration com CMD: Containers de Caos | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"configura-o-inicial-ou-preparando-o-ambiente-para-o-desastre","level":0,"title":"Configuração Inicial (Ou: Preparando o Ambiente para o Desastre)","anchor":"#configura-o-inicial-ou-preparando-o-ambiente-para-o-desastre"},{"id":"gerenciamento-de-containers-ou-malabarismo-com-caixas-virtuais","level":0,"title":"Gerenciamento de Containers (Ou: Malabarismo com Caixas Virtuais)","anchor":"#gerenciamento-de-containers-ou-malabarismo-com-caixas-virtuais"},{"id":"imagens-e-builds-ou-arte-abstrata-em-camadas","level":0,"title":"Imagens e Builds (Ou: Arte Abstrata em Camadas)","anchor":"#imagens-e-builds-ou-arte-abstrata-em-camadas"},{"id":"networking-ou-labirinto-de-conex-es","level":0,"title":"Networking (Ou: Labirinto de Conexões)","anchor":"#networking-ou-labirinto-de-conex-es"},{"id":"volume-management-ou-persist-ncia-superestimada","level":0,"title":"Volume Management (Ou: Persistência é Superestimada)","anchor":"#volume-management-ou-persist-ncia-superestimada"},{"id":"troubleshooting-ou-guia-de-sobreviv-ncia","level":0,"title":"Troubleshooting (Ou: Guia de Sobrevivência)","anchor":"#troubleshooting-ou-guia-de-sobreviv-ncia"},{"id":"checklist-de-sobreviv-ncia-docker","level":0,"title":"Checklist de Sobrevivência Docker","anchor":"#checklist-de-sobreviv-ncia-docker"},{"id":"pr-ximos-passos-se-ainda-tiver-coragem","level":0,"title":"Próximos Passos (Se Ainda Tiver Coragem)","anchor":"#pr-ximos-passos-se-ainda-tiver-coragem"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Docker Integration com CMD: Containers de Caos | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/cmd-docker-integration.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Docker Integration com CMD: Containers de Caos | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/cmd-docker-integration.html#webpage",
+    "url": "writerside-documentation/cmd-docker-integration.html",
+    "name": "Docker Integration com CMD: Containers de Caos | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="cmd-docker-integration" data-main-title="Docker Integration com CMD: Containers de Caos" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="cmd.md|Command Prompt (CMD): O Terminal Clássico do Windows///cmd-integration.md|Integração CMD: Onde Todos os Mundos Colidem"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cmd-docker-integration" id="cmd-docker-integration.md">Docker Integration com CMD: Containers de Caos</h1><div class="code-block" data-lang="none">
+    ____   ___   ____ _  _______ ____  
+   |  _ \ / _ \ / ___| |/ / ____|  _ \ 
+   | | | | | | | |   | ' /|  _| | |_) |
+   | |_| | |_| | |___| . \| |___|  _ &lt; 
+   |____/ \___/ \____|_|\_\_____|_| \_\
+</div><aside class="prompt" data-type="tip" data-title="" id="-35kmjh_4"><p id="-35kmjh_13">&quot;Docker &eacute; como uma caixa surpresa: voc&ecirc; nunca sabe o que vai quebrar quando abrir.&quot;</p></aside><section class="chapter"><h2 id="configura-o-inicial-ou-preparando-o-ambiente-para-o-desastre" data-toc="configura-o-inicial-ou-preparando-o-ambiente-para-o-desastre">Configura&ccedil;&atilde;o Inicial (Ou: Preparando o Ambiente para o Desastre)</h2><section class="chapter"><h3 id="verifica-o-do-ambiente" data-toc="verifica-o-do-ambiente">Verifica&ccedil;&atilde;o do Ambiente</h3><div class="code-block" data-lang="batch">
+@echo off
+:: Checando se o Docker está instalado (e rezando)
+docker --version
+if errorlevel 1 (
+    echo Docker não encontrado!
+    echo Você esqueceu de instalar a fonte de todos os seus problemas futuros
+    goto :installDocker
+)
+</div></section><section class="chapter"><h3 id="status-check" data-toc="status-check">Status Check</h3><div class="code-block" data-lang="batch">
+:: Verificando se o daemon está vivo
+:checkDaemon
+docker info &gt; nul 2&gt;&amp;1
+if errorlevel 1 (
+    echo O daemon Docker está morto... de novo
+    echo Iniciando ritual de ressurreição
+    start &quot;&quot; &quot;C:\Program Files\Docker\Docker\Docker Desktop.exe&quot;
+    timeout /t 30 /nobreak
+    goto :checkDaemon
+)
+</div></section></section><section class="chapter"><h2 id="gerenciamento-de-containers-ou-malabarismo-com-caixas-virtuais" data-toc="gerenciamento-de-containers-ou-malabarismo-com-caixas-virtuais">Gerenciamento de Containers (Ou: Malabarismo com Caixas Virtuais)</h2><section class="chapter"><h3 id="container-lifecycle" data-toc="container-lifecycle">Container Lifecycle</h3><div class="code-block" data-lang="batch">
+:: Script para gerenciar o ciclo de vida dos containers
+:containerManager
+set &quot;CONTAINER_NAME=container-do-caos&quot;
+
+:: Criando um container (o que poderia dar errado?)
+docker run -d --name %CONTAINER_NAME% nginx
+if errorlevel 1 (
+    echo Container recusou-se a iniciar
+    echo Tentando convencê-lo educadamente...
+    docker rm -f %CONTAINER_NAME% 2&gt;nul
+    goto :containerManager
+)
+</div></section><section class="chapter"><h3 id="container-cleanup" data-toc="container-cleanup">Container Cleanup</h3><div class="code-block" data-lang="batch">
+:: Limpeza de containers zumbis
+:zombieHunter
+echo Iniciando caça aos containers mortos-vivos...
+docker container prune -f
+echo Se algo importante foi deletado, foi mal
+</div></section></section><section class="chapter"><h2 id="imagens-e-builds-ou-arte-abstrata-em-camadas" data-toc="imagens-e-builds-ou-arte-abstrata-em-camadas">Imagens e Builds (Ou: Arte Abstrata em Camadas)</h2><section class="chapter"><h3 id="build-automation" data-toc="build-automation">Build Automation</h3><div class="code-block" data-lang="batch">
+:: Script de build com tentativas infinitas
+:buildImage
+set &quot;IMAGE_NAME=app-que-funciona-local&quot;
+set &quot;TAG=versao-otimista&quot;
+
+echo Tentativa de build #%ATTEMPT%
+docker build -t %IMAGE_NAME%:%TAG% .
+if errorlevel 1 (
+    echo Build falhou... que surpresa
+    set /a ATTEMPT+=1
+    if %ATTEMPT% leq 3 (
+        echo Tentando novamente, porque insistência é a chave
+        goto :buildImage
+    ) else (
+        echo Desistindo... por enquanto
+        goto :panicMode
+    )
+)
+</div></section><section class="chapter"><h3 id="image-cleanup" data-toc="image-cleanup">Image Cleanup</h3><div class="code-block" data-lang="batch">
+:: Liberando espaço (e deletando evidências)
+:imageJanitor
+echo Procurando imagens para &quot;otimizar&quot;...
+docker image prune -a --force
+echo Seu HD agradece
+echo (Mas seu time de desenvolvimento não)
+</div></section></section><section class="chapter"><h2 id="networking-ou-labirinto-de-conex-es" data-toc="networking-ou-labirinto-de-conex-es">Networking (Ou: Labirinto de Conex&otilde;es)</h2><section class="chapter"><h3 id="network-creation" data-toc="network-creation">Network Creation</h3><div class="code-block" data-lang="batch">
+:: Criando redes Docker (mais uma camada de complexidade)
+:networkCreator
+docker network create rede-do-caos
+if errorlevel 1 (
+    echo A rede se recusa a existir
+    echo Tentando plano B...
+    goto :useHostNetwork
+)
+</div></section><section class="chapter"><h3 id="container-connectivity" data-toc="container-connectivity">Container Connectivity</h3><div class="code-block" data-lang="batch">
+:: Testando conectividade (ou falta dela)
+:connectivityCheck
+docker run --rm busybox ping -c 1 google.com
+if errorlevel 1 (
+    echo Internet não encontrada
+    echo Culpando o firewall...
+)
+</div></section></section><section class="chapter"><h2 id="volume-management-ou-persist-ncia-superestimada" data-toc="volume-management-ou-persist-ncia-superestimada">Volume Management (Ou: Persist&ecirc;ncia &eacute; Superestimada)</h2><section class="chapter"><h3 id="volume-creation" data-toc="volume-creation">Volume Creation</h3><div class="code-block" data-lang="batch">
+:: Criando volumes (porque perder dados é divertido)
+:volumeManager
+docker volume create dados-importantes
+echo Volume criado com sucesso
+echo (Boa sorte encontrando onde)
+</div></section><section class="chapter"><h3 id="backup-volumes" data-toc="backup-volumes">Backup Volumes</h3><div class="code-block" data-lang="batch">
+:: Script de backup (para quando der tudo errado)
+:backupVolumes
+set &quot;BACKUP_DIR=backup_volumes_%date:~-4%%date:~3,2%%date:~0,2%&quot;
+mkdir %BACKUP_DIR%
+
+docker run --rm -v dados-importantes:/data -v %cd%/%BACKUP_DIR%:/backup alpine tar cvf /backup/backup.tar /data
+echo Backup concluído
+echo (Espero que você não precise dele)
+</div></section></section><section class="chapter"><h2 id="troubleshooting-ou-guia-de-sobreviv-ncia" data-toc="troubleshooting-ou-guia-de-sobreviv-ncia">Troubleshooting (Ou: Guia de Sobreviv&ecirc;ncia)</h2><section class="chapter"><h3 id="log-analysis" data-toc="log-analysis">Log Analysis</h3><div class="code-block" data-lang="batch">
+:: Analisando logs (ou tentando)
+:logDiver
+docker logs --tail 100 %CONTAINER_NAME%
+echo Se você entendeu esses logs, parabéns
+echo Você é oficialmente um especialista Docker
+</div></section><section class="chapter"><h3 id="container-debug" data-toc="container-debug">Container Debug</h3><div class="code-block" data-lang="batch">
+:: Modo debug desesperado
+:debugMode
+echo Entrando em modo de depuração...
+docker exec -it %CONTAINER_NAME% /bin/sh
+echo Se isso funcionou, foi sorte
+</div></section></section><section class="chapter"><h2 id="checklist-de-sobreviv-ncia-docker" data-toc="checklist-de-sobreviv-ncia-docker">Checklist de Sobreviv&ecirc;ncia Docker</h2><ul class="list _bullet" id="-35kmjh_38"><li class="list__item" id="-35kmjh_39"><p id="-35kmjh_45">[ ] Docker Desktop instalado (e reiniciado 3 vezes)</p></li><li class="list__item" id="-35kmjh_40"><p id="-35kmjh_46">[ ] Containers rodando (alguns deles)</p></li><li class="list__item" id="-35kmjh_41"><p id="-35kmjh_47">[ ] Volumes montados (em algum lugar)</p></li><li class="list__item" id="-35kmjh_42"><p id="-35kmjh_48">[ ] Redes configuradas (teoricamente)</p></li><li class="list__item" id="-35kmjh_43"><p id="-35kmjh_49">[ ] Logs verificados (e ignorados)</p></li><li class="list__item" id="-35kmjh_44"><p id="-35kmjh_50">[ ] Stack Overflow como p&aacute;gina inicial</p></li></ul></section><section class="chapter"><h2 id="pr-ximos-passos-se-ainda-tiver-coragem" data-toc="pr-ximos-passos-se-ainda-tiver-coragem">Pr&oacute;ximos Passos (Se Ainda Tiver Coragem)</h2><ol class="list _decimal" id="-35kmjh_51" type="1"><li class="list__item" id="-35kmjh_54"><p id="-35kmjh_57"><a href="cmd-cloud-integration.html" id="-35kmjh_58" data-tooltip="&quot;Cloud é como um hotel: você paga pelo que usa, mas nunca sabe exatamente quanto vai custar no final do mês.&quot;">Cloud Integration</a> (Para problemas em escala global)</p></li><li class="list__item" id="-35kmjh_55"><p id="-35kmjh_59"><a href="cmd-exercises.html" id="-35kmjh_60" data-tooltip="&quot;A prática leva à perfeição. Ou pelo menos a um histórico de comandos mais interessante.&quot;">Kubernetes</a> (Porque Docker sozinho n&atilde;o &eacute; complexo o suficiente)</p></li><li class="list__item" id="-35kmjh_56"><p id="-35kmjh_61"><a href="cmd-exercises.html" id="-35kmjh_62" data-tooltip="&quot;A prática leva à perfeição. Ou pelo menos a um histórico de comandos mais interessante.&quot;">Terapia</a> (Seriamente, voc&ecirc; vai precisar)</p></li></ol><p id="-35kmjh_53"><span class="emphasis" id="-35kmjh_63">&quot;Docker &eacute; como uma cebola: tem v&aacute;rias camadas e provavelmente vai te fazer chorar.&quot;</span></p></section><div class="last-modified">13 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cmd-git-integration.html" class="navigation-links__prev">Git Integration com CMD: Controlando o Caos</a><a href="cmd-cloud-integration.html" class="navigation-links__next">Cloud Integration com CMD: Problemas em Escala Global</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
