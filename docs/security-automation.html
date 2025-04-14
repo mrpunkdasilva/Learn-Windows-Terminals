@@ -1,0 +1,277 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T02:03:19.566064199"><title>Automa&ccedil;&atilde;o de Seguran&ccedil;a | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"arquitetura-do-sistema","level":0,"title":"Arquitetura do Sistema","anchor":"#arquitetura-do-sistema"},{"id":"detec-o-de-amea-as","level":0,"title":"Detecção de Ameaças","anchor":"#detec-o-de-amea-as"},{"id":"resposta-a-incidentes","level":0,"title":"Resposta a Incidentes","anchor":"#resposta-a-incidentes"},{"id":"hardening-automatizado","level":0,"title":"Hardening Automatizado","anchor":"#hardening-automatizado"},{"id":"compliance-automatizado","level":0,"title":"Compliance Automatizado","anchor":"#compliance-automatizado"},{"id":"uso-do-sistema","level":0,"title":"Uso do Sistema","anchor":"#uso-do-sistema"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Automa&ccedil;&atilde;o de Seguran&ccedil;a | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/security-automation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Automa&ccedil;&atilde;o de Seguran&ccedil;a | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/security-automation.html#webpage",
+    "url": "writerside-documentation/security-automation.html",
+    "name": "Automa&ccedil;&atilde;o de Seguran&ccedil;a | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="security-automation" data-main-title="Automação de Segurança" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="practical-projects.md|Projetos Práticos///advanced-projects.md|Projetos Avançados"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="security-automation" id="security-automation.md">Automação de Segurança</h1><aside class="prompt" data-type="tip" data-title="" id="rmcykp_3"><p id="rmcykp_13">&quot;Automatize sua seguran&ccedil;a antes que os atacantes automatizem suas invas&otilde;es.&quot;</p></aside><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="rmcykp_14">Sistema automatizado de seguran&ccedil;a integrando:</p><ul class="list _bullet" id="rmcykp_15"><li class="list__item" id="rmcykp_16"><p id="rmcykp_20">Detec&ccedil;&atilde;o de amea&ccedil;as</p></li><li class="list__item" id="rmcykp_17"><p id="rmcykp_21">Resposta a incidentes</p></li><li class="list__item" id="rmcykp_18"><p id="rmcykp_22">Hardening automatizado</p></li><li class="list__item" id="rmcykp_19"><p id="rmcykp_23">Compliance cont&iacute;nuo</p></li></ul></section><section class="chapter"><h2 id="arquitetura-do-sistema" data-toc="arquitetura-do-sistema">Arquitetura do Sistema</h2><section class="chapter"><h3 id="configura-o-base" data-toc="configura-o-base">Configura&ccedil;&atilde;o Base</h3><div class="code-block" data-lang="batch">
+@echo off
+:: Security Automation Config
+set &quot;CONFIG_DIR=%~dp0config&quot;
+set &quot;RULES_FILE=%CONFIG_DIR%\security-rules.yaml&quot;
+set &quot;LOG_DIR=%~dp0logs&quot;
+set &quot;BACKUP_DIR=%~dp0backups&quot;
+
+:: Validação
+if not exist &quot;%RULES_FILE%&quot; (
+    echo Erro: Arquivo de regras não encontrado
+    exit /b 1
+)
+
+:: Inicialização
+call :initializeSystem || exit /b 1
+powershell.exe -File &quot;%~dp0security-manager.ps1&quot; %*
+exit /b %ERRORLEVEL%
+
+:initializeSystem
+    mkdir &quot;%LOG_DIR%&quot; 2&gt;nul
+    mkdir &quot;%BACKUP_DIR%&quot; 2&gt;nul
+    echo Sistema inicializado
+    exit /b 0
+</div></section><section class="chapter"><h3 id="core-do-sistema" data-toc="core-do-sistema">Core do Sistema</h3><div class="code-block" data-lang="powershell">
+# security-manager.ps1
+class SecurityManager {
+    [ThreatDetector]$Detector
+    [IncidentResponder]$Responder
+    [SecurityHardener]$Hardener
+    [ComplianceChecker]$Compliance
+    
+    SecurityManager([string]$configPath) {
+        $this-&gt;LoadConfiguration($configPath)
+        $this-&gt;InitializeComponents()
+        $this-&gt;StartMonitoring()
+    }
+    
+    [void]InitializeComponents() {
+        $this-&gt;Detector = [ThreatDetector]::new($this-&gt;Config)
+        $this-&gt;Responder = [IncidentResponder]::new()
+        $this-&gt;Hardener = [SecurityHardener]::new()
+        $this-&gt;Compliance = [ComplianceChecker]::new()
+    }
+    
+    [void]StartMonitoring() {
+        Start-Job -ScriptBlock {
+            while ($true) {
+                $this-&gt;Detector.ScanForThreats()
+                Start-Sleep -Seconds 300
+            }
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="detec-o-de-amea-as" data-toc="detec-o-de-amea-as">Detec&ccedil;&atilde;o de Amea&ccedil;as</h2><section class="chapter"><h3 id="sistema-de-detec-o" data-toc="sistema-de-detec-o">Sistema de Detec&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+class ThreatDetector {
+    [array]$Rules
+    [array]$Signatures
+    [Logger]$Logger
+    
+    [void]ScanForThreats() {
+        $this-&gt;ScanProcesses()
+        $this-&gt;ScanNetwork()
+        $this-&gt;ScanFiles()
+        $this-&gt;AnalyzeLogs()
+    }
+    
+    [void]ScanProcesses() {
+        $suspiciousProcesses = Get-Process | Where-Object {
+            $_.CPU -gt $this-&gt;Rules.ProcessThreshold -or
+            $_.WorkingSet -gt $this-&gt;Rules.MemoryThreshold
+        }
+        
+        foreach ($process in $suspiciousProcesses) {
+            $this-&gt;AnalyzeProcess($process)
+        }
+    }
+    
+    [void]ScanNetwork() {
+        $connections = Get-NetTCPConnection | Where-Object {
+            $_.RemotePort -in $this-&gt;Rules.SuspiciousPorts -or
+            $_.State -eq &quot;Listen&quot;
+        }
+        
+        foreach ($conn in $connections) {
+            $this-&gt;AnalyzeConnection($conn)
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="an-lise-comportamental" data-toc="an-lise-comportamental">An&aacute;lise Comportamental</h3><div class="code-block" data-lang="powershell">
+class BehaviorAnalyzer {
+    [hashtable]$Baselines
+    [array]$Anomalies
+    
+    [void]LearnBaseline() {
+        $this-&gt;Baselines = @{
+            ProcessPatterns = $this-&gt;CollectProcessBaseline()
+            NetworkPatterns = $this-&gt;CollectNetworkBaseline()
+            FileSystemPatterns = $this-&gt;CollectFileSystemBaseline()
+        }
+    }
+    
+    [void]DetectAnomalies() {
+        $currentBehavior = $this-&gt;CollectCurrentBehavior()
+        $deviations = $this-&gt;CompareWithBaseline($currentBehavior)
+        
+        foreach ($deviation in $deviations) {
+            if ($deviation.Severity -gt $this-&gt;Rules.AnomalyThreshold) {
+                $this-&gt;ReportAnomaly($deviation)
+            }
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="resposta-a-incidentes" data-toc="resposta-a-incidentes">Resposta a Incidentes</h2><section class="chapter"><h3 id="sistema-de-resposta" data-toc="sistema-de-resposta">Sistema de Resposta</h3><div class="code-block" data-lang="powershell">
+class IncidentResponder {
+    [array]$ResponsePlans
+    [hashtable]$Containment
+    
+    [void]RespondToThreat([Threat]$threat) {
+        $plan = $this-&gt;SelectResponsePlan($threat)
+        
+        foreach ($action in $plan.Actions) {
+            switch ($action.Type) {
+                'Block' { $this-&gt;BlockThreat($action.Target) }
+                'Isolate' { $this-&gt;IsolateSystem($action.Target) }
+                'Terminate' { $this-&gt;TerminateProcess($action.Target) }
+                'Backup' { $this-&gt;SecureBackup($action.Target) }
+            }
+        }
+    }
+    
+    [void]BlockThreat([string]$target) {
+        switch ($target.Type) {
+            'IP' { 
+                New-NetFirewallRule -DisplayName &quot;Block Threat&quot; `
+                    -Direction Inbound -Action Block `
+                    -RemoteAddress $target.Address
+            }
+            'Process' {
+                Stop-Process -Name $target.Name -Force
+            }
+            'File' {
+                $null = Rename-Item -Path $target.Path -NewName &quot;$($target.Name).quarantine&quot;
+            }
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="hardening-automatizado" data-toc="hardening-automatizado">Hardening Automatizado</h2><section class="chapter"><h3 id="sistema-de-hardening" data-toc="sistema-de-hardening">Sistema de Hardening</h3><div class="code-block" data-lang="powershell">
+class SecurityHardener {
+    [array]$Policies
+    [hashtable]$Configurations
+    
+    [void]ApplyHardening([string]$level) {
+        switch ($level) {
+            'Basic' { $this-&gt;ApplyBasicHardening() }
+            'Enhanced' { $this-&gt;ApplyEnhancedHardening() }
+            'Maximum' { $this-&gt;ApplyMaximumHardening() }
+        }
+    }
+    
+    [void]ApplyBasicHardening() {
+        # Firewall
+        Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
+        
+        # Windows Defender
+        Set-MpPreference -DisableRealtimeMonitoring $false
+        
+        # Account Policies
+        net accounts /lockoutthreshold:5 /lockoutduration:30
+        
+        # Service Hardening
+        $services = @('RemoteRegistry', 'TelemetryService')
+        foreach ($service in $services) {
+            Set-Service -Name $service -StartupType Disabled
+        }
+    }
+    
+    [void]ApplyEnhancedHardening() {
+        # BitLocker
+        Enable-BitLocker -MountPoint &quot;C:&quot; -EncryptionMethod Aes256
+        
+        # AppLocker
+        Set-AppLockerPolicy -XmlPolicy $this-&gt;Policies.AppLocker
+        
+        # Network Hardening
+        Set-NetFirewallRule -DisplayGroup &quot;Windows Remote Management&quot; -Enabled False
+        
+        # Audit Policy
+        auditpol /set /category:* /success:enable /failure:enable
+    }
+}
+</div></section></section><section class="chapter"><h2 id="compliance-automatizado" data-toc="compliance-automatizado">Compliance Automatizado</h2><section class="chapter"><h3 id="verificador-de-compliance" data-toc="verificador-de-compliance">Verificador de Compliance</h3><div class="code-block" data-lang="powershell">
+class ComplianceChecker {
+    [array]$Standards
+    [hashtable]$Requirements
+    
+    [object]CheckCompliance() {
+        $results = @{}
+        
+        foreach ($standard in $this-&gt;Standards) {
+            $results[$standard.Name] = @{
+                Passed = 0
+                Failed = 0
+                Items = @()
+            }
+            
+            foreach ($requirement in $standard.Requirements) {
+                $check = $this-&gt;VerifyRequirement($requirement)
+                $results[$standard.Name].Items += $check
+                
+                if ($check.Status -eq 'Passed') {
+                    $results[$standard.Name].Passed++
+                } else {
+                    $results[$standard.Name].Failed++
+                }
+            }
+        }
+        
+        return $results
+    }
+    
+    [void]GenerateReport([object]$results) {
+        $report = @{
+            Timestamp = Get-Date
+            Results = $results
+            Summary = $this-&gt;CalculateCompliance($results)
+        }
+        
+        $report | ConvertTo-Json -Depth 10 | 
+            Out-File &quot;compliance-report.json&quot;
+    }
+}
+</div></section></section><section class="chapter"><h2 id="uso-do-sistema" data-toc="uso-do-sistema">Uso do Sistema</h2><section class="chapter"><h3 id="exemplo-de-implementa-o" data-toc="exemplo-de-implementa-o">Exemplo de Implementa&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+# Inicializar sistema
+$securityManager = [SecurityManager]::new(&quot;config.yaml&quot;)
+
+# Configurar detecção
+$securityManager.Detector.LoadRules(&quot;rules.yaml&quot;)
+$securityManager.Detector.StartMonitoring()
+
+# Aplicar hardening
+$securityManager.Hardener.ApplyHardening(&quot;Enhanced&quot;)
+
+# Verificar compliance
+$complianceResults = $securityManager.Compliance.CheckCompliance()
+$securityManager.Compliance.GenerateReport($complianceResults)
+</div></section><section class="chapter"><h3 id="script-de-automa-o" data-toc="script-de-automa-o">Script de Automa&ccedil;&atilde;o</h3><div class="code-block" data-lang="batch">
+@echo off
+echo Iniciando automação de segurança...
+
+:: Inicializar sistema
+powershell.exe -Command &quot;$security = [SecurityManager]::new('config.yaml')&quot;
+
+:: Executar verificações
+powershell.exe -Command &quot;$security.Detector.ScanForThreats()&quot;
+
+:: Aplicar hardening
+powershell.exe -Command &quot;$security.Hardener.ApplyHardening('Enhanced')&quot;
+
+:: Gerar relatório
+powershell.exe -Command &quot;$security.Compliance.GenerateReport()&quot;
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="rmcykp_42" type="1"><li class="list__item" id="rmcykp_43"><p id="rmcykp_47">Implementar machine learning para detec&ccedil;&atilde;o</p></li><li class="list__item" id="rmcykp_44"><p id="rmcykp_48">Adicionar resposta automatizada avan&ccedil;ada</p></li><li class="list__item" id="rmcykp_45"><p id="rmcykp_49">Expandir cobertura de compliance</p></li><li class="list__item" id="rmcykp_46"><p id="rmcykp_50">Integrar com SIEM</p></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="rmcykp_51"><li class="list__item" id="rmcykp_54"><p id="rmcykp_57"><a href="https://docs.microsoft.com/windows-server/security/" id="rmcykp_58" data-external="true" rel="noopener noreferrer" target="_blank">Windows Security Best Practices</a></p></li><li class="list__item" id="rmcykp_55"><p id="rmcykp_59"><a href="https://docs.microsoft.com/powershell/module/microsoft.powershell.security/" id="rmcykp_60" data-external="true" rel="noopener noreferrer" target="_blank">PowerShell Security Module</a></p></li><li class="list__item" id="rmcykp_56"><p id="rmcykp_61"><a href="https://www.cisecurity.org/cis-benchmarks/" id="rmcykp_62" data-external="true" rel="noopener noreferrer" target="_blank">CIS Benchmarks</a></p></li></ul><p id="rmcykp_53"><span class="emphasis" id="rmcykp_63">&quot;A melhor seguran&ccedil;a &eacute; aquela que nunca dorme.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cloud-management.html" class="navigation-links__prev">Gerenciamento Multi-Cloud</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
