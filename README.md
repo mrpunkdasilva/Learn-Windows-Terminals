@@ -75,12 +75,6 @@ Contribuições são bem-vindas! Por favor, leia nosso [guia de contribuição](
 
 Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes.
 
-## ✨ Agradecimentos
-
-- Comunidade Windows
-- Contribuidores
-- JetBrains pela ferramenta Writerside
-
 
 ## 📊 Status do Projeto
 
