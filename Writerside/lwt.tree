@@ -76,4 +76,28 @@
         <toc-element topic="troubleshooting.md"/>
         <toc-element topic="cheat-sheet.md"/>
     </toc-element>
+
+    <!-- Nova seção de projetos práticos -->
+    <toc-element topic="practical-projects.md">
+        <toc-element topic="cmd-projects.md">
+            <toc-element topic="cmd-backup-system.md"/>
+            <toc-element topic="cmd-dev-environment.md"/>
+            <toc-element topic="cmd-deployment-automation.md"/>
+            <toc-element topic="cmd-log-analyzer.md"/>
+        </toc-element>
+        
+        <toc-element topic="powershell-projects.md">
+            <toc-element topic="ps-system-monitor.md"/>
+            <toc-element topic="ps-cloud-automation.md"/>
+            <toc-element topic="ps-security-toolkit.md"/>
+            <toc-element topic="ps-devops-tools.md"/>
+        </toc-element>
+        
+        <toc-element topic="advanced-projects.md">
+            <toc-element topic="hybrid-terminal-projects.md"/>
+            <toc-element topic="ci-cd-automation.md"/>
+            <toc-element topic="cloud-management.md"/>
+            <toc-element topic="security-automation.md"/>
+        </toc-element>
+    </toc-element>
 </instance-profile>

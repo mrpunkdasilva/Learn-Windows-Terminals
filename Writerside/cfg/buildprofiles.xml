@@ -15,7 +15,7 @@
     <build-profile instance="lwt">
         <variables>
             <noindex-content>false</noindex-content>
-            <primary-color>forest</primary-color>
+            <primary-color>strawberry</primary-color>
             <color-preset>vivid</color-preset>
             <header-logo>logo-primary.svg</header-logo>
         </variables>

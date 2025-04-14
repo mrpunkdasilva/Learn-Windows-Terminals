@@ -1,0 +1,170 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T00:12:00.831731709"><title>Azure PowerShell Integration | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"configura-o-inicial","level":0,"title":"Configuração Inicial","anchor":"#configura-o-inicial"},{"id":"opera-es-comuns","level":0,"title":"Operações Comuns","anchor":"#opera-es-comuns"},{"id":"automa-o-e-devops","level":0,"title":"Automação e DevOps","anchor":"#automa-o-e-devops"},{"id":"monitoramento","level":0,"title":"Monitoramento","anchor":"#monitoramento"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"scripts-de-exemplo","level":0,"title":"Scripts de Exemplo","anchor":"#scripts-de-exemplo"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Azure PowerShell Integration | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-azure-integration.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Azure PowerShell Integration | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-azure-integration.html#webpage",
+    "url": "writerside-documentation/ps-azure-integration.html",
+    "name": "Azure PowerShell Integration | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-azure-integration" data-main-title="Azure PowerShell Integration" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="powershell.md|PowerShell: A Evolução do Terminal Windows///ps-integration.md|PowerShell Integration"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-azure-integration" id="ps-azure-integration.md">Azure PowerShell Integration</h1><aside class="prompt" data-type="tip" data-title="" id="-wkmjkf_3"><p id="-wkmjkf_12">&quot;Automatize e gerencie recursos Azure com PowerShell.&quot;</p></aside><section class="chapter"><h2 id="configura-o-inicial" data-toc="configura-o-inicial">Configura&ccedil;&atilde;o Inicial</h2><section class="chapter"><h3 id="instala-o" data-toc="instala-o">Instala&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+# Instalar Azure PowerShell
+Install-Module -Name Az -AllowClobber -Scope CurrentUser
+
+# Verificar instalação
+Get-InstalledModule -Name Az -AllVersions
+</div></section><section class="chapter"><h3 id="autentica-o" data-toc="autentica-o">Autentica&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+# Login interativo
+Connect-AzAccount
+
+# Login não-interativo
+$credential = Get-Credential
+Connect-AzAccount -Credential $credential
+
+# Service Principal
+$sp = @{
+    SubscriptionId = &quot;your-sub-id&quot;
+    TenantId = &quot;your-tenant-id&quot;
+    ApplicationId = &quot;your-app-id&quot;
+    CertificateThumbprint = &quot;cert-thumbprint&quot;
+}
+Connect-AzAccount -ServicePrincipal @sp
+</div></section></section><section class="chapter"><h2 id="opera-es-comuns" data-toc="opera-es-comuns">Opera&ccedil;&otilde;es Comuns</h2><section class="chapter"><h3 id="resource-groups" data-toc="resource-groups">Resource Groups</h3><div class="code-block" data-lang="powershell">
+# Criar Resource Group
+New-AzResourceGroup -Name &quot;MyRG&quot; -Location &quot;eastus2&quot;
+
+# Listar Resource Groups
+Get-AzResourceGroup | Select-Object ResourceGroupName, Location
+
+# Remover Resource Group
+Remove-AzResourceGroup -Name &quot;MyRG&quot; -Force
+</div></section><section class="chapter"><h3 id="virtual-machines" data-toc="virtual-machines">Virtual Machines</h3><div class="code-block" data-lang="powershell">
+# Criar VM
+$vmParams = @{
+    ResourceGroupName = &quot;MyRG&quot;
+    Name = &quot;MyVM&quot;
+    Location = &quot;eastus2&quot;
+    Size = &quot;Standard_DS2_v2&quot;
+    Image = &quot;Win2019Datacenter&quot;
+}
+New-AzVM @vmParams
+
+# Gerenciar estado
+Stop-AzVM -ResourceGroupName &quot;MyRG&quot; -Name &quot;MyVM&quot;
+Start-AzVM -ResourceGroupName &quot;MyRG&quot; -Name &quot;MyVM&quot;
+</div></section><section class="chapter"><h3 id="storage" data-toc="storage">Storage</h3><div class="code-block" data-lang="powershell">
+# Criar Storage Account
+$storageParams = @{
+    ResourceGroupName = &quot;MyRG&quot;
+    Name = &quot;mystorageaccount&quot;
+    Location = &quot;eastus2&quot;
+    SkuName = &quot;Standard_LRS&quot;
+}
+New-AzStorageAccount @storageParams
+
+# Upload de blob
+$context = (Get-AzStorageAccount -ResourceGroupName &quot;MyRG&quot; -Name &quot;mystorageaccount&quot;).Context
+Set-AzStorageBlobContent -Container &quot;mycontainer&quot; -File &quot;myfile.txt&quot; -Context $context
+</div></section></section><section class="chapter"><h2 id="automa-o-e-devops" data-toc="automa-o-e-devops">Automa&ccedil;&atilde;o e DevOps</h2><section class="chapter"><h3 id="arm-templates" data-toc="arm-templates">ARM Templates</h3><div class="code-block" data-lang="powershell">
+# Deploy ARM template
+$templateParams = @{
+    ResourceGroupName = &quot;MyRG&quot;
+    TemplateFile = &quot;template.json&quot;
+    TemplateParameterFile = &quot;parameters.json&quot;
+}
+New-AzResourceGroupDeployment @templateParams
+</div></section><section class="chapter"><h3 id="azure-functions" data-toc="azure-functions">Azure Functions</h3><div class="code-block" data-lang="powershell">
+# Deploy Function App
+$functionParams = @{
+    ResourceGroupName = &quot;MyRG&quot;
+    Name = &quot;MyFunctionApp&quot;
+    Runtime = &quot;PowerShell&quot;
+    StorageAccountName = &quot;mystorageaccount&quot;
+}
+New-AzFunctionApp @functionParams
+</div></section></section><section class="chapter"><h2 id="monitoramento" data-toc="monitoramento">Monitoramento</h2><section class="chapter"><h3 id="azure-monitor" data-toc="azure-monitor">Azure Monitor</h3><div class="code-block" data-lang="powershell">
+# Obter métricas
+Get-AzMetric -ResourceId $resourceId -MetricName &quot;CPU&quot; -TimeGrain 00:01:00
+
+# Configurar alertas
+$alertParams = @{
+    ResourceGroupName = &quot;MyRG&quot;
+    Name = &quot;HighCPUAlert&quot;
+    Location = &quot;eastus2&quot;
+    TargetResourceId = $resourceId
+    MetricName = &quot;Percentage CPU&quot;
+    Operator = &quot;GreaterThan&quot;
+    Threshold = 90
+}
+New-AzMetricAlertRule @alertParams
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="1-gerenciamento-de-credenciais" data-toc="1-gerenciamento-de-credenciais">1. Gerenciamento de Credenciais</h3><div class="code-block" data-lang="powershell">
+# Usar Key Vault
+$secret = Get-AzKeyVaultSecret -VaultName &quot;MyVault&quot; -Name &quot;MySecret&quot;
+$credential = New-Object PSCredential &quot;user&quot;, $secret.SecretValue
+</div></section><section class="chapter"><h3 id="2-error-handling" data-toc="2-error-handling">2. Error Handling</h3><div class="code-block" data-lang="powershell">
+try {
+    $result = New-AzResourceGroup -Name &quot;MyRG&quot; -Location &quot;eastus2&quot;
+    Write-Output &quot;Resource Group criado: $($result.ResourceGroupName)&quot;
+}
+catch {
+    Write-Error &quot;Falha ao criar Resource Group: $_&quot;
+    throw
+}
+finally {
+    Disconnect-AzAccount
+}
+</div></section><section class="chapter"><h3 id="3-logging" data-toc="3-logging">3. Logging</h3><div class="code-block" data-lang="powershell">
+# Configurar logging
+Enable-AzContextAutosave
+Start-Transcript -Path &quot;.\AzureDeployment.log&quot;
+
+# Executar operações
+# ...
+
+Stop-Transcript
+</div></section></section><section class="chapter"><h2 id="scripts-de-exemplo" data-toc="scripts-de-exemplo">Scripts de Exemplo</h2><section class="chapter"><h3 id="1-backup-automatizado" data-toc="1-backup-automatizado">1. Backup Automatizado</h3><div class="code-block" data-lang="powershell">
+function Backup-AzureVM {
+    param(
+        [string]$ResourceGroupName,
+        [string]$VMName
+    )
+    
+    # Criar snapshot do disco
+    $vm = Get-AzVM -ResourceGroupName $ResourceGroupName -Name $VMName
+    $disk = Get-AzDisk -ResourceGroupName $ResourceGroupName -DiskName $vm.StorageProfile.OsDisk.Name
+    
+    $snapshotConfig = New-AzSnapshotConfig -SourceUri $disk.Id -Location $disk.Location -CreateOption Copy
+    $snapshot = New-AzSnapshot -ResourceGroupName $ResourceGroupName -SnapshotName &quot;$VMName-snap-$(Get-Date -Format 'yyyyMMdd')&quot; -Snapshot $snapshotConfig
+    
+    return $snapshot
+}
+</div></section><section class="chapter"><h3 id="2-deployment-automatizado" data-toc="2-deployment-automatizado">2. Deployment Automatizado</h3><div class="code-block" data-lang="powershell">
+function Deploy-AzureEnvironment {
+    param(
+        [string]$Environment,
+        [string]$Location
+    )
+    
+    # Criar infraestrutura base
+    $rgName = &quot;RG-$Environment&quot;
+    New-AzResourceGroup -Name $rgName -Location $Location
+    
+    # Deploy recursos
+    $resources = @(
+        @{ Type = &quot;Storage&quot;; Name = &quot;storage$Environment&quot; }
+        @{ Type = &quot;AppService&quot;; Name = &quot;app$Environment&quot; }
+        @{ Type = &quot;SQL&quot;; Name = &quot;sql$Environment&quot; }
+    )
+    
+    foreach ($resource in $resources) {
+        Write-Output &quot;Deploying $($resource.Type): $($resource.Name)&quot;
+        # Lógica de deployment específica para cada tipo
+    }
+}
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-wkmjkf_39" type="1"><li class="list__item" id="-wkmjkf_40"><p id="-wkmjkf_43"><a href="ps-aws-integration.html" id="-wkmjkf_44" data-tooltip="&quot;Gerencie sua infraestrutura AWS com o poder do PowerShell.&quot;">AWS Integration</a></p></li><li class="list__item" id="-wkmjkf_41"><p id="-wkmjkf_45"><a href="ps-devops-integration.html" id="-wkmjkf_46" data-tooltip="&quot;Automatize seu pipeline DevOps com o poder do PowerShell.&quot;">DevOps Integration</a></p></li><li class="list__item" id="-wkmjkf_42"><p id="-wkmjkf_47"><a href="ps-security.html" id="-wkmjkf_48" data-tooltip="&quot;Segurança não é uma característica, é uma necessidade.&quot;">Security Best Practices</a></p></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="-wkmjkf_49"><li class="list__item" id="-wkmjkf_52"><p id="-wkmjkf_55"><a href="https://docs.microsoft.com/powershell/azure/" id="-wkmjkf_56" data-external="true" rel="noopener noreferrer" target="_blank">Azure PowerShell Documentation</a></p></li><li class="list__item" id="-wkmjkf_53"><p id="-wkmjkf_57"><a href="https://docs.microsoft.com/azure/azure-resource-manager/templates/" id="-wkmjkf_58" data-external="true" rel="noopener noreferrer" target="_blank">Azure Resource Manager Templates</a></p></li><li class="list__item" id="-wkmjkf_54"><p id="-wkmjkf_59"><a href="https://docs.microsoft.com/azure/devops/" id="-wkmjkf_60" data-external="true" rel="noopener noreferrer" target="_blank">Azure DevOps</a></p></li></ul><p id="-wkmjkf_51"><span class="emphasis" id="-wkmjkf_61">&quot;Azure e PowerShell: a combina&ccedil;&atilde;o perfeita para automa&ccedil;&atilde;o cloud.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ps-integration.html" class="navigation-links__prev">PowerShell Integration</a><a href="ps-aws-integration.html" class="navigation-links__next">AWS PowerShell Integration</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

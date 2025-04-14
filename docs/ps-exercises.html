@@ -1,0 +1,238 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T00:12:00.877799226"><title>Exerc&iacute;cios PowerShell | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"exerc-cios-b-sicos","level":0,"title":"Exercícios Básicos","anchor":"#exerc-cios-b-sicos"},{"id":"exerc-cios-intermedi-rios","level":0,"title":"Exercícios Intermediários","anchor":"#exerc-cios-intermedi-rios"},{"id":"exerc-cios-avan-ados","level":0,"title":"Exercícios Avançados","anchor":"#exerc-cios-avan-ados"},{"id":"desafios-extra","level":0,"title":"Desafios Extra","anchor":"#desafios-extra"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Exerc&iacute;cios PowerShell | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-exercises.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Exerc&iacute;cios PowerShell | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-exercises.html#webpage",
+    "url": "writerside-documentation/ps-exercises.html",
+    "name": "Exerc&iacute;cios PowerShell | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-exercises" data-main-title="Exercícios PowerShell" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="powershell.md|PowerShell: A Evolução do Terminal Windows"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-exercises" id="ps-exercises.md">Exercícios PowerShell</h1><aside class="prompt" data-type="tip" data-title="" id="-vnrhys_3"><p id="-vnrhys_10">&quot;A pr&aacute;tica leva &agrave; perfei&ccedil;&atilde;o. Vamos praticar!&quot;</p></aside><section class="chapter"><h2 id="exerc-cios-b-sicos" data-toc="exerc-cios-b-sicos">Exerc&iacute;cios B&aacute;sicos</h2><section class="chapter"><h3 id="1-manipula-o-de-arquivos" data-toc="1-manipula-o-de-arquivos">1. Manipula&ccedil;&atilde;o de Arquivos</h3><div class="code-block" data-lang="powershell">
+# Exercício: Sistema de Backup
+# Crie um script que:
+# 1. Liste todos arquivos .txt em um diretório
+# 2. Copie apenas arquivos modificados nas últimas 24h
+# 3. Comprima os arquivos em um zip
+# 4. Registre as operações em um log
+
+# Exemplo de solução
+$sourceDir = &quot;C:\Dados&quot;
+$backupDir = &quot;C:\Backup&quot;
+$logFile = &quot;C:\Logs\backup.log&quot;
+
+Get-ChildItem -Path $sourceDir -Filter &quot;*.txt&quot; |
+    Where-Object { $_.LastWriteTime -gt (Get-Date).AddDays(-1) } |
+    ForEach-Object {
+        Copy-Item $_.FullName -Destination $backupDir
+        Add-Content $logFile &quot;$(Get-Date) - Copiado: $($_.Name)&quot;
+    }
+</div></section><section class="chapter"><h3 id="2-processos-e-servi-os" data-toc="2-processos-e-servi-os">2. Processos e Servi&ccedil;os</h3><div class="code-block" data-lang="powershell">
+# Exercício: Monitor de Recursos
+# Crie um script que:
+# 1. Monitore uso de CPU e memória
+# 2. Alerte quando limites forem excedidos
+# 3. Registre estatísticas em CSV
+# 4. Permita configuração de limites
+
+# Exemplo de solução
+function Monitor-SystemResources {
+    param(
+        [int]$cpuThreshold = 80,
+        [int]$memThreshold = 90
+    )
+    
+    $stats = Get-Process | Measure-Object -Property CPU, WS -Sum
+    $cpuUsage = $stats.Sum / $env:NUMBER_OF_PROCESSORS
+    $memUsage = (Get-Counter '\Memory\% Committed Bytes In Use').CounterSamples.CookedValue
+    
+    [PSCustomObject]@{
+        DateTime = Get-Date
+        CPU = $cpuUsage
+        Memory = $memUsage
+        Alert = ($cpuUsage -gt $cpuThreshold) -or ($memUsage -gt $memThreshold)
+    }
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-intermedi-rios" data-toc="exerc-cios-intermedi-rios">Exerc&iacute;cios Intermedi&aacute;rios</h2><section class="chapter"><h3 id="3-automa-o-de-rede" data-toc="3-automa-o-de-rede">3. Automa&ccedil;&atilde;o de Rede</h3><div class="code-block" data-lang="powershell">
+# Exercício: Diagnóstico de Rede
+# Crie um script que:
+# 1. Teste conectividade com múltiplos hosts
+# 2. Verifique portas específicas
+# 3. Meça latência
+# 4. Gere relatório HTML
+
+# Exemplo de solução
+function Test-NetworkHealth {
+    param(
+        [string[]]$computers,
+        [int[]]$ports = @(80, 443, 3389)
+    )
+    
+    $results = foreach ($computer in $computers) {
+        $ping = Test-Connection $computer -Count 1 -ErrorAction SilentlyContinue
+        $portTests = foreach ($port in $ports) {
+            $test = Test-NetConnection $computer -Port $port -WarningAction SilentlyContinue
+            [PSCustomObject]@{
+                Port = $port
+                Open = $test.TcpTestSucceeded
+            }
+        }
+        
+        [PSCustomObject]@{
+            Computer = $computer
+            Online = $null -ne $ping
+            ResponseTime = $ping.ResponseTime
+            Ports = $portTests
+        }
+    }
+    
+    $results | ConvertTo-Html | Out-File &quot;NetworkReport.html&quot;
+}
+</div></section><section class="chapter"><h3 id="4-gerenciamento-de-usu-rios" data-toc="4-gerenciamento-de-usu-rios">4. Gerenciamento de Usu&aacute;rios</h3><div class="code-block" data-lang="powershell">
+# Exercício: Sistema de Usuários
+# Crie um módulo que:
+# 1. Adicione/remova usuários
+# 2. Gerencie grupos e permissões
+# 3. Gere relatórios de acesso
+# 4. Implemente logging
+
+# Exemplo de solução
+function New-UserEnvironment {
+    param(
+        [string]$username,
+        [string]$department,
+        [string[]]$groups
+    )
+    
+    try {
+        New-LocalUser -Name $username -Description &quot;Auto created&quot;
+        foreach ($group in $groups) {
+            Add-LocalGroupMember -Group $group -Member $username
+        }
+        
+        New-Item -Path &quot;C:\Users\$username\Documents&quot; -ItemType Directory
+        Set-Acl -Path &quot;C:\Users\$username\Documents&quot; -AclObject $acl
+        
+        Write-EventLog -LogName &quot;User Management&quot; -Source &quot;UserCreation&quot; -EntryType Information -Message &quot;User $username created successfully&quot;
+    }
+    catch {
+        Write-Error &quot;Failed to create user environment: $_&quot;
+        Write-EventLog -LogName &quot;User Management&quot; -Source &quot;UserCreation&quot; -EntryType Error -Message &quot;Failed: $_&quot;
+    }
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-avan-ados" data-toc="exerc-cios-avan-ados">Exerc&iacute;cios Avan&ccedil;ados</h2><section class="chapter"><h3 id="5-integra-o-com-apis" data-toc="5-integra-o-com-apis">5. Integra&ccedil;&atilde;o com APIs</h3><div class="code-block" data-lang="powershell">
+# Exercício: Cliente REST
+# Crie um módulo que:
+# 1. Interaja com uma API REST
+# 2. Implemente autenticação
+# 3. Processe respostas JSON
+# 4. Trate erros adequadamente
+
+# Exemplo de solução
+function Invoke-ApiRequest {
+    param(
+        [string]$endpoint,
+        [string]$method = &quot;GET&quot;,
+        [hashtable]$headers,
+        [object]$body
+    )
+    
+    $params = @{
+        Uri = $endpoint
+        Method = $method
+        ContentType = &quot;application/json&quot;
+        Headers = $headers
+    }
+    
+    if ($body) {
+        $params.Body = $body | ConvertTo-Json
+    }
+    
+    try {
+        $response = Invoke-RestMethod @params
+        return $response
+    }
+    catch {
+        Write-Error &quot;API request failed: $($_.Exception.Message)&quot;
+        throw
+    }
+}
+</div></section><section class="chapter"><h3 id="6-projeto-final" data-toc="6-projeto-final">6. Projeto Final</h3><div class="code-block" data-lang="powershell">
+# Exercício: Sistema de Monitoramento
+# Desenvolva um sistema completo que:
+# 1. Monitore múltiplos servidores
+# 2. Colete métricas de performance
+# 3. Gere alertas e relatórios
+# 4. Implemente interface web simples
+
+# Exemplo de estrutura
+.\MonitoringSystem\
+    ├── Modules\
+    │   ├── Monitoring.psm1
+    │   ├── Reporting.psm1
+    │   └── WebInterface.psm1
+    ├── Config\
+    │   ├── servers.json
+    │   └── alerts.json
+    ├── Scripts\
+    │   ├── Start-Monitoring.ps1
+    │   └── Generate-Report.ps1
+    └── Web\
+        ├── index.html
+        └── styles.css
+</div></section></section><section class="chapter"><h2 id="desafios-extra" data-toc="desafios-extra">Desafios Extra</h2><section class="chapter"><h3 id="7-otimiza-o" data-toc="7-otimiza-o">7. Otimiza&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+# Desafio: Otimize um script existente
+# 1. Identifique gargalos
+# 2. Implemente parallel processing
+# 3. Reduza uso de memória
+# 4. Melhore tempo de execução
+
+# Exemplo de otimização
+$data = 1..1000
+$results = $data | ForEach-Object -ThrottleLimit 10 -Parallel {
+    # Processamento pesado aqui
+    Start-Sleep -Milliseconds 100
+    $_
+}
+</div></section><section class="chapter"><h3 id="8-seguran-a" data-toc="8-seguran-a">8. Seguran&ccedil;a</h3><div class="code-block" data-lang="powershell">
+# Desafio: Secure Coding
+# 1. Implemente validação de input
+# 2. Use credenciais seguras
+# 3. Aplique princípio do menor privilégio
+# 4. Adicione logging de segurança
+
+# Exemplo de implementação segura
+function Invoke-SecureOperation {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string]$Action,
+        
+        [Parameter(Mandatory)]
+        [System.Management.Automation.PSCredential]
+        [System.Management.Automation.Credential()]
+        $Credential
+    )
+    
+    try {
+        Start-Transcript -Path &quot;.\SecurityLog.txt&quot; -Append
+        
+        $secureAction = [System.Web.HttpUtility]::HtmlEncode($Action)
+        Write-Verbose &quot;Executing secure action: $secureAction&quot;
+        
+        # Operação principal aqui
+        
+        Stop-Transcript
+    }
+    catch {
+        Write-Error &quot;Security violation: $_&quot;
+        throw
+    }
+}
+</div></section></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ol class="list _decimal" id="-vnrhys_27" type="1"><li class="list__item" id="-vnrhys_28"><p id="-vnrhys_31"><a href="https://www.powershellgallery.com" id="-vnrhys_32" data-external="true" rel="noopener noreferrer" target="_blank">PowerShell Gallery</a></p></li><li class="list__item" id="-vnrhys_29"><p id="-vnrhys_33"><a href="https://pester.dev" id="-vnrhys_34" data-external="true" rel="noopener noreferrer" target="_blank">Pester Testing Framework</a></p></li><li class="list__item" id="-vnrhys_30"><p id="-vnrhys_35"><a href="https://github.com/PowerShell/PSScriptAnalyzer" id="-vnrhys_36" data-external="true" rel="noopener noreferrer" target="_blank">PSScriptAnalyzer</a></p></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-vnrhys_37" type="1"><li class="list__item" id="-vnrhys_40"><p id="-vnrhys_43"><a href="ps-modules.html" id="-vnrhys_44" data-tooltip="&quot;Módulos são a base da reutilização e distribuição de código no PowerShell.&quot;">M&oacute;dulos Avan&ccedil;ados</a></p></li><li class="list__item" id="-vnrhys_41"><p id="-vnrhys_45"><a href="ps-devops-integration.html" id="-vnrhys_46" data-tooltip="&quot;Automatize seu pipeline DevOps com o poder do PowerShell.&quot;">DevOps Integration</a></p></li><li class="list__item" id="-vnrhys_42"><p id="-vnrhys_47"><a href="ps-security.html" id="-vnrhys_48" data-tooltip="&quot;Segurança não é uma característica, é uma necessidade.&quot;">Seguran&ccedil;a Avan&ccedil;ada</a></p></li></ol><p id="-vnrhys_39"><span class="emphasis" id="-vnrhys_49">&quot;A melhor maneira de aprender &eacute; fazendo. A segunda melhor &eacute; quebrando algo e tendo que consertar.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ps-debugging.html" class="navigation-links__prev">Debugging no PowerShell</a><a href="ps-integration.html" class="navigation-links__next">PowerShell Integration</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

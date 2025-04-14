@@ -1,0 +1,154 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T00:12:00.831886924"><title>PowerShell Remoting | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos-do-remoting","level":0,"title":"Fundamentos do Remoting","anchor":"#fundamentos-do-remoting"},{"id":"sess-es-remotas","level":0,"title":"Sessões Remotas","anchor":"#sess-es-remotas"},{"id":"autentica-o-e-seguran-a","level":0,"title":"Autenticação e Segurança","anchor":"#autentica-o-e-seguran-a"},{"id":"transfer-ncia-de-arquivos","level":0,"title":"Transferência de Arquivos","anchor":"#transfer-ncia-de-arquivos"},{"id":"gerenciamento-em-massa","level":0,"title":"Gerenciamento em Massa","anchor":"#gerenciamento-em-massa"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="PowerShell Remoting | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-remote.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="PowerShell Remoting | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-remote.html#webpage",
+    "url": "writerside-documentation/ps-remote.html",
+    "name": "PowerShell Remoting | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-remote" data-main-title="PowerShell Remoting" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="powershell.md|PowerShell: A Evolução do Terminal Windows///ps-advanced.md|PowerShell Avançado"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-remote" id="ps-remote.md">PowerShell Remoting</h1><aside class="prompt" data-type="tip" data-title="" id="dhotml_3"><p id="dhotml_13">&quot;Gerencie qualquer servidor Windows, de qualquer lugar.&quot;</p></aside><section class="chapter"><h2 id="fundamentos-do-remoting" data-toc="fundamentos-do-remoting">Fundamentos do Remoting</h2><section class="chapter"><h3 id="configura-o-b-sica" data-toc="configura-o-b-sica">Configura&ccedil;&atilde;o B&aacute;sica</h3><div class="code-block" data-lang="powershell">
+# Habilitar remoting no servidor
+Enable-PSRemoting -Force
+
+# Configurar TrustedHosts no cliente
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value &quot;*&quot; -Force
+
+# Verificar configuração
+Test-WSMan
+Get-PSSessionConfiguration
+</div></section></section><section class="chapter"><h2 id="sess-es-remotas" data-toc="sess-es-remotas">Sess&otilde;es Remotas</h2><section class="chapter"><h3 id="conex-es-b-sicas" data-toc="conex-es-b-sicas">Conex&otilde;es B&aacute;sicas</h3><div class="code-block" data-lang="powershell">
+# Sessão interativa
+Enter-PSSession -ComputerName &quot;servidor01&quot;
+
+# Comando único
+Invoke-Command -ComputerName &quot;servidor01&quot; -ScriptBlock {
+    Get-Process
+}
+
+# Múltiplos servidores
+Invoke-Command -ComputerName &quot;srv01&quot;,&quot;srv02&quot; -ScriptBlock {
+    Get-Service | Where-Object Status -eq &quot;Running&quot;
+}
+</div></section><section class="chapter"><h3 id="sess-es-persistentes" data-toc="sess-es-persistentes">Sess&otilde;es Persistentes</h3><div class="code-block" data-lang="powershell">
+# Criar sessão
+$session = New-PSSession -ComputerName &quot;servidor01&quot;
+
+# Usar sessão
+Invoke-Command -Session $session -ScriptBlock {
+    $processes = Get-Process
+    $services = Get-Service
+    return @{
+        Processes = $processes
+        Services = $services
+    }
+}
+
+# Fechar sessão
+Remove-PSSession $session
+</div></section></section><section class="chapter"><h2 id="autentica-o-e-seguran-a" data-toc="autentica-o-e-seguran-a">Autentica&ccedil;&atilde;o e Seguran&ccedil;a</h2><section class="chapter"><h3 id="credenciais" data-toc="credenciais">Credenciais</h3><div class="code-block" data-lang="powershell">
+# Criar credencial
+$cred = Get-Credential
+
+# Usar credencial
+Enter-PSSession -ComputerName &quot;servidor01&quot; -Credential $cred
+
+# Certificados
+Enter-PSSession -ComputerName &quot;servidor01&quot; `
+    -CertificateThumbprint &quot;ABC123...&quot; `
+    -UseSSL
+</div></section><section class="chapter"><h3 id="configura-es-de-seguran-a" data-toc="configura-es-de-seguran-a">Configura&ccedil;&otilde;es de Seguran&ccedil;a</h3><div class="code-block" data-lang="powershell">
+# Configurar HTTPS
+Set-WSManQuickConfig -UseSSL
+
+# Configurar endpoints
+Register-PSSessionConfiguration -Name &quot;AdminEndpoint&quot; `
+    -SecurityDescriptorSddl $sddl
+</div></section></section><section class="chapter"><h2 id="transfer-ncia-de-arquivos" data-toc="transfer-ncia-de-arquivos">Transfer&ecirc;ncia de Arquivos</h2><section class="chapter"><h3 id="c-pia-remota" data-toc="c-pia-remota">C&oacute;pia Remota</h3><div class="code-block" data-lang="powershell">
+# Copiar para servidor remoto
+Copy-Item -Path &quot;C:\local\arquivo.txt&quot; `
+    -Destination &quot;C:\remoto\&quot; `
+    -ToSession $session
+
+# Copiar do servidor remoto
+Copy-Item -Path &quot;C:\remoto\logs\&quot; `
+    -Destination &quot;C:\local\&quot; `
+    -FromSession $session
+</div></section></section><section class="chapter"><h2 id="gerenciamento-em-massa" data-toc="gerenciamento-em-massa">Gerenciamento em Massa</h2><section class="chapter"><h3 id="execu-o-paralela" data-toc="execu-o-paralela">Execu&ccedil;&atilde;o Paralela</h3><div class="code-block" data-lang="powershell">
+# Executar em paralelo
+$servers = &quot;srv01&quot;,&quot;srv02&quot;,&quot;srv03&quot;
+$jobs = Invoke-Command -ComputerName $servers `
+    -ScriptBlock {
+        Get-WindowsUpdate
+    } -AsJob
+
+# Aguardar resultados
+$results = $jobs | Wait-Job | Receive-Job
+</div></section><section class="chapter"><h3 id="fan-out-remoting" data-toc="fan-out-remoting">Fan-out Remoting</h3><div class="code-block" data-lang="powershell">
+# Configurar sessões
+$sessions = New-PSSession -ComputerName $servers
+
+# Executar comandos
+Invoke-Command -Session $sessions -ScriptBlock {
+    param($updateType)
+    Install-WindowsUpdate -Type $updateType
+} -ArgumentList &quot;Security&quot;
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="diagn-stico" data-toc="diagn-stico">Diagn&oacute;stico</h3><div class="code-block" data-lang="powershell">
+# Testar conectividade
+Test-NetConnection -ComputerName &quot;servidor01&quot; -Port 5985
+
+# Verificar configuração
+Get-PSSessionConfiguration
+Get-Item WSMan:\localhost\Client\*
+
+# Logs do WinRM
+Get-WinEvent -LogName &quot;Microsoft-Windows-WinRM/Operational&quot;
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="gerenciamento-de-sess-es" data-toc="gerenciamento-de-sess-es">Gerenciamento de Sess&otilde;es</h3><div class="code-block" data-lang="powershell">
+# Função helper
+function Start-RemoteOperation {
+    param(
+        [string[]]$ComputerName,
+        [scriptblock]$Operation
+    )
+    
+    try {
+        $sessions = New-PSSession -ComputerName $ComputerName
+        Invoke-Command -Session $sessions -ScriptBlock $Operation
+    }
+    catch {
+        Write-Error &quot;Falha na operação remota: $_&quot;
+    }
+    finally {
+        $sessions | Remove-PSSession
+    }
+}
+</div></section><section class="chapter"><h3 id="otimiza-o" data-toc="otimiza-o">Otimiza&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+# Minimizar tráfego de rede
+$session = New-PSSession -ComputerName &quot;servidor01&quot;
+Invoke-Command -Session $session -ScriptBlock {
+    $data = Get-Process
+    $filtered = $data | Where-Object CPU -gt 50
+    return $filtered
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="dhotml_36" type="1"><li class="list__item" id="dhotml_37"><p id="dhotml_40">Configura&ccedil;&atilde;o B&aacute;sica</p><div class="code-block" data-lang="powershell">
+# Configure remoting em:
+# - Servidor local
+# - Servidor remoto
+# - Autenticação segura
+</div></li><li class="list__item" id="dhotml_38"><p id="dhotml_42">Gerenciamento Multi-servidor</p><div class="code-block" data-lang="powershell">
+# Desenvolva script para:
+# - Monitorar múltiplos servidores
+# - Coletar métricas
+# - Gerar relatório consolidado
+</div></li><li class="list__item" id="dhotml_39"><p id="dhotml_44">Automa&ccedil;&atilde;o Remota</p><div class="code-block" data-lang="powershell">
+# Crie workflow para:
+# - Atualização de servidores
+# - Backup distribuído
+# - Verificação de saúde
+</div></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="dhotml_46" type="1"><li class="list__item" id="dhotml_49"><p id="dhotml_52"><a href="ps-security.html" id="dhotml_53" data-tooltip="&quot;Segurança não é uma característica, é uma necessidade.&quot;">Seguran&ccedil;a PowerShell</a></p></li><li class="list__item" id="dhotml_50"><p id="dhotml_54"><a href="ps-debugging.html" id="dhotml_55" data-tooltip="&quot;Debug é como ser um detetive em um crime que você mesmo cometeu.&quot;">Debugging Remoto</a></p></li><li class="list__item" id="dhotml_51"><p id="dhotml_56"><a href="ps-devops-integration.html" id="dhotml_57" data-tooltip="&quot;Automatize seu pipeline DevOps com o poder do PowerShell.&quot;">DevOps Integration</a></p></li></ol><p id="dhotml_48"><span class="emphasis" id="dhotml_58">&quot;Com grande poder remoto vem grande responsabilidade.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ps-error-handling.html" class="navigation-links__prev">Tratamento de Erros no PowerShell</a><a href="ps-security.html" class="navigation-links__next">Seguran&ccedil;a no PowerShell</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

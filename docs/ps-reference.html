@@ -1,0 +1,110 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T00:12:00.892969498"><title>Refer&ecirc;ncia PowerShell | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"cmdlets-essenciais","level":0,"title":"Cmdlets Essenciais","anchor":"#cmdlets-essenciais"},{"id":"tipos-de-dados","level":0,"title":"Tipos de Dados","anchor":"#tipos-de-dados"},{"id":"operadores","level":0,"title":"Operadores","anchor":"#operadores"},{"id":"fluxo-de-controle","level":0,"title":"Fluxo de Controle","anchor":"#fluxo-de-controle"},{"id":"error-handling","level":0,"title":"Error Handling","anchor":"#error-handling"},{"id":"m-dulos","level":0,"title":"Módulos","anchor":"#m-dulos"},{"id":"perfis","level":0,"title":"Perfis","anchor":"#perfis"},{"id":"seguran-a","level":0,"title":"Segurança","anchor":"#seguran-a"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Refer&ecirc;ncia PowerShell | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-reference.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Refer&ecirc;ncia PowerShell | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-reference.html#webpage",
+    "url": "writerside-documentation/ps-reference.html",
+    "name": "Refer&ecirc;ncia PowerShell | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-reference" data-main-title="Referência PowerShell" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="reference.md|Referência Completa"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-reference" id="ps-reference.md">Referência PowerShell</h1><aside class="prompt" data-type="tip" data-title="" id="-w9uqg4_3"><p id="-w9uqg4_12">&quot;PowerShell: onde comandos encontram objetos.&quot;</p></aside><section class="chapter"><h2 id="cmdlets-essenciais" data-toc="cmdlets-essenciais">Cmdlets Essenciais</h2><section class="chapter"><h3 id="navega-o" data-toc="navega-o">Navega&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+# Sistema de arquivos
+Get-Location      # pwd
+Set-Location      # cd
+Get-ChildItem     # ls/dir
+</div></section><section class="chapter"><h3 id="manipula-o" data-toc="manipula-o">Manipula&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+# Arquivos e objetos
+Get-Content       # cat
+Set-Content      # &gt;
+Copy-Item        # cp
+Move-Item        # mv
+Remove-Item      # rm
+</div></section><section class="chapter"><h3 id="pipeline" data-toc="pipeline">Pipeline</h3><div class="code-block" data-lang="powershell">
+# Operações
+Select-Object    # select
+Where-Object    # filter
+ForEach-Object  # loop
+Sort-Object     # sort
+Group-Object    # group
+</div></section></section><section class="chapter"><h2 id="tipos-de-dados" data-toc="tipos-de-dados">Tipos de Dados</h2><section class="chapter"><h3 id="b-sicos" data-toc="b-sicos">B&aacute;sicos</h3><div class="code-block" data-lang="powershell">
+# Tipos comuns
+[string]        # Texto
+[int]           # Inteiro
+[bool]          # Boolean
+[datetime]      # Data/hora
+[array]         # Array
+</div></section><section class="chapter"><h3 id="complexos" data-toc="complexos">Complexos</h3><div class="code-block" data-lang="powershell">
+# Estruturas
+[hashtable]     # Dictionary
+[PSCustomObject] # Objeto
+[xml]           # XML
+[scriptblock]   # Code block
+</div></section></section><section class="chapter"><h2 id="operadores" data-toc="operadores">Operadores</h2><section class="chapter"><h3 id="compara-o" data-toc="compara-o">Compara&ccedil;&atilde;o</h3><div class="code-block" data-lang="powershell">
+-eq  # Igual
+-ne  # Diferente
+-gt  # Maior
+-lt  # Menor
+-like # Pattern
+-match # Regex
+</div></section><section class="chapter"><h3 id="l-gicos" data-toc="l-gicos">L&oacute;gicos</h3><div class="code-block" data-lang="powershell">
+-and # AND
+-or  # OR
+-not # NOT
+-xor # XOR
+</div></section></section><section class="chapter"><h2 id="fluxo-de-controle" data-toc="fluxo-de-controle">Fluxo de Controle</h2><section class="chapter"><h3 id="condicionais" data-toc="condicionais">Condicionais</h3><div class="code-block" data-lang="powershell">
+if ($condition) {
+    # code
+}
+elseif ($other) {
+    # code
+}
+else {
+    # code
+}
+
+switch ($value) {
+    condition { code }
+    default { code }
+}
+</div></section><section class="chapter"><h3 id="loops" data-toc="loops">Loops</h3><div class="code-block" data-lang="powershell">
+foreach ($item in $collection) {}
+while ($condition) {}
+do {} while ($condition)
+for ($i=0; $i -lt 10; $i++) {}
+</div></section></section><section class="chapter"><h2 id="error-handling" data-toc="error-handling">Error Handling</h2><section class="chapter"><h3 id="try-catch" data-toc="try-catch">Try-Catch</h3><div class="code-block" data-lang="powershell">
+try {
+    # código arriscado
+}
+catch [Exception] {
+    # tratamento
+}
+finally {
+    # cleanup
+}
+</div></section><section class="chapter"><h3 id="prefer-ncias" data-toc="prefer-ncias">Prefer&ecirc;ncias</h3><div class="code-block" data-lang="powershell">
+$ErrorActionPreference = 'Stop'
+$WarningPreference = 'SilentlyContinue'
+$VerbosePreference = 'Continue'
+</div></section></section><section class="chapter"><h2 id="m-dulos" data-toc="m-dulos">M&oacute;dulos</h2><section class="chapter"><h3 id="gest-o" data-toc="gest-o">Gest&atilde;o</h3><div class="code-block" data-lang="powershell">
+Get-Module
+Import-Module
+Install-Module
+Update-Module
+</div></section><section class="chapter"><h3 id="comuns" data-toc="comuns">Comuns</h3><ul class="list _bullet" id="-w9uqg4_38"><li class="list__item" id="-w9uqg4_39"><p id="-w9uqg4_43">PSReadLine</p></li><li class="list__item" id="-w9uqg4_40"><p id="-w9uqg4_44">Az</p></li><li class="list__item" id="-w9uqg4_41"><p id="-w9uqg4_45">AWS.Tools</p></li><li class="list__item" id="-w9uqg4_42"><p id="-w9uqg4_46">PSScriptAnalyzer</p></li></ul></section></section><section class="chapter"><h2 id="perfis" data-toc="perfis">Perfis</h2><section class="chapter"><h3 id="localiza-es" data-toc="localiza-es">Localiza&ccedil;&otilde;es</h3><div class="code-block" data-lang="powershell">
+$PROFILE.CurrentUserCurrentHost
+$PROFILE.CurrentUserAllHosts
+$PROFILE.AllUsersCurrentHost
+$PROFILE.AllUsersAllHosts
+</div></section></section><section class="chapter"><h2 id="seguran-a" data-toc="seguran-a">Seguran&ccedil;a</h2><section class="chapter"><h3 id="execution-policy" data-toc="execution-policy">Execution Policy</h3><div class="code-block" data-lang="powershell">
+Get-ExecutionPolicy
+Set-ExecutionPolicy RemoteSigned
+</div></section><section class="chapter"><h3 id="assinatura" data-toc="assinatura">Assinatura</h3><div class="code-block" data-lang="powershell">
+Set-AuthenticodeSignature
+Get-AuthenticodeSignature
+</div><p id="-w9uqg4_54"><span class="emphasis" id="-w9uqg4_55">&quot;Com grande poder vem grande responsabilidade de documentar.&quot;</span></p></section></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cmd-reference.html" class="navigation-links__prev">Refer&ecirc;ncia CMD</a><a href="glossary.html" class="navigation-links__next">Gloss&aacute;rio</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

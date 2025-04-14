@@ -1,0 +1,113 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T00:12:00.894512655"><title>CMD: Seu Primeiro Terminal | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"por-que-aprender-cmd-em-2025","level":0,"title":"Por que aprender CMD em 2025?","anchor":"#por-que-aprender-cmd-em-2025"},{"id":"acessando-o-cmd","level":0,"title":"Acessando o CMD","anchor":"#acessando-o-cmd"},{"id":"configura-o-para-desenvolvimento","level":0,"title":"Configuração para Desenvolvimento","anchor":"#configura-o-para-desenvolvimento"},{"id":"comandos-essenciais-para-desenvolvimento","level":0,"title":"Comandos Essenciais para Desenvolvimento","anchor":"#comandos-essenciais-para-desenvolvimento"},{"id":"dicas-pr-ticas","level":0,"title":"Dicas Práticas","anchor":"#dicas-pr-ticas"},{"id":"atalhos-do-teclado-essenciais","level":0,"title":"Atalhos do Teclado Essenciais","anchor":"#atalhos-do-teclado-essenciais"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"},{"id":"troubleshooting-comum","level":0,"title":"Troubleshooting Comum","anchor":"#troubleshooting-comum"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="CMD: Seu Primeiro Terminal | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/cmd-introduction.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="CMD: Seu Primeiro Terminal | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/cmd-introduction.html#webpage",
+    "url": "writerside-documentation/cmd-introduction.html",
+    "name": "CMD: Seu Primeiro Terminal | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="cmd-introduction" data-main-title="CMD: Seu Primeiro Terminal" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="cmd.md|Command Prompt (CMD): O Terminal Clássico do Windows"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cmd-introduction" id="cmd-introduction.md">CMD: Seu Primeiro Terminal</h1><div class="code-block" data-lang="none">
+    ____ __  __ ____  
+   / ___|  \/  |  _ \ 
+  | |   | |\/| | | | |
+  | |___| |  | | |_| |
+   \____|_|  |_|____/ 
+</div><aside class="prompt" data-type="tip" data-title="" id="-f9u27k_4"><p id="-f9u27k_14">&quot;Antes do PowerShell, antes das GUIs, havia o CMD. E ele ainda tem seu lugar no arsenal do desenvolvedor moderno.&quot;</p></aside><section class="chapter"><h2 id="por-que-aprender-cmd-em-2025" data-toc="por-que-aprender-cmd-em-2025">Por que aprender CMD em 2025?</h2><p id="-f9u27k_15">O Command Prompt (CMD) continua sendo uma ferramenta essencial no ambiente Windows por v&aacute;rias raz&otilde;es:</p><ul class="list _bullet" id="-f9u27k_16"><li class="list__item" id="-f9u27k_17"><p id="-f9u27k_23"><span class="control" id="-f9u27k_24">Velocidade</span>: Execu&ccedil;&atilde;o de comandos muito mais r&aacute;pida que interfaces gr&aacute;ficas</p></li><li class="list__item" id="-f9u27k_18"><p id="-f9u27k_25"><span class="control" id="-f9u27k_26">Scripts Batch</span>: Amplamente utilizados em sistemas legados e processos de build</p></li><li class="list__item" id="-f9u27k_19"><p id="-f9u27k_27"><span class="control" id="-f9u27k_28">Troubleshooting</span>: Fundamental para diagn&oacute;stico e resolu&ccedil;&atilde;o de problemas</p></li><li class="list__item" id="-f9u27k_20"><p id="-f9u27k_29"><span class="control" id="-f9u27k_30">Base S&oacute;lida</span>: Entender CMD facilita a transi&ccedil;&atilde;o para PowerShell</p></li><li class="list__item" id="-f9u27k_21"><p id="-f9u27k_31"><span class="control" id="-f9u27k_32">Compatibilidade</span>: Funciona em qualquer vers&atilde;o do Windows sem depend&ecirc;ncias</p></li><li class="list__item" id="-f9u27k_22"><p id="-f9u27k_33"><span class="control" id="-f9u27k_34">Recursos</span>: Consome menos mem&oacute;ria que terminais modernos</p></li></ul></section><section class="chapter"><h2 id="acessando-o-cmd" data-toc="acessando-o-cmd">Acessando o CMD</h2><p id="-f9u27k_35">Existem v&aacute;rias formas de acessar o CMD:</p><div class="code-block" data-lang="batch">
+:: Método 1 - Run Dialog
+Windows + R
+cmd
+Enter
+
+:: Método 2 - Menu Iniciar
+Windows + X -&gt; Command Prompt (Admin)
+
+:: Método 3 - File Explorer
+Alt + D
+cmd
+Enter
+</div></section><section class="chapter"><h2 id="configura-o-para-desenvolvimento" data-toc="configura-o-para-desenvolvimento">Configura&ccedil;&atilde;o para Desenvolvimento</h2><section class="chapter"><h3 id="configura-es-b-sicas" data-toc="configura-es-b-sicas">Configura&ccedil;&otilde;es B&aacute;sicas</h3><div class="code-block" data-lang="batch">
+:: Habilitar recursos avançados
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v QuickEdit /t REG_DWORD /d 1 /f
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v InsertMode /t REG_DWORD /d 1 /f
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v ScreenBufferSize /t REG_DWORD /d 0x23290096 /f
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v FontSize /t REG_DWORD /d 0x00100008 /f
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v FontFamily /t REG_DWORD /d 0x00000036 /f
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v FontWeight /t REG_DWORD /d 0x00000190 /f
+</div></section><section class="chapter"><h3 id="personaliza-o-avan-ada" data-toc="personaliza-o-avan-ada">Personaliza&ccedil;&atilde;o Avan&ccedil;ada</h3><div class="code-block" data-lang="batch">
+:: Cores e aparência
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v ColorTable00 /t REG_DWORD /d 0x00000000 /f
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v ColorTable07 /t REG_DWORD /d 0x00cccccc /f
+reg add &quot;HKEY_CURRENT_USER\Console&quot; /v WindowSize /t REG_DWORD /d 0x00320078 /f
+</div></section></section><section class="chapter"><h2 id="comandos-essenciais-para-desenvolvimento" data-toc="comandos-essenciais-para-desenvolvimento">Comandos Essenciais para Desenvolvimento</h2><section class="chapter"><h3 id="navega-o-e-gerenciamento-de-projetos" data-toc="navega-o-e-gerenciamento-de-projetos">Navega&ccedil;&atilde;o e Gerenciamento de Projetos</h3><div class="code-block" data-lang="batch">
+:: Navegação rápida
+cd /d D:\projetos              :: Muda drive e diretório
+dir /b /s *.js                :: Lista recursivamente arquivos JS
+tree /f                       :: Mostra estrutura de diretórios
+pushd \\servidor\share        :: Salva localização atual e navega
+popd                         :: Retorna à localização salva
+
+:: Gerenciamento de arquivos
+xcopy src dist /E /I /H      :: Copia preservando estrutura
+robocopy source dest /MIR    :: Sincronização espelhada
+attrib +h node_modules       :: Oculta pasta
+</div></section><section class="chapter"><h3 id="processos-e-rede" data-toc="processos-e-rede">Processos e Rede</h3><div class="code-block" data-lang="batch">
+:: Gerenciamento de processos
+tasklist | findstr &quot;node&quot;     :: Lista processos Node.js
+taskkill /F /IM node.exe     :: Força fechamento do Node
+wmic process where &quot;name='node.exe'&quot; get commandline  :: Detalhes
+
+:: Rede e portas
+netstat -ano | findstr &quot;3000&quot; :: Verifica porta específica
+ipconfig /flushdns           :: Limpa cache DNS
+nslookup api.exemplo.com     :: Resolve DNS
+</div></section></section><section class="chapter"><h2 id="dicas-pr-ticas" data-toc="dicas-pr-ticas">Dicas Pr&aacute;ticas</h2><section class="chapter"><h3 id="aliases-e-paths-personalizados" data-toc="aliases-e-paths-personalizados">Aliases e Paths Personalizados</h3><div class="code-block" data-lang="batch">
+:: Criar arquivo autoexec.bat
+@echo off
+:: Aliases úteis
+doskey ls=dir /b $*
+doskey clear=cls
+doskey ..=cd ..
+doskey ...=cd ../..
+doskey gs=git status
+doskey gl=git log --oneline
+doskey gp=git pull
+doskey npm-clean=rmdir /s /q node_modules &amp;&amp; del package-lock.json
+
+:: Paths de desenvolvimento
+set PATH=%PATH%;C:\dev\tools
+set JAVA_HOME=C:\Program Files\Java\jdk-17
+set MAVEN_HOME=C:\dev\apache-maven
+</div></section><section class="chapter"><h3 id="debugging-r-pido" data-toc="debugging-r-pido">Debugging R&aacute;pido</h3><div class="code-block" data-lang="batch">
+:: Verificação de portas
+:checkPort
+set PORT=%1
+netstat -ano | findstr &quot;:%PORT%&quot;
+if errorlevel 1 (
+    echo Porta %PORT% livre
+) else (
+    echo Porta %PORT% em uso
+    for /f &quot;tokens=5&quot; %%a in ('netstat -ano ^| findstr &quot;:%PORT%&quot;') do (
+        echo PID: %%a
+        tasklist | findstr &quot;%%a&quot;
+    )
+)
+
+:: Matar processo
+:killProcess
+set PORT=%1
+for /f &quot;tokens=5&quot; %%a in ('netstat -ano ^| findstr &quot;:%PORT%&quot;') do (
+    taskkill /F /PID %%a
+    if errorlevel 1 (
+        echo Falha ao matar processo
+    ) else (
+        echo Processo finalizado
+    )
+)
+</div></section></section><section class="chapter"><h2 id="atalhos-do-teclado-essenciais" data-toc="atalhos-do-teclado-essenciais">Atalhos do Teclado Essenciais</h2><div class="table-wrapper"><table class="wide" id="-f9u27k_49"><thead><tr class="ijRowHead" id="-f9u27k_50"><th id="-f9u27k_57"><p>Atalho</p></th><th id="-f9u27k_58"><p>Fun&ccedil;&atilde;o</p></th><th id="-f9u27k_59"><p>Contexto</p></th></tr></thead><tbody><tr id="-f9u27k_51"><td id="-f9u27k_60"><p><code class="code" id="-f9u27k_63">F7</code></p></td><td id="-f9u27k_61"><p>Hist&oacute;rico de comandos</p></td><td id="-f9u27k_62"><p>Mostra lista naveg&aacute;vel</p></td></tr><tr id="-f9u27k_52"><td id="-f9u27k_64"><p><code class="code" id="-f9u27k_67">Alt + F7</code></p></td><td id="-f9u27k_65"><p>Limpa hist&oacute;rico</p></td><td id="-f9u27k_66"><p>&Uacute;til para seguran&ccedil;a</p></td></tr><tr id="-f9u27k_53"><td id="-f9u27k_68"><p><code class="code" id="-f9u27k_71">F3</code></p></td><td id="-f9u27k_69"><p>Repete &uacute;ltimo comando</p></td><td id="-f9u27k_70"><p>Digita&ccedil;&atilde;o r&aacute;pida</p></td></tr><tr id="-f9u27k_54"><td id="-f9u27k_72"><p><code class="code" id="-f9u27k_75">Alt + Enter</code></p></td><td id="-f9u27k_73"><p>Modo tela cheia</p></td><td id="-f9u27k_74"><p>Melhor visualiza&ccedil;&atilde;o</p></td></tr><tr id="-f9u27k_55"><td id="-f9u27k_76"><p><code class="code" id="-f9u27k_79">Ctrl + C</code></p></td><td id="-f9u27k_77"><p>Cancela comando</p></td><td id="-f9u27k_78"><p>Interrompe execu&ccedil;&atilde;o</p></td></tr><tr id="-f9u27k_56"><td id="-f9u27k_80"><p><code class="code" id="-f9u27k_83">Ctrl + Break</code></p></td><td id="-f9u27k_81"><p>For&ccedil;a interrup&ccedil;&atilde;o</p></td><td id="-f9u27k_82"><p>Quando Ctrl+C falha</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-f9u27k_84" type="1"><li class="list__item" id="-f9u27k_85"><p id="-f9u27k_88"><a href="cmd-basic-commands.html" id="-f9u27k_90" data-tooltip="&quot;Conhecimento é poder. Poder é controle. Controle é tudo.&quot;">Comandos B&aacute;sicos</a></p><ul class="list _bullet" id="-f9u27k_89"><li class="list__item" id="-f9u27k_91"><p id="-f9u27k_93">Aprenda os comandos fundamentais</p></li><li class="list__item" id="-f9u27k_92"><p id="-f9u27k_94">Pratique navega&ccedil;&atilde;o e manipula&ccedil;&atilde;o</p></li></ul></li><li class="list__item" id="-f9u27k_86"><p id="-f9u27k_95"><a href="cmd-file-operations.html" id="-f9u27k_97" data-tooltip="&quot;Arquivos são dados. Dados são poder. Poder é controle.&quot;">Opera&ccedil;&otilde;es com Arquivos</a></p><ul class="list _bullet" id="-f9u27k_96"><li class="list__item" id="-f9u27k_98"><p id="-f9u27k_100">Gerenciamento avan&ccedil;ado de arquivos</p></li><li class="list__item" id="-f9u27k_99"><p id="-f9u27k_101">Automa&ccedil;&atilde;o de backups</p></li></ul></li><li class="list__item" id="-f9u27k_87"><p id="-f9u27k_102"><a href="cmd-batch-scripting.html" id="-f9u27k_104" data-tooltip="&quot;Automatização não é futuro, é sobrevivência.&quot;">Scripts Batch</a></p><ul class="list _bullet" id="-f9u27k_103"><li class="list__item" id="-f9u27k_105"><p id="-f9u27k_107">Crie seus primeiros scripts</p></li><li class="list__item" id="-f9u27k_106"><p id="-f9u27k_108">Automatize tarefas repetitivas</p></li></ul></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="-f9u27k_109"><li class="list__item" id="-f9u27k_110"><p id="-f9u27k_113"><a href="https://docs.microsoft.com/windows-server/administration/windows-commands/windows-commands" id="-f9u27k_114" data-external="true" rel="noopener noreferrer" target="_blank">Documenta&ccedil;&atilde;o Oficial Microsoft</a></p></li><li class="list__item" id="-f9u27k_111"><p id="-f9u27k_115"><a href="https://ss64.com/nt/" id="-f9u27k_116" data-external="true" rel="noopener noreferrer" target="_blank">SS64 CMD Reference</a></p></li><li class="list__item" id="-f9u27k_112"><p id="-f9u27k_117"><a href="https://www.robvanderwoude.com/batchstart.php" id="-f9u27k_118" data-external="true" rel="noopener noreferrer" target="_blank">Rob van der Woude's Scripting Pages</a></p></li></ul></section><section class="chapter"><h2 id="troubleshooting-comum" data-toc="troubleshooting-comum">Troubleshooting Comum</h2><div class="table-wrapper"><table class="wide" id="-f9u27k_119"><thead><tr class="ijRowHead" id="-f9u27k_122"><th id="-f9u27k_127"><p>Problema</p></th><th id="-f9u27k_128"><p>Solu&ccedil;&atilde;o</p></th><th id="-f9u27k_129"><p>Comando</p></th></tr></thead><tbody><tr id="-f9u27k_123"><td id="-f9u27k_130"><p>Acesso Negado</p></td><td id="-f9u27k_131"><p>Executar como Admin</p></td><td id="-f9u27k_132"><p><code class="code" id="-f9u27k_133">runas /user:Administrator cmd</code></p></td></tr><tr id="-f9u27k_124"><td id="-f9u27k_134"><p>Codifica&ccedil;&atilde;o</p></td><td id="-f9u27k_135"><p>Mudar para UTF-8</p></td><td id="-f9u27k_136"><p><code class="code" id="-f9u27k_137">chcp 65001</code></p></td></tr><tr id="-f9u27k_125"><td id="-f9u27k_138"><p>Path Longo</p></td><td id="-f9u27k_139"><p>Usar subst</p></td><td id="-f9u27k_140"><p><code class="code" id="-f9u27k_141">subst X: C:\caminho\muito\longo</code></p></td></tr><tr id="-f9u27k_126"><td id="-f9u27k_142"><p>Erro de Sintaxe</p></td><td id="-f9u27k_143"><p>Verificar aspas</p></td><td id="-f9u27k_144"><p><code class="code" id="-f9u27k_145">echo &quot;Uso correto de aspas&quot;</code></p></td></tr></tbody></table></div><p id="-f9u27k_121"><span class="emphasis" id="-f9u27k_146">&quot;O terminal &eacute; a interface mais poderosa que voc&ecirc; pode dominar.&quot;</span></p></section><div class="last-modified">13 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cmd.html" class="navigation-links__prev">Command Prompt (CMD): O Terminal Cl&aacute;ssico do Windows</a><a href="cmd-basic-commands.html" class="navigation-links__next">Comandos B&aacute;sicos: Seu Arsenal Inicial</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
