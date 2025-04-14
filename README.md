@@ -81,11 +81,6 @@ Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) 
 - Contribuidores
 - JetBrains pela ferramenta Writerside
 
-## 📬 Contato
-
-- Autor: [Seu Nome]
-- Email: [seu-email@exemplo.com]
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
 
 ## 📊 Status do Projeto
 
