@@ -100,6 +100,417 @@ Encontrou um bug? Tem uma dica ninja?
 
 
 
+# Começando com Terminais Windows
+
+```
+  ____ _____ _____ _____ ___ _   _  ____ 
+ / ___| ____|_   _|_   _|_ _| \ | |/ ___|
+| |  _|  _|   | |   | |  | ||  \| | |  _ 
+| |_| | |___  | |   | |  | || |\  | |_| |
+ \____|_____| |_|   |_| |___|_| \_|\____|
+ ____ _____  _    ____ _____ _____ ____  
+/ ___|_   _|/ \  |  _ \_   _| ____|  _ \ 
+\___ \ | | / _ \ | |_) || | |  _| | | | |
+ ___) || |/ ___ \|  _ < | | | |___| |_| |
+|____/ |_/_/   \_\_| \_\|_| |_____|____/ 
+```
+
+Tip:
+
+"O começo de toda jornada começa com um simples comando."
+
+## Pré-requisitos
+
+* Windows 10/11
+
+* Permissões de administrador (opcional)
+
+* Vontade de aprender
+
+* ☕ Café (muito café)
+
+## Escolhendo seu Terminal
+
+### CMD
+
+```BATCH
+:: Para iniciantes
+cmd.exe
+```
+
+* Interface clássica
+
+* Presente em todo Windows
+
+* Ótimo para começar
+
+### PowerShell
+
+```POWERSHELL
+# Para usuários avançados
+pwsh.exe
+```
+
+* Mais poderoso
+
+* Orientado a objetos
+
+* Melhor para automação
+
+## Primeiros Passos
+
+### 1. Abrindo o Terminal
+
+Métodos rápidos:
+
+* `Windows + R`, digite `cmd` ou `powershell`
+
+* `Windows + X`, selecione Terminal
+
+* Busque "Terminal" no menu iniciar
+
+### 2. Configuração Básica
+
+```BATCH
+:: CMD - Configuração inicial
+chcp 65001          :: UTF-8
+color 0A            :: Verde sobre preto
+mode con: cols=120  :: Largura confortável
+```
+
+```POWERSHELL
+# PowerShell - Configuração inicial
+Set-ExecutionPolicy RemoteSigned
+Install-Module PSReadLine
+```
+
+### 3. Comandos Essenciais
+
+#### Navegação
+
+```BATCH
+:: Comandos universais
+cd              # Mostra diretório atual
+dir             # Lista arquivos
+cls             # Limpa tela
+help            # Mostra ajuda
+```
+
+#### Sistema
+
+```BATCH
+:: Informações básicas
+systeminfo      # Info do sistema
+tasklist       # Processos ativos
+ipconfig       # Config de rede
+```
+
+## Estrutura do Curso
+
+### Fase 1: Fundamentos
+
+1. [CMD Básico](cmd-introduction.html)
+
+2. [PowerShell Básico](null)
+
+3. [Navegação](cmd-navigation.html)
+
+### Fase 2: Prática
+
+1. [Exercícios CMD](null)
+
+2. [Exercícios PowerShell](null)
+
+3. [Projetos Práticos](null)
+
+## Dicas para Iniciantes
+
+### Boas Práticas
+
+* Comece com CMD
+
+* Pratique diariamente
+
+* Mantenha anotações
+
+* Use o `help` frequentemente
+
+* Não tenha medo de errar
+
+### Evite
+
+* Copiar sem entender
+
+* Pular conceitos básicos
+
+* Executar scripts desconhecidos
+
+* Ignorar mensagens de erro
+
+## Ferramentas Recomendadas
+
+### Essenciais
+
+* Windows Terminal
+
+* Visual Studio Code
+
+* Git Bash
+
+* Notepad++
+
+### Opcionais
+
+* ConEmu
+
+* Cmder
+
+* Terminal-Icons
+
+* Oh My Posh
+
+## Próximos Passos
+
+1. [Introdução ao CMD](cmd-introduction.html)
+
+* Comandos básicos
+
+* Navegação
+
+* Scripts simples
+
+2. [Introdução ao PowerShell](null)
+
+* Cmdlets básicos
+
+* Pipeline
+
+* Objetos
+
+3. [Comparação de Terminais](null)
+
+* Quando usar cada um
+
+* Vantagens e desvantagens
+
+* Casos de uso
+
+## Recursos Adicionais
+
+* [Documentação Microsoft](https://docs.microsoft.com)
+
+* [Learn PowerShell](https://learn.microsoft.com/powershell)
+
+* [CMD Reference](https://ss64.com/nt)
+
+* [PowerShell Gallery](https://www.powershellgallery.com)
+
+## Checklist do Iniciante
+
+* [ ] Instalar Windows Terminal
+
+* [ ] Configurar ambiente básico
+
+* [ ] Aprender comandos essenciais
+
+* [ ] Completar exercícios iniciais
+
+* [ ] Criar primeiro script
+
+"Todo expert já foi iniciante. O segredo é começar."
+
+
+
+# Command Prompt (CMD): O Terminal Clássico do Windows
+
+```
+  ____ __  __ ____  
+ / ___|  \/  |  _ \ 
+| |   | |\/| | | | |
+| |___| |  | | |_| |
+ \____|_|  |_|____/ 
+```
+
+Tip:
+
+"Às vezes o mais antigo é o mais confiável."
+
+## Visão Geral
+
+O Command Prompt (CMD) é a interface de linha de comando tradicional do Windows. Apesar de sua idade, continua sendo uma ferramenta essencial para:
+
+* Automação de tarefas
+
+* Diagnóstico de problemas
+
+* Gerenciamento de sistema
+
+* Desenvolvimento de software
+
+* Scripts batch
+
+## Por que Usar CMD em 2025?
+
+### Vantagens
+
+* Baixo consumo de recursos
+
+* Presente em todo Windows
+
+* Compatibilidade histórica
+
+* Execução rápida
+
+* Scripts batch simples
+
+### Limitações
+
+* Sintaxe antiga
+
+* Menos recursos que PowerShell
+
+* Comandos limitados
+
+* Case-insensitive
+
+## Estrutura do Curso
+
+### Fundamentos
+
+1. [Introdução](cmd-introduction.html)
+
+2. [Comandos Básicos](cmd-basic-commands.html)
+
+3. [Navegação](cmd-navigation.html)
+
+### Intermediário
+
+1. [Operações com Arquivos](cmd-file-operations.html)
+
+2. [Comandos do Sistema](cmd-system-commands.html)
+
+3. [Batch Scripting](cmd-batch-scripting.html)
+
+### Avançado
+
+1. [Automação](cmd-automation.html)
+
+2. [Networking](null)
+
+3. [Debugging](cmd-debugging.html)
+
+## Ambiente de Desenvolvimento
+
+### Configuração Recomendada
+
+```BATCH
+:: Configurações básicas
+chcp 65001          :: UTF-8
+prompt $P$G         :: Prompt personalizado
+color 0A            :: Cores (verde sobre preto)
+mode con: cols=120 lines=3000  :: Tamanho da janela
+```
+
+### Ferramentas Complementares
+
+* Windows Terminal
+
+* ConEmu
+
+* Cmder
+
+* Git Bash
+
+## Quick Reference
+
+### Comandos Essenciais
+
+```BATCH
+:: Navegação
+cd          :: Mostra/muda diretório
+dir         :: Lista arquivos
+path        :: Mostra/define PATH
+
+:: Sistema
+tasklist    :: Lista processos
+systeminfo  :: Info do sistema
+ipconfig    :: Config de rede
+
+:: Arquivos
+copy        :: Copia arquivos
+move        :: Move arquivos
+del         :: Deleta arquivos
+```
+
+### Atalhos do Teclado
+
+| Atalho |Função |
+------------------
+| `↑/↓` |Histórico |
+| `Tab` |Autocompletar |
+| `F7` |Histórico visual |
+| `Ctrl+C` |Cancelar |
+
+## Integração com Ferramentas
+
+### DevOps
+
+* Git
+
+* Docker
+
+* Cloud CLIs
+
+### Build Tools
+
+* MSBuild
+
+* Maven
+
+* npm
+
+## Melhores Práticas
+
+### Organização
+
+* Scripts em pasta dedicada
+
+* Nomenclatura consistente
+
+* Documentação inline
+
+* Logs estruturados
+
+### Segurança
+
+* Validação de inputs
+
+* Escape de caracteres
+
+* Privilégios mínimos
+
+* Tratamento de erros
+
+## Próximos Passos
+
+1. [Introdução ao CMD](cmd-introduction.html)
+
+2. [Comandos Básicos](cmd-basic-commands.html)
+
+3. [PowerShell](null) (Quando precisar mais poder)
+
+## Recursos Adicionais
+
+* [Documentação Microsoft](https://docs.microsoft.com/windows-server/administration/windows-commands/windows-commands)
+
+* [SS64 CMD Reference](https://ss64.com/nt/)
+
+* [Batch Script Tutorial](https://www.tutorialspoint.com/batch_script/index.htm)
+
+"CMD: Porque às vezes o básico é tudo que você precisa."
+
+
+
 # CMD: Seu Primeiro Terminal
 
 ```
@@ -442,6 +853,173 @@ comando1.exe && comando2.exe || comando3.exe
 
 
 
+# Navegação no CMD: Perdido no Terminal
+
+```
+ _   _    __     _____ ____    _  _____ _____ 
+| \ | |   \ \   / /_ _/ ___|  / \|_   _| ____|
+|  \| |    \ \ / / | | |  _  / _ \ | | |  _|  
+| |\  |     \ V /  | | |_| |/ ___ \| | | |___ 
+|_| \_|      \_/  |___\____/_/   \_\_| |_____|
+```
+
+Tip:
+
+"Se você nunca se perdeu no sistema de arquivos, você não está explorando o suficiente."
+
+## Comandos Básicos de Navegação
+
+### Localização Atual
+
+```BATCH
+:: Onde estou?
+cd                  :: Mostra diretório atual
+echo %CD%           :: Alternativa para ver caminho atual
+chdir               :: Outro comando para mostrar diretório
+```
+
+### Movimentação Básica
+
+```BATCH
+:: Navegação essencial
+cd ..               :: Volta um nível
+cd \                :: Vai para raiz do drive atual
+cd /d D:           :: Muda drive e diretório
+cd "Pasta Com Espacos"  :: Navega para pasta com espaços
+```
+
+## Técnicas Avançadas
+
+### Stack de Diretórios
+
+```BATCH
+:: Salvando e recuperando localizações
+pushd C:\Projetos   :: Salva local atual e vai para C:\Projetos
+popd                :: Retorna ao último local salvo
+pushd \\servidor\share  :: Mapeia rede e navega
+```
+
+### Navegação Rápida
+
+```BATCH
+:: Atalhos úteis
+cd -                :: Alterna entre últimos diretórios
+cd ..\..\..         :: Volta múltiplos níveis
+cd %USERPROFILE%    :: Vai para pasta do usuário
+cd %TEMP%           :: Acessa pasta temporária
+```
+
+## Listagem e Busca
+
+### Listagem de Diretórios
+
+```BATCH
+:: Visualização de conteúdo
+dir                 :: Lista arquivos e pastas
+dir /a              :: Mostra itens ocultos
+dir /b              :: Formato simples
+dir /s              :: Lista recursiva
+dir /p              :: Pausa por página
+```
+
+### Busca de Arquivos
+
+```BATCH
+:: Localização de itens
+where python.exe    :: Encontra executável no PATH
+dir /s /b *.txt     :: Busca recursiva de .txt
+forfiles /p C:\ /m *.doc /s  :: Busca avançada
+```
+
+## Truques e Dicas
+
+### Navegação com Wildcards
+
+```BATCH
+:: Usando padrões
+cd *proj*           :: Entra na primeira pasta que contém "proj"
+dir *2023*          :: Lista itens com "2023" no nome
+cd /d D:\*\src      :: Navega para pasta src em qualquer subdiretório
+```
+
+### Aliases e Atalhos
+
+```BATCH
+:: Criando atalhos
+doskey home=cd %USERPROFILE%
+doskey back=cd ..
+doskey ls=dir /b
+doskey up=cd ..
+```
+
+## Mapeamento de Rede
+
+### Conexões de Rede
+
+```BATCH
+:: Mapeamento de unidades
+net use Z: \\servidor\share    :: Mapeia compartilhamento
+subst X: C:\Projetos\Atual    :: Cria drive virtual
+net use * /delete             :: Remove todos mapeamentos
+```
+
+## Troubleshooting
+
+### Problemas Comuns
+
+```BATCH
+:: Resolvendo erros
+cd.                 :: Corrige "Invalid directory"
+cd /d .             :: Força atualização do prompt
+chdir /d %path%     :: Reseta contexto do diretório
+```
+
+## Dicas de Produtividade
+
+### Autocompletar
+
+* `Tab`: Completa nomes de arquivos/pastas
+
+* `F7`: Mostra histórico de comandos
+
+* `↑/↓`: Navega pelo histórico
+
+* `Ctrl+C`: Cancela comando atual
+
+### Atalhos do Sistema
+
+```BATCH
+:: Atalhos para locais especiais
+cd %APPDATA%        :: Pasta de dados de aplicativos
+cd %ProgramFiles%   :: Pasta Program Files
+cd %SystemRoot%     :: Pasta do Windows
+cd %TEMP%           :: Pasta temporária
+```
+
+## Checklist de Navegação
+
+* [ ] Conhecer localização atual
+
+* [ ] Usar comandos básicos com confiança
+
+* [ ] Dominar navegação com wildcards
+
+* [ ] Configurar aliases úteis
+
+* [ ] Mapear drives necessários
+
+## Próximos Passos
+
+1. [Operações com Arquivos](cmd-file-operations.html)
+
+2. [Comandos do Sistema](cmd-system-commands.html)
+
+3. [Automação](cmd-automation.html)
+
+"No CMD, não existem caminhos errados, apenas desvios não planejados."
+
+
+
 # Operações com Arquivos: Dominando o Sistema
 
 ```
@@ -721,6 +1299,195 @@ echo %timestamp% > "%dest%\last_backup.txt"
 3. [PowerShell Migration](null)
 
 "Quem controla os arquivos, controla o sistema."
+
+
+
+# Comandos do Sistema: Controlando o Windows
+
+Tip:
+
+"O sistema é seu. Você só precisa saber como controlá-lo."
+
+## Gerenciamento de Processos
+
+### Listagem e Monitoramento
+
+```BATCH
+:: Processos ativos
+tasklist                    :: Lista todos processos
+tasklist /fi "imagename eq chrome.exe"  :: Filtra processo
+tasklist /v                :: Modo detalhado
+wmic process get name,processid,priority :: Info detalhada
+
+:: Monitoramento
+tasklist /m                :: Mostra DLLs usadas
+tasklist /svc             :: Mostra serviços
+wmic process where "name='chrome.exe'" get processid,commandline
+```
+
+### Controle de Processos
+
+```BATCH
+:: Manipulação de processos
+taskkill /PID 1234        :: Mata por PID
+taskkill /IM chrome.exe /F :: Força fechamento
+wmic process where name="chrome.exe" delete :: Alternativa
+start "" notepad.exe      :: Inicia processo
+```
+
+## Serviços do Sistema
+
+### Gerenciamento de Serviços
+
+```BATCH
+:: Controle de serviços
+sc query                   :: Lista serviços
+net start                  :: Serviços ativos
+net start "Windows Update" :: Inicia serviço
+net stop "Print Spooler"   :: Para serviço
+sc config service_name start= disabled :: Desabilita
+```
+
+### Status e Configuração
+
+```BATCH
+:: Informações de serviços
+sc queryex service_name    :: Info detalhada
+sc qc service_name        :: Mostra config
+wmic service list brief   :: Lista resumida
+```
+
+## Informações do Sistema
+
+### Hardware
+
+```BATCH
+:: Info de hardware
+systeminfo                :: Info completa
+wmic cpu get name         :: Processador
+wmic memorychip get capacity :: Memória
+wmic diskdrive get size,model :: Discos
+wmic bios get version     :: BIOS
+```
+
+### Software e Sistema
+
+```BATCH
+:: Info de software
+ver                      :: Versão Windows
+winver                   :: Janela de versão
+wmic os get version      :: Versão detalhada
+wmic product get name    :: Programas instalados
+```
+
+## Gerenciamento de Energia
+
+### Controle de Energia
+
+```BATCH
+:: Energia e shutdown
+shutdown /s /t 60        :: Desliga em 60s
+shutdown /r /t 0         :: Reinicia agora
+shutdown /h              :: Hiberna
+powercfg /energy        :: Diagnóstico
+powercfg /batteryreport :: Relatório bateria
+```
+
+## Rede e Conectividade
+
+### Diagnóstico de Rede
+
+```BATCH
+:: Ferramentas de rede
+ipconfig /all           :: Config completa
+netstat -ano           :: Conexões ativas
+route print            :: Tabela de rotas
+nslookup google.com    :: DNS lookup
+tracert 8.8.8.8       :: Trace route
+```
+
+### Configuração de Rede
+
+```BATCH
+:: Config de rede
+netsh interface show interface :: Interfaces
+netsh wlan show networks      :: Redes Wi-Fi
+netsh advfirewall set allprofiles state off :: Firewall
+```
+
+## Scripts de Diagnóstico
+
+### Monitor de Sistema
+
+```BATCH
+@echo off
+:monitor
+cls
+echo === Monitor do Sistema ===
+echo Data: %date% Hora: %time%
+
+:: CPU e Memória
+wmic cpu get loadpercentage
+wmic OS get FreePhysicalMemory
+
+:: Processos críticos
+tasklist | findstr /i "chrome firefox node"
+
+:: Rede
+netstat -ano | findstr "ESTABLISHED"
+
+timeout /t 5 > nul
+goto monitor
+```
+
+### Verificação de Saúde
+
+```BATCH
+:: Script de diagnóstico
+@echo off
+echo === Diagnóstico do Sistema ===
+
+:: Verificações básicas
+sfc /scannow
+chkdsk /f
+dism /online /cleanup-image /restorehealth
+
+:: Logs de erro
+wevtutil qe System /c:5 /f:text
+wevtutil qe Application /c:5 /f:text
+```
+
+## Melhores Práticas
+
+### Segurança
+
+* Use `runas` para elevação de privilégios
+
+* Verifique processos desconhecidos
+
+* Monitore portas abertas
+
+* Mantenha logs de alterações
+
+### Performance
+
+* Limite processos em background
+
+* Monitore uso de recursos
+
+* Agende manutenção regular
+
+* Documente configurações
+
+## Próximos Passos
+
+1. [Automação de Sistema](cmd-automation.html)
+
+2. [Scripting Avançado](cmd-batch-scripting.html)
+
+3. [Networking](null)
+
+"Com grandes poderes vêm grandes responsabilidades... e muitos comandos para lembrar."
 
 
 
@@ -1592,6 +2359,748 @@ Porque às vezes, o melhor debug é um reboot
 3. [Terapia](null) (Altamente recomendado após este módulo)
 
 "Debug é como investigação criminal: o código é sempre culpado até que se prove o contrário."
+
+
+
+# Integração CMD: Onde Todos os Mundos Colidem
+
+```
+ _____ _   _ _____ _____ ____ ____      _  _____ _____ 
+|_   _| \ | |_   _|  ___/ ___|  _ \    / \|_   _| ____|
+  | | |  \| | | | | |_ | |  _| |_) |  / _ \ | | |  _|  
+  | | | |\  | | | |  _|| |_| |  _ <  / ___ \| | | |___ 
+  |_| |_| \_| |_| |_|   \____|_| \_\/_/   \_\_| |_____|
+```
+
+Tip:
+
+"Em um universo de containers e clouds, o CMD ainda insiste em comparecer à festa."
+
+## A Arte da Integração (Ou: Como Fazer Tecnologias Incompatíveis Dançarem Juntas)
+
+### Preparando o Terreno
+
+```BATCH
+:: Configurando o ambiente para o caos
+@echo off
+setlocal enabledelayedexpansion
+:: Agora sim, podemos começar a quebrar coisas apropriadamente
+```
+
+## Git Integration (Ou: Como Versionar Seu Desespero)
+
+### Git Básico para Sobreviventes
+
+```BATCH
+:: Script de commit automático (use por sua conta e risco)
+@echo off
+set "COMMIT_MSG=Fix: Tentando consertar o que quebrei ontem"
+
+git add .
+git commit -m "%COMMIT_MSG%"
+git push
+if errorlevel 1 (
+    echo Parabéns, você quebrou o repositório
+    goto :PANIC
+)
+```
+
+### Automação Git Avançada
+
+```BATCH
+:: Automatizando o pânico
+:gitAutomation
+git status | findstr "modified"
+if errorlevel 1 (
+    echo Milagre: Nada quebrado hoje
+) else (
+    echo Hora do commit desesperado
+    call :panicCommit
+)
+```
+
+## Docker Integration (Ou: Containers de Desespero)
+
+### Docker CLI via CMD
+
+```BATCH
+:: Gerenciando containers como um hacker dos anos 90
+docker ps
+if errorlevel 1 (
+    echo Docker não está rodando... ou está?
+    echo Iniciando ritual de invocação do daemon
+    start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+    timeout /t 30 /nobreak
+    echo Se isso não funcionou, tente sacrificar um SSD
+)
+```
+
+### Build e Deploy
+
+```BATCH
+:: Script de build que ninguém pediu
+:dockerBuild
+set "IMAGE_NAME=meu-container-do-caos"
+set "TAG=latest-disaster"
+
+docker build -t %IMAGE_NAME%:%TAG% .
+if errorlevel 1 (
+    echo O build falhou... que surpresa
+    goto :PANIC
+)
+```
+
+## Cloud Integration (Ou: Levando Seus Problemas Para a Nuvem)
+
+### AWS CLI
+
+```BATCH
+:: Automatizando a queima de dinheiro na AWS
+aws s3 sync . s3://meu-bucket-de-desastres
+if errorlevel 1 (
+    echo AWS Console está rindo de você agora
+    echo Verificando saldo do cartão de crédito...
+)
+```
+
+### Azure CLI
+
+```BATCH
+:: Tentando fazer amizade com a Azure
+az login
+if errorlevel 1 (
+    echo Microsoft não quer seu dinheiro hoje
+    echo Tente novamente após reiniciar o universo
+)
+```
+
+## Checklist de Integração
+
+* [ ] Git configurado e quebrando corretamente
+
+* [ ] Docker daemon em estado questionável
+
+* [ ] AWS credenciais expostas em algum lugar
+
+* [ ] Azure pensando sobre a vida
+
+* [ ] Cartão de crédito chorando
+
+* [ ] Backup do LinkedIn atualizado
+
+## Protocolos de Emergência
+
+### 1. O Protocol de Pânico
+
+```BATCH
+:PANIC
+echo Iniciando protocolo de pânico corporativo...
+echo Enviando CV atualizado...
+echo Preparando desculpas plausíveis...
+```
+
+### 2. Recuperação de Desastres
+
+```BATCH
+:: Quando tudo der errado (e vai dar)
+:disasterRecovery
+echo Tentando recuperar o irrecuperável...
+echo Rezando para todos os deuses da tecnologia...
+```
+
+## Próximos Passos (Se Ainda Houver Esperança)
+
+1. [Git Integration](cmd-git-integration.html) (Para masoquistas do controle de versão)
+
+2. [Docker Integration](cmd-docker-integration.html) (Containerize sua dor)
+
+3. [Cloud Integration](cmd-cloud-integration.html) (Problemas em escala global)
+
+"Integração é como tentar fazer gatos e cachorros viverem em harmonia... em um container Docker."
+
+
+
+# Git Integration com CMD: Controlando o Caos
+
+```
+  ____ _ _     _____ _   _ _____ _____ ____ ____      _  _____ _____ 
+ / ___(_) |_  |_   _| \ | |_   _|  ___/ ___|  _ \    / \|_   _| ____|
+| |  _| | __|   | | |  \| | | | | |_ | |  _| |_) |  / _ \ | | |  _|  
+| |_| | | |_    | | | |\  | | | |  _|| |_| |  _ <  / ___ \| | | |___ 
+ \____|_|\__|   |_| |_| \_| |_| |_|   \____|_| \_\/_/   \_\_| |_____|
+```
+
+Tip:
+
+"Git é como um checkpoint em um jogo difícil: você nunca sabe se salvou no momento certo."
+
+## Configuração Inicial (Ou: Preparando-se Para o Desastre)
+
+### Setup Básico
+
+```BATCH
+:: Configurando sua identidade (para saber quem culpar depois)
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+
+:: Configurando cores (porque preto e branco é muito 1980)
+git config --global color.ui auto
+```
+
+## Scripts de Automação Git (Ou: Automatizando Seus Erros)
+
+### Commit Rápido
+
+```BATCH
+@echo off
+:: Script para commit rápido (e arrependimento posterior)
+:quickCommit
+set /p COMMIT_MSG="Digite sua mensagem de commit (ou pressione Enter para 'oops'): "
+if "%COMMIT_MSG%"=="" set COMMIT_MSG=oops: provavelmente quebrei algo
+
+git add .
+git commit -m "%COMMIT_MSG%"
+git push
+
+if errorlevel 1 (
+    echo Parabéns! Você conseguiu quebrar o Git!
+    goto :fixItLater
+)
+```
+
+### Branch Management
+
+```BATCH
+:: Criando e mudando branches (ou: como se perder em seu próprio código)
+:branchManager
+set /p BRANCH_NAME="Nome da nova branch (pressione Enter para 'feature/outro-bug'): "
+if "%BRANCH_NAME%"=="" set BRANCH_NAME=feature/outro-bug
+
+git checkout -b %BRANCH_NAME%
+if errorlevel 1 (
+    echo Branch já existe ou você digitou algo muito criativo
+    echo Tentando plano B...
+    git checkout %BRANCH_NAME%
+)
+```
+
+## Workflows Comuns (Ou: Rituais Diários de Desespero)
+
+### Pull Before Push
+
+```BATCH
+:: Script para evitar conflitos (boa sorte com isso)
+:safePush
+echo Verificando se tem alguém mais quebrando o código...
+git fetch
+
+git pull
+if errorlevel 1 (
+    echo CONFLITO DETECTADO!
+    echo Iniciando protocolo de pânico...
+    goto :mergeConflictPanic
+)
+
+git push
+```
+
+### Merge Conflict Resolution
+
+```BATCH
+:: Quando tudo dá errado (e vai dar)
+:mergeConflictPanic
+echo ==========================================
+echo PROTOCOLO DE CONFLITO DE MERGE ATIVADO
+echo ==========================================
+echo 1. Não entre em pânico
+echo 2. Tarde demais para o item 1
+echo 3. Tentando resolver automaticamente...
+
+git config merge.tool vimdiff
+git mergetool
+
+if errorlevel 1 (
+    echo Resolução automática falhou
+    echo Recomendação: Finja que não foi você
+)
+```
+
+## Scripts de Manutenção (Ou: Mantendo a Sanidade)
+
+### Limpeza de Branches
+
+```BATCH
+:: Removendo branches mortas (RIP)
+:cleanBranches
+echo Iniciando limpeza de branches...
+echo (Ou: deletando evidências)
+
+git branch --merged | findstr /v "* master main develop" > temp.txt
+for /f "tokens=*" %%a in (temp.txt) do (
+    git branch -d %%a
+)
+del temp.txt
+```
+
+### Backup de Emergência
+
+```BATCH
+:: Quando tudo mais falhar
+:panicBackup
+set BACKUP_DIR=backup_%date:~-4%%date:~3,2%%date:~0,2%
+mkdir %BACKUP_DIR%
+xcopy /s /e .git %BACKUP_DIR%\.git\
+echo Backup criado em %BACKUP_DIR%
+echo (Mas você provavelmente nunca vai usar isso)
+```
+
+## Protocolos de Emergência
+
+### Reset de Emergência
+
+```BATCH
+:: Botão de pânico nuclear
+:nuclearOption
+echo ATENÇÃO: INICIANDO PROTOCOLO DE RESET
+echo Este é o botão vermelho. Tem certeza?
+pause
+
+git reset --hard HEAD~1
+echo O que está feito, está feito
+echo (Espero que você tenha feito backup)
+```
+
+### Stash Rápido
+
+```BATCH
+:: Escondendo as evidências
+:quickStash
+git stash push -m "Mudanças que eu deveria ter commitado ontem"
+echo Suas alterações foram escondidas
+echo (Boa sorte lembrando onde)
+```
+
+## Checklist de Sobrevivência Git
+
+* [ ] Repositório inicializado (provavelmente do jeito errado)
+
+* [ ] Remote configurado (apontando para algum lugar)
+
+* [ ] Branches criadas (e perdidas)
+
+* [ ] Commits feitos (e arrependidos)
+
+* [ ] Conflitos resolvidos (ou ignorados)
+
+* [ ] Stack Overflow aberto em várias tabs
+
+## Próximos Passos (Se Você Sobreviveu)
+
+1. [Docker Integration](cmd-docker-integration.html) (Para mais aventuras em containers)
+
+2. [Cloud Integration](cmd-cloud-integration.html) (Leve seus problemas para a nuvem)
+
+3. [Terapia](null) (Altamente recomendado neste ponto)
+
+"Git é como um relacionamento complicado: ninguém entende realmente como funciona, mas todo mundo finge que sim."
+
+
+
+# Docker Integration com CMD: Containers de Caos
+
+```
+ ____   ___   ____ _  _______ ____  
+|  _ \ / _ \ / ___| |/ / ____|  _ \ 
+| | | | | | | |   | ' /|  _| | |_) |
+| |_| | |_| | |___| . \| |___|  _ < 
+|____/ \___/ \____|_|\_\_____|_| \_\
+```
+
+Tip:
+
+"Docker é como uma caixa surpresa: você nunca sabe o que vai quebrar quando abrir."
+
+## Configuração Inicial (Ou: Preparando o Ambiente para o Desastre)
+
+### Verificação do Ambiente
+
+```BATCH
+@echo off
+:: Checando se o Docker está instalado (e rezando)
+docker --version
+if errorlevel 1 (
+    echo Docker não encontrado!
+    echo Você esqueceu de instalar a fonte de todos os seus problemas futuros
+    goto :installDocker
+)
+```
+
+### Status Check
+
+```BATCH
+:: Verificando se o daemon está vivo
+:checkDaemon
+docker info > nul 2>&1
+if errorlevel 1 (
+    echo O daemon Docker está morto... de novo
+    echo Iniciando ritual de ressurreição
+    start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+    timeout /t 30 /nobreak
+    goto :checkDaemon
+)
+```
+
+## Gerenciamento de Containers (Ou: Malabarismo com Caixas Virtuais)
+
+### Container Lifecycle
+
+```BATCH
+:: Script para gerenciar o ciclo de vida dos containers
+:containerManager
+set "CONTAINER_NAME=container-do-caos"
+
+:: Criando um container (o que poderia dar errado?)
+docker run -d --name %CONTAINER_NAME% nginx
+if errorlevel 1 (
+    echo Container recusou-se a iniciar
+    echo Tentando convencê-lo educadamente...
+    docker rm -f %CONTAINER_NAME% 2>nul
+    goto :containerManager
+)
+```
+
+### Container Cleanup
+
+```BATCH
+:: Limpeza de containers zumbis
+:zombieHunter
+echo Iniciando caça aos containers mortos-vivos...
+docker container prune -f
+echo Se algo importante foi deletado, foi mal
+```
+
+## Imagens e Builds (Ou: Arte Abstrata em Camadas)
+
+### Build Automation
+
+```BATCH
+:: Script de build com tentativas infinitas
+:buildImage
+set "IMAGE_NAME=app-que-funciona-local"
+set "TAG=versao-otimista"
+
+echo Tentativa de build #%ATTEMPT%
+docker build -t %IMAGE_NAME%:%TAG% .
+if errorlevel 1 (
+    echo Build falhou... que surpresa
+    set /a ATTEMPT+=1
+    if %ATTEMPT% leq 3 (
+        echo Tentando novamente, porque insistência é a chave
+        goto :buildImage
+    ) else (
+        echo Desistindo... por enquanto
+        goto :panicMode
+    )
+)
+```
+
+### Image Cleanup
+
+```BATCH
+:: Liberando espaço (e deletando evidências)
+:imageJanitor
+echo Procurando imagens para "otimizar"...
+docker image prune -a --force
+echo Seu HD agradece
+echo (Mas seu time de desenvolvimento não)
+```
+
+## Networking (Ou: Labirinto de Conexões)
+
+### Network Creation
+
+```BATCH
+:: Criando redes Docker (mais uma camada de complexidade)
+:networkCreator
+docker network create rede-do-caos
+if errorlevel 1 (
+    echo A rede se recusa a existir
+    echo Tentando plano B...
+    goto :useHostNetwork
+)
+```
+
+### Container Connectivity
+
+```BATCH
+:: Testando conectividade (ou falta dela)
+:connectivityCheck
+docker run --rm busybox ping -c 1 google.com
+if errorlevel 1 (
+    echo Internet não encontrada
+    echo Culpando o firewall...
+)
+```
+
+## Volume Management (Ou: Persistência é Superestimada)
+
+### Volume Creation
+
+```BATCH
+:: Criando volumes (porque perder dados é divertido)
+:volumeManager
+docker volume create dados-importantes
+echo Volume criado com sucesso
+echo (Boa sorte encontrando onde)
+```
+
+### Backup Volumes
+
+```BATCH
+:: Script de backup (para quando der tudo errado)
+:backupVolumes
+set "BACKUP_DIR=backup_volumes_%date:~-4%%date:~3,2%%date:~0,2%"
+mkdir %BACKUP_DIR%
+
+docker run --rm -v dados-importantes:/data -v %cd%/%BACKUP_DIR%:/backup alpine tar cvf /backup/backup.tar /data
+echo Backup concluído
+echo (Espero que você não precise dele)
+```
+
+## Troubleshooting (Ou: Guia de Sobrevivência)
+
+### Log Analysis
+
+```BATCH
+:: Analisando logs (ou tentando)
+:logDiver
+docker logs --tail 100 %CONTAINER_NAME%
+echo Se você entendeu esses logs, parabéns
+echo Você é oficialmente um especialista Docker
+```
+
+### Container Debug
+
+```BATCH
+:: Modo debug desesperado
+:debugMode
+echo Entrando em modo de depuração...
+docker exec -it %CONTAINER_NAME% /bin/sh
+echo Se isso funcionou, foi sorte
+```
+
+## Checklist de Sobrevivência Docker
+
+* [ ] Docker Desktop instalado (e reiniciado 3 vezes)
+
+* [ ] Containers rodando (alguns deles)
+
+* [ ] Volumes montados (em algum lugar)
+
+* [ ] Redes configuradas (teoricamente)
+
+* [ ] Logs verificados (e ignorados)
+
+* [ ] Stack Overflow como página inicial
+
+## Próximos Passos (Se Ainda Tiver Coragem)
+
+1. [Cloud Integration](cmd-cloud-integration.html) (Para problemas em escala global)
+
+2. [Kubernetes](null) (Porque Docker sozinho não é complexo o suficiente)
+
+3. [Terapia](null) (Seriamente, você vai precisar)
+
+"Docker é como uma cebola: tem várias camadas e provavelmente vai te fazer chorar."
+
+
+
+# Cloud Integration com CMD: Problemas em Escala Global
+
+```
+  ____ _     ___  _   _ ____  
+ / ___| |   / _ \| | | |  _ \ 
+| |   | |  | | | | | | | | | |
+| |___| |__| |_| | |_| | |_| |
+ \____|_____\___/ \___/|____/ 
+```
+
+Tip:
+
+"Cloud é como um hotel: você paga pelo que usa, mas nunca sabe exatamente quanto vai custar no final do mês."
+
+## AWS CLI Adventures (Ou: Como Gastar Dinheiro Automaticamente)
+
+### Configuração Inicial
+
+```BATCH
+@echo off
+:: Configurando AWS CLI (e suas economias)
+aws configure
+if errorlevel 1 (
+    echo AWS não quer seu dinheiro hoje
+    echo Tente novamente após atualizar seu cartão de crédito
+    goto :panicMode
+)
+```
+
+### S3 Management
+
+```BATCH
+:: Upload para S3 (ou: enviando arquivos para o void)
+:s3Upload
+set "BUCKET_NAME=bucket-do-arrependimento"
+set "LOCAL_PATH=dados-importantes"
+
+aws s3 sync %LOCAL_PATH% s3://%BUCKET_NAME%
+if errorlevel 1 (
+    echo Upload falhou
+    echo Mas a cobrança provavelmente passou
+    goto :checkBill
+)
+```
+
+## Azure CLI Saga (Ou: Microsoft's Cloud Maze)
+
+### Azure Login
+
+```BATCH
+:: Tentando acessar Azure (boa sorte)
+:azureLogin
+az login
+if errorlevel 1 (
+    echo Azure está tendo um dia ruim
+    echo Tente novamente em 2-3 dias úteis
+    goto :useCompetitor
+)
+```
+
+### Resource Management
+
+```BATCH
+:: Criando recursos (e dívidas)
+:createResources
+set "RG_NAME=grupo-recursos-caros"
+set "LOCATION=somewhere-expensive"
+
+az group create --name %RG_NAME% --location %LOCATION%
+if errorlevel 1 (
+    echo Criação falhou
+    echo Mas você será cobrado mesmo assim
+)
+```
+
+## Google Cloud Adventures (Ou: Mais Uma Nuvem Para Se Preocupar)
+
+### GCloud Setup
+
+```BATCH
+:: Configurando GCloud (porque duas clouds não são suficientes)
+:gcloudInit
+gcloud init
+if errorlevel 1 (
+    echo Google também não quer cooperar
+    echo Pelo menos o Gmail ainda funciona
+)
+```
+
+### Container Management
+
+```BATCH
+:: Deployando containers (agora em escala cloud)
+:deployContainer
+set "PROJECT_ID=projeto-sem-orcamento"
+
+gcloud run deploy --image gcr.io/%PROJECT_ID%/app
+if errorlevel 1 (
+    echo Deploy falhou
+    echo Mas o billing continua...
+)
+```
+
+## Multi-Cloud Chaos (Ou: Problemas Distribuídos)
+
+### Cloud Sync
+
+```BATCH
+:: Sincronizando entre clouds (porque gostamos de sofrer)
+:multiCloudSync
+echo Iniciando sincronização multi-cloud...
+
+:: AWS para Azure
+aws s3 sync s3://%AWS_BUCKET% temp/
+az storage blob upload-batch -d %AZURE_CONTAINER% -s temp/
+
+:: Azure para GCloud
+az storage blob download-batch -d temp/ -s %AZURE_CONTAINER%
+gsutil cp -r temp/* gs://%GCLOUD_BUCKET%/
+
+echo Se algo sincronizou, foi coincidência
+```
+
+## Cost Management (Ou: Arte de Queimar Dinheiro)
+
+### Budget Alerts
+
+```BATCH
+:: Configurando alertas de orçamento (tarde demais)
+:budgetAlert
+set "BUDGET_LIMIT=muito-dinheiro"
+
+aws budgets create-budget --too-complicated-to-show
+az monitor metrics alert create --good-luck-understanding-this
+gcloud billing budgets create --why-so-complex
+
+echo Alertas configurados
+echo (Você será notificado após o estrago)
+```
+
+## Disaster Recovery (Ou: Plano B, C, D...)
+
+### Backup Strategy
+
+```BATCH
+:: Script de backup multi-cloud (para quando tudo der errado)
+:backupAll
+echo Iniciando backup de todas as clouds...
+echo (Rezando para todas as divindades da TI)
+
+:: Backup AWS
+aws s3 sync s3://%AWS_BUCKET% backup/aws/
+
+:: Backup Azure
+az storage blob download-batch -d backup/azure -s %AZURE_CONTAINER%
+
+:: Backup GCloud
+gsutil -m cp -r gs://%GCLOUD_BUCKET% backup/gcloud/
+
+echo Backup concluído
+echo (Se você precisar usar, já é tarde demais)
+```
+
+## Checklist de Sobrevivência Cloud
+
+* [ ] Cartão de crédito com limite alto
+
+* [ ] Contato do suporte financeiro
+
+* [ ] Plano de recuperação de desastres
+
+* [ ] LinkedIn atualizado
+
+* [ ] Currículo pronto
+
+* [ ] Passaporte em dia
+
+## Próximos Passos (Se o Orçamento Permitir)
+
+1. [Kubernetes](null) (Para quando cloud pura não é complexa o suficiente)
+
+2. [DevOps Integration](cmd-automation.html) (Automatize seus problemas)
+
+3. [Terapia Financeira](null) (Você vai precisar)
+
+"Cloud é como um cassino: a casa sempre ganha, mas você continua jogando mesmo assim."
 
 
 
