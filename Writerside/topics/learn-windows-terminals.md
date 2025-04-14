@@ -69,7 +69,7 @@ Get-ChildItem -Recurse -Include *.js |
 ## Contribua
 
 Encontrou um bug? Tem uma dica ninja? 
-[Abra uma issue](https://github.com/seu-repo/issues) ou envie um PR.
+[Abra uma issue](https://github.com/mrpunkdasilva/Learn-Windows-Terminals/issues) ou envie um PR.
 
 ## Dica do Dia
 ```
