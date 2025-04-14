@@ -1,0 +1,1597 @@
+# Terminal Windows: Guia do Desenvolvedor
+
+```
+ _____                  _             _     
+|_   _|__ _ __ _ __ ___ (_)_ __   __ _| |___ 
+  | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | / __|
+  | |  __/ |  | | | | | | | | | | (_| | \__ \
+  |_|\___|_|  |_| |_| |_|_|_| |_|\__,_|_|___/
+```
+
+Tip:
+
+"Em um mundo onde código é lei, o terminal é sua arma."
+
+## O que você vai encontrar aqui
+
+Este guia foi feito por devs, para devs. Sem rodeios, direto ao ponto. Vamos dominar as duas principais ferramentas de linha de comando do Windows:
+
+* CMD: O clássico prompt de comando
+
+* PowerShell: A ferramenta moderna de automação
+
+## Navegação Rápida
+
+### CMD - O Básico do Underground
+
+```BASH
+C:\> help
+# Seu primeiro passo no submundo dos comandos
+```
+
+* [Comandos Essenciais](cmd-basic-commands.html)
+
+* [Manipulação de Arquivos](cmd-file-operations.html)
+
+* [Scripts Batch](cmd-batch-scripting.html)
+
+### PowerShell - O Arsenal Avançado
+
+```POWERSHELL
+PS C:\> Get-Command
+# Poder é conhecimento
+```
+
+* [Cmdlets Fundamentais](null)
+
+* [Pipeline &amp; Objetos](null)
+
+* [Automação &amp; Scripts](null)
+
+## Por que este guia?
+
+* ✓ Exemplos práticos do mundo real
+
+* ✓ Foco em desenvolvimento e automação
+
+* ✓ Sem enrolação, direto ao código
+
+* ✓ Truques e hacks que você vai usar todo dia
+
+## Comece Aqui
+
+### Para Iniciantes
+
+```BASH
+# Primeiro, aprenda a navegar
+cd /d C:\seu\projeto
+dir /b
+```
+
+### Para Devs Experientes
+
+```POWERSHELL
+# Automatize seu workflow
+Get-ChildItem -Recurse -Include *.js | 
+    Where-Object { $_.Length -gt 1MB }
+```
+
+## Projetos Práticos
+
+1. Build Automático: Scripts para compilar e deployar
+
+2. Git Hooks: Automatização de commits e pushes
+
+3. Monitoramento: Scripts para logs e performance
+
+## Contribua
+
+Encontrou um bug? Tem uma dica ninja?
+[Abra uma issue](https://github.com/seu-repo/issues) ou envie um PR.
+
+## Dica do Dia
+
+```
+> Pressione Tab para autocompletar. Seu tempo é valioso demais 
+> para digitar caminhos completos.
+```
+
+"O terminal é mais do que uma ferramenta. É uma extensão do seu código."
+
+
+
+# CMD: Seu Primeiro Terminal
+
+```
+  ____ __  __ ____  
+ / ___|  \/  |  _ \ 
+| |   | |\/| | | | |
+| |___| |  | | |_| |
+ \____|_|  |_|____/ 
+```
+
+Tip:
+
+"Antes do PowerShell, antes das GUIs, havia o CMD. E ele ainda tem seu lugar no arsenal do desenvolvedor moderno."
+
+## Por que aprender CMD em 2025?
+
+O Command Prompt (CMD) continua sendo uma ferramenta essencial no ambiente Windows por várias razões:
+
+* Velocidade: Execução de comandos muito mais rápida que interfaces gráficas
+
+* Scripts Batch: Amplamente utilizados em sistemas legados e processos de build
+
+* Troubleshooting: Fundamental para diagnóstico e resolução de problemas
+
+* Base Sólida: Entender CMD facilita a transição para PowerShell
+
+* Compatibilidade: Funciona em qualquer versão do Windows sem dependências
+
+* Recursos: Consome menos memória que terminais modernos
+
+## Acessando o CMD
+
+Existem várias formas de acessar o CMD:
+
+```BATCH
+:: Método 1 - Run Dialog
+Windows + R
+cmd
+Enter
+
+:: Método 2 - Menu Iniciar
+Windows + X -> Command Prompt (Admin)
+
+:: Método 3 - File Explorer
+Alt + D
+cmd
+Enter
+```
+
+## Configuração para Desenvolvimento
+
+### Configurações Básicas
+
+```BATCH
+:: Habilitar recursos avançados
+reg add "HKEY_CURRENT_USER\Console" /v QuickEdit /t REG_DWORD /d 1 /f
+reg add "HKEY_CURRENT_USER\Console" /v InsertMode /t REG_DWORD /d 1 /f
+reg add "HKEY_CURRENT_USER\Console" /v ScreenBufferSize /t REG_DWORD /d 0x23290096 /f
+reg add "HKEY_CURRENT_USER\Console" /v FontSize /t REG_DWORD /d 0x00100008 /f
+reg add "HKEY_CURRENT_USER\Console" /v FontFamily /t REG_DWORD /d 0x00000036 /f
+reg add "HKEY_CURRENT_USER\Console" /v FontWeight /t REG_DWORD /d 0x00000190 /f
+```
+
+### Personalização Avançada
+
+```BATCH
+:: Cores e aparência
+reg add "HKEY_CURRENT_USER\Console" /v ColorTable00 /t REG_DWORD /d 0x00000000 /f
+reg add "HKEY_CURRENT_USER\Console" /v ColorTable07 /t REG_DWORD /d 0x00cccccc /f
+reg add "HKEY_CURRENT_USER\Console" /v WindowSize /t REG_DWORD /d 0x00320078 /f
+```
+
+## Comandos Essenciais para Desenvolvimento
+
+### Navegação e Gerenciamento de Projetos
+
+```BATCH
+:: Navegação rápida
+cd /d D:\projetos              :: Muda drive e diretório
+dir /b /s *.js                :: Lista recursivamente arquivos JS
+tree /f                       :: Mostra estrutura de diretórios
+pushd \\servidor\share        :: Salva localização atual e navega
+popd                         :: Retorna à localização salva
+
+:: Gerenciamento de arquivos
+xcopy src dist /E /I /H      :: Copia preservando estrutura
+robocopy source dest /MIR    :: Sincronização espelhada
+attrib +h node_modules       :: Oculta pasta
+```
+
+### Processos e Rede
+
+```BATCH
+:: Gerenciamento de processos
+tasklist | findstr "node"     :: Lista processos Node.js
+taskkill /F /IM node.exe     :: Força fechamento do Node
+wmic process where "name='node.exe'" get commandline  :: Detalhes
+
+:: Rede e portas
+netstat -ano | findstr "3000" :: Verifica porta específica
+ipconfig /flushdns           :: Limpa cache DNS
+nslookup api.exemplo.com     :: Resolve DNS
+```
+
+## Dicas Práticas
+
+### Aliases e Paths Personalizados
+
+```BATCH
+:: Criar arquivo autoexec.bat
+@echo off
+:: Aliases úteis
+doskey ls=dir /b $*
+doskey clear=cls
+doskey ..=cd ..
+doskey ...=cd ../..
+doskey gs=git status
+doskey gl=git log --oneline
+doskey gp=git pull
+doskey npm-clean=rmdir /s /q node_modules && del package-lock.json
+
+:: Paths de desenvolvimento
+set PATH=%PATH%;C:\dev\tools
+set JAVA_HOME=C:\Program Files\Java\jdk-17
+set MAVEN_HOME=C:\dev\apache-maven
+```
+
+### Debugging Rápido
+
+```BATCH
+:: Verificação de portas
+:checkPort
+set PORT=%1
+netstat -ano | findstr ":%PORT%"
+if errorlevel 1 (
+    echo Porta %PORT% livre
+) else (
+    echo Porta %PORT% em uso
+    for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":%PORT%"') do (
+        echo PID: %%a
+        tasklist | findstr "%%a"
+    )
+)
+
+:: Matar processo
+:killProcess
+set PORT=%1
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":%PORT%"') do (
+    taskkill /F /PID %%a
+    if errorlevel 1 (
+        echo Falha ao matar processo
+    ) else (
+        echo Processo finalizado
+    )
+)
+```
+
+## Atalhos do Teclado Essenciais
+
+| Atalho |Função |Contexto |
+----------------------------
+| `F7` |Histórico de comandos |Mostra lista navegável |
+| `Alt + F7` |Limpa histórico |Útil para segurança |
+| `F3` |Repete último comando |Digitação rápida |
+| `Alt + Enter` |Modo tela cheia |Melhor visualização |
+| `Ctrl + C` |Cancela comando |Interrompe execução |
+| `Ctrl + Break` |Força interrupção |Quando Ctrl+C falha |
+
+## Próximos Passos
+
+1. [Comandos Básicos](cmd-basic-commands.html)
+
+* Aprenda os comandos fundamentais
+
+* Pratique navegação e manipulação
+
+2. [Operações com Arquivos](cmd-file-operations.html)
+
+* Gerenciamento avançado de arquivos
+
+* Automação de backups
+
+3. [Scripts Batch](cmd-batch-scripting.html)
+
+* Crie seus primeiros scripts
+
+* Automatize tarefas repetitivas
+
+## Recursos Adicionais
+
+* [Documentação Oficial Microsoft](https://docs.microsoft.com/windows-server/administration/windows-commands/windows-commands)
+
+* [SS64 CMD Reference](https://ss64.com/nt/)
+
+* [Rob van der Woude's Scripting Pages](https://www.robvanderwoude.com/batchstart.php)
+
+## Troubleshooting Comum
+
+| Problema |Solução |Comando |
+------------------------------
+| Acesso Negado |Executar como Admin |`runas /user:Administrator cmd` |
+| Codificação |Mudar para UTF-8 |`chcp 65001` |
+| Path Longo |Usar subst |`subst X: C:\caminho\muito\longo` |
+| Erro de Sintaxe |Verificar aspas |`echo "Uso correto de aspas"` |
+
+"O terminal é a interface mais poderosa que você pode dominar."
+
+
+
+# Comandos Básicos: Seu Arsenal Inicial
+
+```
+  _____                              _           
+ / ____|                            | |          
+| |     ___  _ __ ___   __ _ _ __  | |__   ___  
+| |    / _ \| '_ ` _ \ / _` | '_ \ | '_ \ / _ \ 
+| |___| (_) | | | | | | (_| | | | || |_) | (_) |
+ \_____\___/|_| |_| |_|\__,_|_| |_||_.__/ \___/ 
+```
+
+Tip:
+
+"Conhecimento é poder. Poder é controle. Controle é tudo."
+
+## Navegação no Sistema
+
+```BATCH
+:: Navegação básica
+cd          :: Mostra diretório atual
+cd ..       :: Volta um nível
+cd /d D:    :: Muda drive e diretório
+pushd       :: Salva diretório atual na pilha
+popd        :: Retorna ao último diretório salvo
+```
+
+## Listagem e Busca
+
+```BATCH
+:: Listagem avançada
+dir /a      :: Mostra arquivos ocultos
+dir /s      :: Lista recursivamente
+dir /b /s   :: Formato limpo e recursivo
+
+:: Busca ninja
+where python        :: Localiza executável
+findstr /s /i TODO  :: Busca TODO em todos arquivos
+```
+
+## Manipulação de Arquivos
+
+```BATCH
+:: Operações básicas
+copy src.txt dst.txt   :: Copia arquivo
+move old.* new\        :: Move arquivos
+del *.tmp              :: Deleta temporários
+ren old.js new.js      :: Renomeia arquivo
+
+:: Operações avançadas
+robocopy src dst /MIR  :: Sincronização espelho
+xcopy /s /e /h        :: Copia preservando atributos
+```
+
+## Processos e Rede
+
+```BATCH
+:: Gerenciamento de processos
+tasklist | findstr "node"   :: Lista processos node
+taskkill /IM node.exe /F    :: Mata processo
+start "" "http://localhost" :: Abre navegador
+
+:: Comandos de rede
+netstat -ano              :: Portas em uso
+ipconfig /all            :: Config de rede
+ping -t localhost       :: Ping contínuo
+```
+
+## Informações do Sistema
+
+```BATCH
+:: Debug e diagnóstico
+systeminfo | findstr "Memory"  :: Info de memória
+wmic cpu get name             :: Info do processador
+ver                          :: Versão do Windows
+```
+
+## Pipes e Redirecionamento
+
+```BATCH
+:: Manipulação de output
+dir > lista.txt           :: Salva em arquivo
+type file.txt | sort     :: Ordena conteúdo
+findstr "erro" log.txt   :: Filtra conteúdo
+```
+
+## Scripts Rápidos para Dev
+
+```BATCH
+:: Limpeza de builds
+@echo off
+for /d /r . %%d in (node_modules) do @if exist "%%d" rmdir /s /q "%%d"
+for /d /r . %%d in (dist) do @if exist "%%d" rmdir /s /q "%%d"
+
+:: Monitor de porta
+:check
+netstat -ano | findstr ":3000"
+timeout /t 5
+goto check
+```
+
+## Atalhos de Produtividade
+
+| Comando |Descrição |Uso Dev |
+-------------------------------
+| `doskey h=history` |Alias para histórico |Reutilizar comandos |
+| `cls` |Limpa tela |Manter terminal limpo |
+| `echo %PATH%` |Mostra path |Debug de ambiente |
+
+## Dicas Avançadas
+
+```BATCH
+:: Execução silenciosa
+start /b programa.exe > nul 2>&1
+
+:: Captura de erros
+comando.exe 2> erro.log
+
+:: Execução condicional
+comando1.exe && comando2.exe || comando3.exe
+```
+
+## Próximos Passos
+
+1. [Operações com Arquivos](cmd-file-operations.html)
+
+2. [Scripts Batch](cmd-batch-scripting.html)
+
+3. [Networking Avançado](null)
+
+"Mestre dos comandos, mestre do sistema."
+
+
+
+# Operações com Arquivos: Dominando o Sistema
+
+```
+ _____ _ _      ____            
+|  ___(_) | ___/ ___| _   _ ___ 
+| |_  | | |/ _ \___ \| | | / __|
+|  _| | | |  __/___) | |_| \__ \
+|_|   |_|_|\___|____/ \__, |___/
+                      |___/      
+```
+
+Tip:
+
+"Arquivos são dados. Dados são poder. Poder é controle."
+
+## Operações Essenciais
+
+### Criação e Manipulação Básica
+
+```BATCH
+:: Criação de estrutura
+md projeto                    :: Cria diretório
+md "projeto/src" "projeto/tests"  :: Múltiplos diretórios
+type nul > index.js          :: Cria arquivo vazio
+copy con config.json         :: Cria e edita arquivo
+echo console.log() >> index.js   :: Append em arquivo
+
+:: Manipulação básica
+copy arquivo.txt backup.txt   :: Copia arquivo
+move src\*.js dist\          :: Move arquivos
+del *.tmp                    :: Deleta arquivos
+ren old.js new.js           :: Renomeia arquivo
+```
+
+### Operações Avançadas
+
+```BATCH
+:: Cópia com atributos
+xcopy /s /e /h /i src dest   :: Copia preservando tudo
+robocopy src dest /MIR       :: Sincronização espelhada
+robocopy src dest /E /XO     :: Copia apenas mais novos
+
+:: Compactação
+compact /c /s *.log         :: Compacta logs
+compact /u /s *.*           :: Descompacta tudo
+```
+
+## Operações em Massa
+
+### Processamento em Lote
+
+```BATCH
+:: Manipulação em lote
+for /r %%f in (*.js) do (
+    echo Processando: %%f
+    :: Substitui texto
+    powershell -Command "(Get-Content '%%f') -replace 'const', 'let' | Set-Content '%%f'"
+)
+
+:: Renomeação em lote
+for %%f in (*.jsx) do (
+    set "filename=%%~nf"
+    ren "%%f" "!filename!.tsx"
+)
+
+:: Processamento condicional
+for /r %%f in (*) do (
+    if %%~zf gtr 1048576 (
+        echo Arquivo grande: %%f
+        echo %%~zf bytes
+    )
+)
+```
+
+## Backup e Sincronização
+
+### Sistema de Backup Completo
+
+```BATCH
+:: Backup com timestamp
+set "timestamp=%date:~-4%%date:~3,2%%date:~0,2%_%time:~0,2%%time:~3,2%"
+set "backup_dir=backup_%timestamp%"
+
+:: Cria estrutura
+md "%backup_dir%"
+md "%backup_dir%\code"
+md "%backup_dir%\data"
+
+:: Backup de código
+xcopy /s /e /h src "%backup_dir%\code"
+xcopy /s /e /h config "%backup_dir%\data"
+
+:: Compactação
+7z a "%backup_dir%.zip" "%backup_dir%\*"
+rmdir /s /q "%backup_dir%"
+
+:: Log
+echo Backup realizado em %date% %time% >> backup_log.txt
+```
+
+### Sincronização de Projetos
+
+```BATCH
+:: Sincronização bidirecional
+:syncProjects
+set "source=%~1"
+set "target=%~2"
+
+:: Verifica parâmetros
+if "%source%"=="" goto :usage
+if "%target%"=="" goto :usage
+
+:: Sincroniza
+robocopy "%source%" "%target%" /MIR /XD node_modules /XF *.log
+if errorlevel 8 goto :syncError
+
+echo Sincronização concluída
+exit /b 0
+
+:syncError
+echo Erro na sincronização
+exit /b 1
+
+:usage
+echo Uso: syncProjects source_dir target_dir
+exit /b 1
+```
+
+## Operações para Desenvolvimento
+
+### Limpeza de Projeto
+
+```BATCH
+:: Limpeza completa
+:cleanProject
+echo Limpando projeto...
+
+:: Remove builds
+rmdir /s /q dist
+rmdir /s /q build
+rmdir /s /q .next
+rmdir /s /q coverage
+
+:: Remove dependências
+rmdir /s /q node_modules
+del package-lock.json
+del yarn.lock
+
+:: Remove caches
+del /s /q *.cache
+del /s /q .eslintcache
+```
+
+### Busca de Código
+
+```BATCH
+:: Busca avançada
+:searchCode
+set "pattern=%~1"
+set "extensions=%~2"
+
+if "%extensions%"=="" set "extensions=js,ts,jsx,tsx"
+
+:: Busca em múltiplos tipos
+for %%e in (%extensions::=,%) do (
+    echo Buscando em *.%%e
+    findstr /s /i /n /p "%pattern%" *.%%e
+)
+
+:: Conta ocorrências
+for %%e in (%extensions::=,%) do (
+    findstr /s /i /m "%pattern%" *.%%e > matches.tmp
+    for /f %%a in ('type matches.tmp ^| find /c /v ""') do (
+        echo %%a ocorrências em arquivos *.%%e
+    )
+)
+del matches.tmp
+```
+
+## Manipulação de Permissões
+
+### Gerenciamento de Acesso
+
+```BATCH
+:: Permissões de arquivo
+icacls arquivo.txt /grant Users:F
+icacls pasta /grant "Users:(OI)(CI)F"
+takeown /f pasta /r /d y
+
+:: Herança
+icacls pasta /inheritance:d
+icacls pasta /inheritance:e
+
+:: Remoção de permissões
+icacls arquivo.txt /remove Users
+```
+
+## Scripts Práticos
+
+### Monitor de Alterações
+
+```BATCH
+:: Monitor em tempo real
+:watchFiles
+set "dir=%~1"
+if "%dir%"=="" set "dir=."
+
+echo Monitorando alterações em %dir%
+echo Pressione Ctrl+C para sair
+
+:watchLoop
+    cls
+    echo === %date% %time% ===
+    
+    :: Lista arquivos modificados hoje
+    forfiles /p "%dir%" /m *.* /d 0 /c "cmd /c echo @file @fdate @ftime"
+    
+    :: Verifica tamanho total
+    for /f "tokens=3" %%a in ('dir /-c /w "%dir%"') do set size=%%a
+    echo Total: %size% bytes
+    
+    timeout /t 5 > nul
+    goto watchLoop
+```
+
+### Backup Automático
+
+```BATCH
+:: Sistema de backup incremental
+:incrementalBackup
+set "source=%~1"
+set "dest=%~2"
+set "timestamp=%date:~-4%%date:~3,2%%date:~0,2%"
+
+:: Verifica último backup
+if exist "%dest%\last_backup.txt" (
+    set /p last_backup=<"%dest%\last_backup.txt"
+    
+    :: Copia apenas arquivos novos/modificados
+    robocopy "%source%" "%dest%\%timestamp%" /E /XO /XD node_modules
+) else (
+    :: Primeiro backup (completo)
+    robocopy "%source%" "%dest%\%timestamp%" /E /XD node_modules
+)
+
+:: Atualiza registro
+echo %timestamp% > "%dest%\last_backup.txt"
+```
+
+## Boas Práticas
+
+1. Sempre faça backup antes de operações destrutivas
+
+2. Use caminhos absolutos em scripts importantes
+
+3. Verifique permissões antes de operações críticas
+
+4. Mantenha logs de operações importantes
+
+5. Use variáveis para paths frequentemente usados
+
+## Troubleshooting
+
+| Problema |Causa |Solução |
+----------------------------
+| Acesso Negado |Permissões |`takeown` + `icacls` |
+| Path Muito Longo |Limite Windows |Usar `subst` ou `\\?\` |
+| Arquivo em Uso |Locked |`handle.exe` para identificar |
+| Caracteres Especiais |Encoding |Usar `chcp 65001` |
+
+## Próximos Passos
+
+1. [Automação Avançada](cmd-automation.html)
+
+2. [Scripting Batch](cmd-batch-scripting.html)
+
+3. [PowerShell Migration](null)
+
+"Quem controla os arquivos, controla o sistema."
+
+
+
+# Scripts Batch: Automatize ou Morra Tentando
+
+```
+ ____        _       _     
+| __ )  __ _| |_ ___| |__  
+|  _ \ / _` | __/ __| '_ \ 
+| |_) | (_| | || (__| | | |
+|____/ \__,_|\__\___|_| |_|
+```
+
+Tip:
+
+"Automatização não é futuro, é sobrevivência."
+
+Scripts batch são a espinha dorsal da automação no Windows. Eles permitem automatizar tarefas repetitivas, gerenciar processos e criar fluxos de trabalho complexos usando apenas o prompt de comando.
+
+## Estrutura Básica
+
+Todo script batch começa com algumas configurações essenciais:
+
+```BATCH
+@echo off
+setlocal enabledelayedexpansion
+
+:: Configurações
+set PROJECT_ROOT=C:\projetos
+set LOG_FILE=script.log
+
+:: Seu código aqui
+echo Iniciando script... >> %LOG_FILE%
+```
+
+* `@echo off`: Evita que os comandos apareçam durante a execução
+
+* `setlocal enabledelayedexpansion`: Permite uso de variáveis em tempo de execução
+
+* Variáveis de ambiente são definidas com `set`
+
+* Use `>>` para append em logs, `>` para sobrescrever
+
+## Variáveis e Ambiente
+
+As variáveis são o coração de qualquer script. Existem dois tipos principais:
+
+```BATCH
+:: Variáveis do sistema (sempre disponíveis)
+echo Sistema: %OS%                  :: Windows_NT
+echo Usuário: %USERNAME%           :: JohnDoe
+echo Temp: %TEMP%                 :: C:\Users\JohnDoe\AppData\Local\Temp
+
+:: Variáveis customizadas (definidas por você)
+set VERSION=1.0.0                              :: Simples
+set /p USER_INPUT=Digite seu nome:            :: Input do usuário
+set "COMPLEX_VAR=Valor com espaços"          :: Com espaços
+set /a RESULT=(%NUM1% + %NUM2%) * 2         :: Operações matemáticas
+```
+
+### Dicas de Variáveis
+
+* Use `set /a` para operações matemáticas
+
+* Envolva valores com espaços em aspas
+
+* `%~dp0` representa o diretório do script atual
+
+## Estruturas de Controle
+
+O controle de fluxo permite decisões e repetições:
+
+```BATCH
+:: Condicionais avançados
+if exist "package.json" (
+    echo Projeto Node.js detectado
+    call npm install
+) else if exist "pom.xml" (
+    echo Projeto Maven detectado
+    call mvn install
+) else (
+    echo Tipo de projeto desconhecido
+    exit /b 1
+)
+
+:: Loops poderosos
+:: Loop em arquivos
+for %%i in (*.js) do (
+    echo Processando: %%i
+    call node %%i
+)
+
+:: Loop em diretórios
+for /d %%d in (*) do (
+    echo Verificando diretório: %%d
+    if exist "%%d\package.json" call :processNodeProject "%%d"
+)
+
+:: Loop com números
+for /l %%n in (1,1,5) do (
+    echo Tentativa %%n de 5
+    call :attemptConnection || (
+        if %%n equ 5 exit /b 1
+    )
+)
+```
+
+## Funções e Módulos
+
+Organize seu código em funções reutilizáveis:
+
+```BATCH
+:: Função com parâmetros
+:processProject
+set "PROJECT_DIR=%~1"
+set "BUILD_TYPE=%~2"
+
+echo Processando %PROJECT_DIR% como %BUILD_TYPE%
+pushd %PROJECT_DIR%
+
+if "%BUILD_TYPE%"=="node" (
+    call npm install
+    call npm run build
+) else if "%BUILD_TYPE%"=="java" (
+    call mvn clean install
+)
+
+popd
+exit /b 0
+
+:: Chamada da função
+call :processProject "C:\projetos\meu-app" "node"
+if errorlevel 1 echo Falha no processamento
+
+:: Função com retorno de valor
+:calculateSum
+set /a "RESULT=%~1 + %~2"
+exit /b %RESULT%
+
+:: Capturando retorno
+call :calculateSum 5 3
+echo Resultado: %errorlevel%
+```
+
+## Scripts para Dev
+
+Ferramentas práticas para desenvolvimento:
+
+```BATCH
+:: Setup completo de projeto
+:initProject
+set "PROJECT_NAME=%~1"
+set "PROJECT_TYPE=%~2"
+
+mkdir "%PROJECT_NAME%"
+cd "%PROJECT_NAME%"
+
+:: Estrutura base
+mkdir src tests docs config
+echo node_modules> .gitignore
+echo dist>> .gitignore
+echo .env>> .gitignore
+
+:: Setup específico por tipo
+if "%PROJECT_TYPE%"=="node" (
+    call npm init -y
+    call npm install --save-dev jest eslint prettier
+    copy nul src\index.js
+    copy nul tests\index.test.js
+) else if "%PROJECT_TYPE%"=="react" (
+    call npx create-react-app .
+    call npm install --save-dev @testing-library/react
+)
+
+:: Git init
+git init
+git add .
+git commit -m "Initial commit"
+
+echo Projeto %PROJECT_NAME% criado com sucesso!
+exit /b 0
+
+:: Watch com hot reload
+:devWatch
+echo Iniciando modo desenvolvimento...
+:watchLoop
+    cls
+    echo [%time%] Compilando...
+    call npm run build
+    
+    if errorlevel 1 (
+        echo [ERRO] Falha na compilação
+        timeout /t 5 /nobreak > nul
+    ) else (
+        echo [OK] Compilação bem sucedida
+    )
+    
+    timeout /t 2 /nobreak > nul
+    goto watchLoop
+```
+
+## Manipulação de Erros
+
+Sistema robusto de tratamento de erros:
+
+```BATCH
+:: Sistema completo de erro
+setlocal enabledelayedexpansion
+set "ERROR_LOG=%~dp0\errors.log"
+
+:: Try-Catch simulado
+:try
+    set "ERROR_OCCURRED="
+    
+    :: Seu código aqui
+    call npm install 2>nul || set ERROR_OCCURRED=1
+    
+    if defined ERROR_OCCURRED (
+        call :catch
+        exit /b 1
+    )
+    goto :finally
+
+:catch
+    echo [%date% %time%] Erro durante npm install >> %ERROR_LOG%
+    echo Falha na instalação. Tentando recuperar...
+    call npm cache clean --force
+    call :notifyTeam "Falha no build"
+    exit /b 1
+
+:finally
+    echo Limpando recursos...
+    if exist "temp" rmdir /s /q temp
+    exit /b 0
+
+:: Sistema de notificação
+:notifyTeam
+set "MESSAGE=%~1"
+curl -X POST "https://api.slack.com/webhook" -d "{'text':'%MESSAGE%'}"
+exit /b
+```
+
+## Integração com DevOps
+
+Automatização de processos de desenvolvimento:
+
+```BATCH
+:: Pipeline completo
+:buildAndDeploy
+set "ENV=%~1"
+set "VERSION=%~2"
+
+:: Validações
+if "%ENV%"=="" set "ENV=dev"
+if "%VERSION%"=="" set "VERSION=latest"
+
+:: Backup
+set "BACKUP_DIR=backup_%date:~-4%%date:~3,2%%date:~0,2%"
+if not exist "%BACKUP_DIR%" mkdir "%BACKUP_DIR%"
+xcopy /s /e dist\ "%BACKUP_DIR%\"
+
+:: Build
+echo [%time%] Iniciando build %VERSION%...
+call npm run build
+if errorlevel 1 goto :handleError
+
+:: Testes
+echo [%time%] Executando testes...
+call npm test
+if errorlevel 1 goto :handleError
+
+:: Deploy
+echo [%time%] Realizando deploy para %ENV%...
+if "%ENV%"=="prod" (
+    call :validateProd || goto :handleError
+    robocopy dist\ \\prod-server\deploy\ /MIR /MT:8
+) else (
+    robocopy dist\ \\dev-server\deploy\ /MIR /MT:8
+)
+
+echo Deploy concluído com sucesso!
+exit /b 0
+
+:handleError
+echo [ERRO] Falha no pipeline
+call :notifyTeam "Pipeline falhou em %ENV%"
+exit /b 1
+
+:validateProd
+echo Validando ambiente de produção...
+call :checkDiskSpace || exit /b 1
+call :checkPermissions || exit /b 1
+call :backupDB || exit /b 1
+exit /b 0
+```
+
+## Scripts Práticos
+
+### Monitor de Recursos
+
+```BATCH
+:monitorResources
+cls
+echo === Monitor de Recursos ===
+tasklist | findstr "node"
+wmic cpu get loadpercentage
+timeout /t 5 > nul
+goto monitorResources
+```
+
+### Limpeza de Ambiente
+
+```BATCH
+:: Limpa ambiente de desenvolvimento
+:cleanDev
+rmdir /s /q node_modules
+rmdir /s /q dist
+del package-lock.json
+del yarn.lock
+npm cache clean --force
+```
+
+## Dicas Avançadas
+
+```BATCH
+:: Debug mode
+set DEBUG=1
+if defined DEBUG (
+    echo [DEBUG] Variável=%VARIAVEL%
+)
+
+:: Captura de output
+for /f "tokens=* delims=" %%a in ('git status') do (
+    set "GIT_STATUS=%%a"
+)
+```
+
+## Troubleshooting
+
+Soluções para problemas comuns:
+
+| Problema |Solução |Exemplo Detalhado |
+----------------------------------------
+| Variável não expande |Use delayed expansion |`set "var=123" & echo !var!` |
+| Caracteres especiais |Use escape ^ |`echo ^\|^&^<^>` |
+| Path com espaço |Use aspas |`cd "C:\Program Files\App"` |
+| Permissão negada |Execute como admin |`runas /user:admin "script.bat"` |
+| Codificação UTF-8 |Use chcp 65001 |`chcp 65001 > nul` |
+
+## Próximos Passos
+
+1. [Automação Avançada](cmd-automation.html) - Aprenda técnicas avançadas de automação
+
+2. [PowerShell Migration](null) - Evolua seus scripts para PowerShell
+
+3. [CI/CD Integration](null) - Integre com pipelines modernos
+
+## Recursos Adicionais
+
+* [Documentação Oficial do Windows](https://docs.microsoft.com/windows-server/administration/windows-commands/windows-commands)
+
+* [Batch Script Tutorial](https://www.tutorialspoint.com/batch_script/index.htm)
+
+* [Fórum da Comunidade](https://stackoverflow.com/questions/tagged/batch-file)
+
+"Automatize hoje o trabalho de amanhã."
+
+
+
+# Automação Avançada: Além dos Scripts
+
+```
+          _         _                        _   _             
+    /\   | |       | |                      | | (_)            
+   /  \  | |_ ___  | |_ __ ___   __ _  __ _| |_ _  ___  _ __  
+  / /\ \ | __/ _ \ | | '_ ` _ \ / _` |/ _` | __| |/ _ \| '_ \ 
+ / ____ \| || (_) || | | | | | | (_| | (_| | |_| | (_) | | | |
+/_/    \_\\__\___/ |_|_| |_| |_|\__,_|\__,_|\__|_|\___/|_| |_|
+```
+
+Tip:
+
+"A verdadeira produtividade está na automação inteligente."
+
+## Automação de Build
+
+```BATCH
+:: Build automatizado
+@echo off
+setlocal enabledelayedexpansion
+
+:: Configurações
+set BUILD_DIR=build
+set SRC_DIR=src
+set TIMESTAMP=%date:~-4%%date:~3,2%%date:~0,2%_%time:~0,2%%time:~3,2%
+
+:: Limpeza
+rmdir /s /q %BUILD_DIR%
+mkdir %BUILD_DIR%
+
+:: Build
+call npm run build
+if errorlevel 1 (
+    echo Build falhou
+    exit /b 1
+)
+
+:: Arquivamento
+7z a %BUILD_DIR%\build_%TIMESTAMP%.zip %BUILD_DIR%\*
+```
+
+## Monitoramento Automatizado
+
+```BATCH
+:: Monitor de sistema
+:monitor
+cls
+echo === Status do Sistema ===
+echo Time: %time%
+
+:: CPU e Memória
+wmic cpu get loadpercentage
+wmic OS get FreePhysicalMemory
+
+:: Processos
+tasklist | findstr /i "node npm"
+
+:: Portas
+netstat -ano | findstr "LISTENING"
+
+timeout /t 10 > nul
+goto monitor
+```
+
+## Integração com Git
+
+```BATCH
+:: Auto-commit e push
+:gitSync
+set BRANCH=main
+set COMMIT_MSG="Auto-sync %date% %time%"
+
+:: Verifica alterações
+git status | findstr "nothing to commit" > nul
+if not errorlevel 1 (
+    echo Nada para sincronizar
+    exit /b 0
+)
+
+:: Commit e push
+git add .
+git commit -m %COMMIT_MSG%
+git push origin %BRANCH%
+```
+
+## Deployment Automatizado
+
+```BATCH
+:: Deploy multi-ambiente
+:deploy
+set ENV=%1
+if "%ENV%"=="" set ENV=dev
+
+:: Configurações por ambiente
+if "%ENV%"=="prod" (
+    set DEPLOY_DIR=\\prod-server\deploy
+    set BACKUP_DIR=\\backup-server\prod
+) else (
+    set DEPLOY_DIR=\\dev-server\deploy
+    set BACKUP_DIR=\\backup-server\dev
+)
+
+:: Backup
+xcopy /s /e %DEPLOY_DIR% %BACKUP_DIR%\backup_%date%
+
+:: Deploy
+robocopy dist %DEPLOY_DIR% /MIR /MT:8
+```
+
+## Automação de Testes
+
+```BATCH
+:: Suite de testes
+:testSuite
+echo === Iniciando Testes ===
+
+:: Testes unitários
+call npm test
+if errorlevel 1 goto :testFailed
+
+:: Testes E2E
+call npm run e2e
+if errorlevel 1 goto :testFailed
+
+echo === Testes Concluídos ===
+exit /b 0
+
+:testFailed
+echo === Falha nos Testes ===
+exit /b 1
+```
+
+## Automação de Logs
+
+```BATCH
+:: Rotação de logs
+:rotateLogs
+set LOG_DIR=logs
+set MAX_LOGS=5
+
+:: Remove logs antigos
+forfiles /p %LOG_DIR% /m *.log /d -%MAX_LOGS% /c "cmd /c del @path"
+
+:: Compacta logs
+for %%f in (%LOG_DIR%\*.log) do (
+    7z a %LOG_DIR%\%%~nf.zip %%f
+    del %%f
+)
+```
+
+## Integração com APIs
+
+```BATCH
+:: Chamadas REST
+:checkAPI
+curl -s -o response.tmp http://api.exemplo.com/status
+findstr "OK" response.tmp > nul
+
+if errorlevel 1 (
+    echo API offline
+    call :notifyTeam
+) else (
+    echo API operacional
+)
+```
+
+## Scripts de Manutenção
+
+```BATCH
+:: Manutenção automática
+:maintenance
+echo === Iniciando Manutenção ===
+
+:: Limpeza
+call :cleanTemp
+call :rotateLogs
+call :backupDB
+
+:: Verificações
+call :checkDiskSpace
+call :checkServices
+call :checkCertificates
+
+echo === Manutenção Concluída ===
+```
+
+## Troubleshooting Automático
+
+```BATCH
+:: Diagnóstico automático
+:diagnose
+set REPORT=diagnostic_%date%.txt
+
+:: Coleta informações
+systeminfo >> %REPORT%
+tasklist >> %REPORT%
+netstat -ano >> %REPORT%
+dir /s /b >> %REPORT%
+
+:: Análise
+findstr "Error" *.log >> %REPORT%
+```
+
+## Próximos Passos
+
+1. [CI/CD Integration](null)
+
+2. [PowerShell Migration](null)
+
+3. [Cloud Integration](null)
+
+"Automatize o presente, controle o futuro."
+
+
+
+# Segurança no CMD: Porque Paranoia é Apenas Bom Senso
+
+```
+ ____                      _ _         
+/ ___|  ___  ___ _   _ __(_) |_ _   _ 
+\___ \ / _ \/ __| | | | '__| | __| | | |
+ ___) |  __/ (__| |_| | |  | | |_| |_| |
+|____/ \___|\___|\__,_|_|  |_|\__|\__, |
+                                  |___/ 
+```
+
+Tip:
+
+"Em um mundo onde até sua torradeira pode ser hackeada, seu terminal é a última linha de defesa."
+
+## A Ilusão da Segurança
+
+Ah, você achava que estava seguro só porque usa Windows? Que fofo. Vamos mergulhar no submundo da segurança do CMD, onde cada comando é uma roleta russa digital.
+
+## Permissões: Seu Primeiro Pesadelo
+
+```BATCH
+:: Verificando permissões (ou a falta delas)
+icacls "C:\Secrets"
+:: Spoiler: Você provavelmente não tem acesso ao que precisa
+```
+
+### Elevação de Privilégios (Ou: Como Se Tornar um Deus Digital)
+
+```BATCH
+:: O famoso "Execute como Administrador"
+runas /user:Administrator cmd.exe
+:: Parabéns, agora você tem poder. Use com sabedoria... ou não.
+```
+
+## Criptografia para Paranoicos
+
+```BATCH
+:: Encriptando arquivos (porque você nunca sabe)
+cipher /e /s:C:\ProjetosSecretos
+
+:: Descriptografando (quando a paranoia passar)
+cipher /d /s:C:\ProjetosSecretos
+```
+
+### Sanitização de Dados (Ou: Como Dormir à Noite)
+
+```BATCH
+:: Limpeza segura (modo paranoia)
+@echo off
+set "file=segredos.txt"
+for /l %%i in (1,1,7) do (
+    copy /y NUL %file%
+    del /f /q %file%
+)
+:: Se você ainda está preocupado, queime o HD
+```
+
+## Firewall: Seu Amigo Neurótico
+
+```BATCH
+:: Configurando o firewall (porque sim)
+netsh advfirewall firewall add rule name="Block_Evil" dir=in action=block protocol=TCP localport=666
+:: Agora você está "seguro" (use aspas mentais aqui)
+```
+
+## Monitoramento de Atividades Suspeitas
+
+```BATCH
+:: Quem está te observando?
+netstat -anb | findstr "ESTABLISHED"
+:: Spoiler: Todo mundo está te observando
+```
+
+### Log de Eventos (Ou: Seu Diário Digital Paranóico)
+
+```BATCH
+:: Verificando logs (prepare-se para pesadelos)
+wevtutil qe Security /c:100 /f:text
+:: Se você entendeu algo, parabéns, você é um unicórnio
+```
+
+## Dicas de Sobrevivência Digital
+
+1. Nunca confie em scripts baixados da internet
+(Mas você vai baixar mesmo assim, não é?)
+
+2. Sempre verifique hashes
+
+```BATCH
+certutil -hashfile suspicious.exe SHA256
+:: Se os hashes não baterem... bem, você já estava infectado mesmo
+```
+
+3. Backup é para os fracos
+(Mentira, faça backup de tudo, três vezes)
+
+## Checklist do Paranoico Digital
+
+* [ ] Firewall ativado
+
+* [ ] Antivírus atualizado
+
+* [ ] Permissões verificadas
+
+* [ ] Chapéu de papel alumínio colocado
+
+* [ ] Câmera coberta com fita
+
+* [ ] Terminal rodando em modo seguro
+
+* [ ] Paranoia em níveis saudáveis
+
+## Conclusão
+
+Tip:
+
+"Se você não está paranóico com segurança, é porque não está prestando atenção."
+
+## Próximos Passos
+
+1. [PowerShell Security](null) (Para quando o CMD não for paranoico o suficiente)
+
+2. [Advanced Security](null) (Para os verdadeiramente perturbados)
+
+3. [Troubleshooting](null) (Para quando tudo der errado, e vai dar)
+
+"Em um mundo digital, paranoia não é um bug, é uma feature."
+
+
+
+# Debugging no CMD: Onde os Erros Vão Para Festa
+
+```
+ ____       _                       _             
+|  _ \  ___| |__  _   _  __ _  ___(_)_ __   __ _ 
+| | | |/ _ \ '_ \| | | |/ _` |/ __| | '_ \ / _` |
+| |_| |  __/ |_) | |_| | (_| | (__| | | | | (_| |
+|____/ \___|_.__/ \__,_|\__, |\___|_|_| |_|\__, |
+                        |___/               |___/ 
+```
+
+Tip:
+
+"Se você não está tendo problemas com seu código, provavelmente não está rodando ele."
+
+## A Arte da Depuração (Ou: Como Perder Sua Sanidade com Estilo)
+
+### Debug Mode: Seu Novo Melhor Amigo
+
+```BATCH
+:: Ative o modo debug e observe o caos
+@echo on
+set DEBUG=true
+:: Agora você pode ver tudo queimando em tempo real
+```
+
+## Técnicas de Debugging Para Masoquistas Digitais
+
+### 1. Echo Debug (Para os Tradicionalistas)
+
+```BATCH
+@echo off
+echo [DEBUG] Iniciando script...
+echo [DEBUG] Variável X = %X%
+echo [DEBUG] Se você está lendo isso, algo deu errado
+```
+
+### 2. Logging Avançado (Porque Você Vai Precisar de Provas)
+
+```BATCH
+:: Crie um arquivo de log que ninguém vai ler
+set "LOG_FILE=%TEMP%\debug_%DATE:~-4%%DATE:~3,2%%DATE:~0,2%_%TIME:~0,2%%TIME:~3,2%.log"
+echo %DATE% %TIME% - Script iniciado >> %LOG_FILE%
+echo %DATE% %TIME% - Algo deu errado >> %LOG_FILE%
+echo %DATE% %TIME% - Como sempre >> %LOG_FILE%
+```
+
+## Ferramentas do Debugger (Seu Kit de Sobrevivência Digital)
+
+### Error Levels: Seu Guia Para o Desespero
+
+```BATCH
+:: Verificando error levels
+call seu_script.bat
+if errorlevel 1 (
+    echo Houston, temos um problema
+    goto :PANIC
+)
+
+:PANIC
+echo Iniciando protocolo de pânico...
+echo Considere mudar de profissão
+```
+
+### Pause Estratégico (Ou: A Arte de Congelar o Tempo)
+
+```BATCH
+:: Pausa dramática para debug
+set /p "DEBUG=Pressione ENTER para continuar o desastre..."
+```
+
+## Técnicas Avançadas de Masoquismo
+
+### 1. Step-by-Step Debugging
+
+```BATCH
+:: Debug passo a passo (para os muito pacientes)
+@echo on
+set "comando1=executando..."
+echo %comando1%
+pause
+set "comando2=ainda executando..."
+echo %comando2%
+pause
+:: Repita até perder a vontade de viver
+```
+
+### 2. Variável Watching (Stalking Digital)
+
+```BATCH
+:: Monitorando variáveis como um stalker
+set | findstr "IMPORTANTE"
+set | findstr "CRÍTICO"
+:: Observe suas variáveis desaparecerem misteriosamente
+```
+
+## Armadilhas Comuns (Ou: Como Não Se Enforcar com o Próprio Código)
+
+```BATCH
+:: Armadilha #1: Espaços em paths
+if exist "C:\Program Files\Sua App" (
+    echo Parabéns, você caiu na armadilha mais básica
+)
+
+:: Armadilha #2: Variáveis vazias
+if "%VAR%"=="" (
+    echo Surpresa! Sua variável evaporou
+)
+```
+
+## Checklist do Debugger Desesperado
+
+* [ ] Echo on ativado
+
+* [ ] Logs criados
+
+* [ ] Sanidade mental checada
+
+* [ ] Café reabastecido
+
+* [ ] Stack Overflow aberto em 15 tabs
+
+* [ ] Plano B de carreira atualizado
+
+## Soluções de Emergência
+
+1. O Famoso Ctrl+C
+
+Tip:
+
+Quando tudo falhar, sempre existe o botão de pânico
+
+2. Taskkill
+
+```BATCH
+:: Quando a sutileza não é uma opção
+taskkill /F /IM cmd.exe
+:: Adeus, cruel mundo dos processos
+```
+
+3. O Reboot Mágico
+
+Tip:
+
+Porque às vezes, o melhor debug é um reboot
+
+## Próximos Passos (Se Você Ainda Tiver Coragem)
+
+1. [Advanced Debugging](null) (Para os verdadeiros masoquistas)
+
+2. [PowerShell Debugging](null) (Quando o CMD não for complexo o suficiente)
+
+3. [Terapia](null) (Altamente recomendado após este módulo)
+
+"Debug é como investigação criminal: o código é sempre culpado até que se prove o contrário."
+
+
+

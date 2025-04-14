@@ -1,0 +1,82 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#57B747"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-13T21:29:38.422575876"><title>Debugging no CMD: Onde os Erros V&atilde;o Para Festa | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"a-arte-da-depura-o-ou-como-perder-sua-sanidade-com-estilo","level":0,"title":"A Arte da Depuração (Ou: Como Perder Sua Sanidade com Estilo)","anchor":"#a-arte-da-depura-o-ou-como-perder-sua-sanidade-com-estilo"},{"id":"t-cnicas-de-debugging-para-masoquistas-digitais","level":0,"title":"Técnicas de Debugging Para Masoquistas Digitais","anchor":"#t-cnicas-de-debugging-para-masoquistas-digitais"},{"id":"ferramentas-do-debugger-seu-kit-de-sobreviv-ncia-digital","level":0,"title":"Ferramentas do Debugger (Seu Kit de Sobrevivência Digital)","anchor":"#ferramentas-do-debugger-seu-kit-de-sobreviv-ncia-digital"},{"id":"t-cnicas-avan-adas-de-masoquismo","level":0,"title":"Técnicas Avançadas de Masoquismo","anchor":"#t-cnicas-avan-adas-de-masoquismo"},{"id":"armadilhas-comuns-ou-como-n-o-se-enforcar-com-o-pr-prio-c-digo","level":0,"title":"Armadilhas Comuns (Ou: Como Não Se Enforcar com o Próprio Código)","anchor":"#armadilhas-comuns-ou-como-n-o-se-enforcar-com-o-pr-prio-c-digo"},{"id":"checklist-do-debugger-desesperado","level":0,"title":"Checklist do Debugger Desesperado","anchor":"#checklist-do-debugger-desesperado"},{"id":"solu-es-de-emerg-ncia","level":0,"title":"Soluções de Emergência","anchor":"#solu-es-de-emerg-ncia"},{"id":"pr-ximos-passos-se-voc-ainda-tiver-coragem","level":0,"title":"Próximos Passos (Se Você Ainda Tiver Coragem)","anchor":"#pr-ximos-passos-se-voc-ainda-tiver-coragem"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Debugging no CMD: Onde os Erros V&atilde;o Para Festa | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/cmd-debugging.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Debugging no CMD: Onde os Erros V&atilde;o Para Festa | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/cmd-debugging.html#webpage",
+    "url": "writerside-documentation/cmd-debugging.html",
+    "name": "Debugging no CMD: Onde os Erros V&atilde;o Para Festa | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="cmd-debugging" data-main-title="Debugging no CMD: Onde os Erros Vão Para Festa" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="cmd.md///cmd-advanced.md"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cmd-debugging" id="cmd-debugging.md">Debugging no CMD: Onde os Erros Vão Para Festa</h1><div class="code-block" data-lang="none">
+    ____       _                       _             
+   |  _ \  ___| |__  _   _  __ _  ___(_)_ __   __ _ 
+   | | | |/ _ \ '_ \| | | |/ _` |/ __| | '_ \ / _` |
+   | |_| |  __/ |_) | |_| | (_| | (__| | | | | (_| |
+   |____/ \___|_.__/ \__,_|\__, |\___|_|_| |_|\__, |
+                           |___/               |___/ 
+</div><aside class="prompt" data-type="tip" data-title="" id="irfv4i_4"><p id="irfv4i_13">&quot;Se voc&ecirc; n&atilde;o est&aacute; tendo problemas com seu c&oacute;digo, provavelmente n&atilde;o est&aacute; rodando ele.&quot;</p></aside><section class="chapter"><h2 id="a-arte-da-depura-o-ou-como-perder-sua-sanidade-com-estilo" data-toc="a-arte-da-depura-o-ou-como-perder-sua-sanidade-com-estilo">A Arte da Depura&ccedil;&atilde;o (Ou: Como Perder Sua Sanidade com Estilo)</h2><section class="chapter"><h3 id="debug-mode-seu-novo-melhor-amigo" data-toc="debug-mode-seu-novo-melhor-amigo">Debug Mode: Seu Novo Melhor Amigo</h3><div class="code-block" data-lang="batch">
+:: Ative o modo debug e observe o caos
+@echo on
+set DEBUG=true
+:: Agora você pode ver tudo queimando em tempo real
+</div></section></section><section class="chapter"><h2 id="t-cnicas-de-debugging-para-masoquistas-digitais" data-toc="t-cnicas-de-debugging-para-masoquistas-digitais">T&eacute;cnicas de Debugging Para Masoquistas Digitais</h2><section class="chapter"><h3 id="1-echo-debug-para-os-tradicionalistas" data-toc="1-echo-debug-para-os-tradicionalistas">1. Echo Debug (Para os Tradicionalistas)</h3><div class="code-block" data-lang="batch">
+@echo off
+echo [DEBUG] Iniciando script...
+echo [DEBUG] Variável X = %X%
+echo [DEBUG] Se você está lendo isso, algo deu errado
+</div></section><section class="chapter"><h3 id="2-logging-avan-ado-porque-voc-vai-precisar-de-provas" data-toc="2-logging-avan-ado-porque-voc-vai-precisar-de-provas">2. Logging Avan&ccedil;ado (Porque Voc&ecirc; Vai Precisar de Provas)</h3><div class="code-block" data-lang="batch">
+:: Crie um arquivo de log que ninguém vai ler
+set &quot;LOG_FILE=%TEMP%\debug_%DATE:~-4%%DATE:~3,2%%DATE:~0,2%_%TIME:~0,2%%TIME:~3,2%.log&quot;
+echo %DATE% %TIME% - Script iniciado &gt;&gt; %LOG_FILE%
+echo %DATE% %TIME% - Algo deu errado &gt;&gt; %LOG_FILE%
+echo %DATE% %TIME% - Como sempre &gt;&gt; %LOG_FILE%
+</div></section></section><section class="chapter"><h2 id="ferramentas-do-debugger-seu-kit-de-sobreviv-ncia-digital" data-toc="ferramentas-do-debugger-seu-kit-de-sobreviv-ncia-digital">Ferramentas do Debugger (Seu Kit de Sobreviv&ecirc;ncia Digital)</h2><section class="chapter"><h3 id="error-levels-seu-guia-para-o-desespero" data-toc="error-levels-seu-guia-para-o-desespero">Error Levels: Seu Guia Para o Desespero</h3><div class="code-block" data-lang="batch">
+:: Verificando error levels
+call seu_script.bat
+if errorlevel 1 (
+    echo Houston, temos um problema
+    goto :PANIC
+)
+
+:PANIC
+echo Iniciando protocolo de pânico...
+echo Considere mudar de profissão
+</div></section><section class="chapter"><h3 id="pause-estrat-gico-ou-a-arte-de-congelar-o-tempo" data-toc="pause-estrat-gico-ou-a-arte-de-congelar-o-tempo">Pause Estrat&eacute;gico (Ou: A Arte de Congelar o Tempo)</h3><div class="code-block" data-lang="batch">
+:: Pausa dramática para debug
+set /p &quot;DEBUG=Pressione ENTER para continuar o desastre...&quot;
+</div></section></section><section class="chapter"><h2 id="t-cnicas-avan-adas-de-masoquismo" data-toc="t-cnicas-avan-adas-de-masoquismo">T&eacute;cnicas Avan&ccedil;adas de Masoquismo</h2><section class="chapter"><h3 id="1-step-by-step-debugging" data-toc="1-step-by-step-debugging">1. Step-by-Step Debugging</h3><div class="code-block" data-lang="batch">
+:: Debug passo a passo (para os muito pacientes)
+@echo on
+set &quot;comando1=executando...&quot;
+echo %comando1%
+pause
+set &quot;comando2=ainda executando...&quot;
+echo %comando2%
+pause
+:: Repita até perder a vontade de viver
+</div></section><section class="chapter"><h3 id="2-vari-vel-watching-stalking-digital" data-toc="2-vari-vel-watching-stalking-digital">2. Vari&aacute;vel Watching (Stalking Digital)</h3><div class="code-block" data-lang="batch">
+:: Monitorando variáveis como um stalker
+set | findstr &quot;IMPORTANTE&quot;
+set | findstr &quot;CRÍTICO&quot;
+:: Observe suas variáveis desaparecerem misteriosamente
+</div></section></section><section class="chapter"><h2 id="armadilhas-comuns-ou-como-n-o-se-enforcar-com-o-pr-prio-c-digo" data-toc="armadilhas-comuns-ou-como-n-o-se-enforcar-com-o-pr-prio-c-digo">Armadilhas Comuns (Ou: Como N&atilde;o Se Enforcar com o Pr&oacute;prio C&oacute;digo)</h2><div class="code-block" data-lang="batch">
+:: Armadilha #1: Espaços em paths
+if exist &quot;C:\Program Files\Sua App&quot; (
+    echo Parabéns, você caiu na armadilha mais básica
+)
+
+:: Armadilha #2: Variáveis vazias
+if &quot;%VAR%&quot;==&quot;&quot; (
+    echo Surpresa! Sua variável evaporou
+)
+</div></section><section class="chapter"><h2 id="checklist-do-debugger-desesperado" data-toc="checklist-do-debugger-desesperado">Checklist do Debugger Desesperado</h2><ul class="list _bullet" id="irfv4i_29"><li class="list__item" id="irfv4i_30"><p id="irfv4i_36">[ ] Echo on ativado</p></li><li class="list__item" id="irfv4i_31"><p id="irfv4i_37">[ ] Logs criados</p></li><li class="list__item" id="irfv4i_32"><p id="irfv4i_38">[ ] Sanidade mental checada</p></li><li class="list__item" id="irfv4i_33"><p id="irfv4i_39">[ ] Caf&eacute; reabastecido</p></li><li class="list__item" id="irfv4i_34"><p id="irfv4i_40">[ ] Stack Overflow aberto em 15 tabs</p></li><li class="list__item" id="irfv4i_35"><p id="irfv4i_41">[ ] Plano B de carreira atualizado</p></li></ul></section><section class="chapter"><h2 id="solu-es-de-emerg-ncia" data-toc="solu-es-de-emerg-ncia">Solu&ccedil;&otilde;es de Emerg&ecirc;ncia</h2><ol class="list _decimal" id="irfv4i_42" type="1"><li class="list__item" id="irfv4i_43"><p id="irfv4i_46"><span class="control" id="irfv4i_48">O Famoso Ctrl+C</span></p><aside class="prompt" data-type="tip" data-title="" id="irfv4i_47"><p id="irfv4i_49">Quando tudo falhar, sempre existe o bot&atilde;o de p&acirc;nico</p></aside></li><li class="list__item" id="irfv4i_44"><p id="irfv4i_50"><span class="control" id="irfv4i_52">Taskkill</span></p><div class="code-block" data-lang="batch">
+:: Quando a sutileza não é uma opção
+taskkill /F /IM cmd.exe
+:: Adeus, cruel mundo dos processos
+</div></li><li class="list__item" id="irfv4i_45"><p id="irfv4i_53"><span class="control" id="irfv4i_55">O Reboot M&aacute;gico</span></p><aside class="prompt" data-type="tip" data-title="" id="irfv4i_54"><p id="irfv4i_56">Porque &agrave;s vezes, o melhor debug &eacute; um reboot</p></aside></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos-se-voc-ainda-tiver-coragem" data-toc="pr-ximos-passos-se-voc-ainda-tiver-coragem">Pr&oacute;ximos Passos (Se Voc&ecirc; Ainda Tiver Coragem)</h2><ol class="list _decimal" id="irfv4i_57" type="1"><li class="list__item" id="irfv4i_60"><p id="irfv4i_63"><span id="irfv4i_64">Advanced Debugging</span> (Para os verdadeiros masoquistas)</p></li><li class="list__item" id="irfv4i_61"><p id="irfv4i_65"><span id="irfv4i_66">PowerShell Debugging</span> (Quando o CMD n&atilde;o for complexo o suficiente)</p></li><li class="list__item" id="irfv4i_62"><p id="irfv4i_67"><span id="irfv4i_68">Terapia</span> (Altamente recomendado ap&oacute;s este m&oacute;dulo)</p></li></ol><p id="irfv4i_59"><span class="emphasis" id="irfv4i_69">&quot;Debug &eacute; como investiga&ccedil;&atilde;o criminal: o c&oacute;digo &eacute; sempre culpado at&eacute; que se prove o contr&aacute;rio.&quot;</span></p></section><div class="last-modified">13 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cmd-security.html" class="navigation-links__prev">Seguran&ccedil;a no CMD: Porque Paranoia &eacute; Apenas Bom Senso</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

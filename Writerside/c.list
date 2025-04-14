@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE categories
-        SYSTEM "https://resources.jetbrains.com/writerside/1.0/categories.dtd">
+<!DOCTYPE categories SYSTEM "https://resources.jetbrains.com/writerside/1.0/categories.dtd">
 <categories>
-    <category id="wrs" name="Writerside documentation" order="1"/>
+    <category id="cmd" name="Command Prompt (CMD)" order="1"/>
+    <category id="powershell" name="PowerShell" order="2"/>
+    <category id="exercises" name="Practical Exercises" order="3"/>
+    <category id="reference" name="Reference Guide" order="4"/>
 </categories>

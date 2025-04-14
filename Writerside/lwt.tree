@@ -7,4 +7,73 @@
                  start-page="learn-windows-terminals.md">
 
     <toc-element topic="learn-windows-terminals.md"/>
+    
+    <toc-element topic="getting-started.md"/>
+
+    <toc-element topic="cmd.md">
+        <toc-element topic="cmd-introduction.md"/>
+        <toc-element topic="cmd-basic-commands.md">
+            <toc-element topic="cmd-navigation.md"/>
+            <toc-element topic="cmd-file-operations.md"/>
+            <toc-element topic="cmd-system-commands.md"/>
+        </toc-element>
+        <toc-element topic="cmd-advanced.md">
+            <toc-element topic="cmd-batch-scripting.md"/>
+            <toc-element topic="cmd-environment-variables.md"/>
+            <toc-element topic="cmd-networking.md"/>
+            <!-- Novos tópicos CMD -->
+            <toc-element topic="cmd-automation.md"/>
+            <toc-element topic="cmd-security.md"/>
+            <toc-element topic="cmd-debugging.md"/>
+        </toc-element>
+        <toc-element topic="cmd-exercises.md"/>
+        <!-- Nova seção de integração -->
+        <toc-element topic="cmd-integration.md">
+            <toc-element topic="cmd-git-integration.md"/>
+            <toc-element topic="cmd-docker-integration.md"/>
+            <toc-element topic="cmd-cloud-integration.md"/>
+        </toc-element>
+    </toc-element>
+
+    <toc-element topic="powershell.md">
+        <toc-element topic="ps-introduction.md"/>
+        <toc-element topic="ps-basics.md">
+            <toc-element topic="ps-cmdlets.md"/>
+            <toc-element topic="ps-pipeline.md"/>
+            <toc-element topic="ps-objects.md"/>
+        </toc-element>
+        <toc-element topic="ps-advanced.md">
+            <toc-element topic="ps-scripting.md"/>
+            <toc-element topic="ps-modules.md"/>
+            <toc-element topic="ps-error-handling.md"/>
+            <!-- Novos tópicos PowerShell -->
+            <toc-element topic="ps-remote.md"/>
+            <toc-element topic="ps-security.md"/>
+            <toc-element topic="ps-debugging.md"/>
+        </toc-element>
+        <toc-element topic="ps-exercises.md"/>
+        <!-- Nova seção de integração -->
+        <toc-element topic="ps-integration.md">
+            <toc-element topic="ps-azure-integration.md"/>
+            <toc-element topic="ps-aws-integration.md"/>
+            <toc-element topic="ps-devops-integration.md"/>
+        </toc-element>
+    </toc-element>
+
+    <!-- Nova seção de comparações -->
+    <toc-element topic="terminal-comparison.md">
+        <toc-element topic="cmd-vs-powershell.md"/>
+        <toc-element topic="windows-vs-unix.md"/>
+        <toc-element topic="terminal-alternatives.md"/>
+    </toc-element>
+
+    <toc-element topic="reference.md">
+        <toc-element topic="cmd-reference.md"/>
+        <toc-element topic="ps-reference.md"/>
+        <toc-element topic="glossary.md"/>
+        <!-- Nova seção de referência -->
+        <toc-element topic="best-practices.md"/>
+        <toc-element topic="troubleshooting.md"/>
+        <toc-element topic="cheat-sheet.md"/>
+    </toc-element>
 </instance-profile>
