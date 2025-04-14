@@ -1,0 +1,165 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T02:01:02.206010263"><title>PowerShell DevOps Integration | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"ci-cd-integration","level":0,"title":"CI/CD Integration","anchor":"#ci-cd-integration"},{"id":"infrastructure-as-code","level":0,"title":"Infrastructure as Code","anchor":"#infrastructure-as-code"},{"id":"container-orchestration","level":0,"title":"Container Orchestration","anchor":"#container-orchestration"},{"id":"monitoramento-e-logging","level":0,"title":"Monitoramento e Logging","anchor":"#monitoramento-e-logging"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="PowerShell DevOps Integration | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-devops-integration.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="PowerShell DevOps Integration | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-devops-integration.html#webpage",
+    "url": "writerside-documentation/ps-devops-integration.html",
+    "name": "PowerShell DevOps Integration | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-devops-integration" data-main-title="PowerShell DevOps Integration" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="powershell.md|PowerShell: A Evolução do Terminal Windows///ps-integration.md|PowerShell Integration"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-devops-integration" id="ps-devops-integration.md">PowerShell DevOps Integration</h1><aside class="prompt" data-type="tip" data-title="" id="-n41r0h_3"><p id="-n41r0h_11">&quot;Automatize seu pipeline DevOps com o poder do PowerShell.&quot;</p></aside><section class="chapter"><h2 id="ci-cd-integration" data-toc="ci-cd-integration">CI/CD Integration</h2><section class="chapter"><h3 id="azure-devops" data-toc="azure-devops">Azure DevOps</h3><div class="code-block" data-lang="powershell">
+# Configurar Azure DevOps CLI
+az extension add --name azure-devops
+
+# Criar pipeline
+$pipelineYaml = @'
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host &quot;Executando pipeline...&quot;
+'@
+
+az pipelines create --name &quot;MyPipeline&quot; --yaml-path /azure-pipelines.yml
+</div></section><section class="chapter"><h3 id="jenkins" data-toc="jenkins">Jenkins</h3><div class="code-block" data-lang="powershell">
+# Script para Jenkins pipeline
+function Invoke-JenkinsPipeline {
+    param(
+        [string]$JenkinsUrl,
+        [string]$JobName,
+        [PSCredential]$Credential
+    )
+    
+    $auth = [Convert]::ToBase64String(
+        [Text.Encoding]::ASCII.GetBytes(
+            &quot;$($Credential.UserName):$($Credential.GetNetworkCredential().Password)&quot;
+        )
+    )
+    
+    $headers = @{
+        Authorization = &quot;Basic $auth&quot;
+    }
+    
+    Invoke-RestMethod -Uri &quot;$JenkinsUrl/job/$JobName/build&quot; -Headers $headers -Method Post
+}
+</div></section></section><section class="chapter"><h2 id="infrastructure-as-code" data-toc="infrastructure-as-code">Infrastructure as Code</h2><section class="chapter"><h3 id="terraform-integration" data-toc="terraform-integration">Terraform Integration</h3><div class="code-block" data-lang="powershell">
+function Deploy-TerraformInfra {
+    param(
+        [string]$WorkingDirectory,
+        [string]$Environment
+    )
+    
+    Push-Location $WorkingDirectory
+    
+    try {
+        # Inicializar Terraform
+        terraform init
+        
+        # Selecionar workspace
+        terraform workspace select $Environment
+        
+        # Planejar mudanças
+        terraform plan -out=tfplan
+        
+        # Aplicar mudanças
+        terraform apply tfplan
+    }
+    finally {
+        Pop-Location
+    }
+}
+</div></section><section class="chapter"><h3 id="arm-templates" data-toc="arm-templates">ARM Templates</h3><div class="code-block" data-lang="powershell">
+function Deploy-ArmTemplate {
+    param(
+        [string]$ResourceGroupName,
+        [string]$TemplateFile,
+        [hashtable]$Parameters
+    )
+    
+    New-AzResourceGroupDeployment `
+        -ResourceGroupName $ResourceGroupName `
+        -TemplateFile $TemplateFile `
+        -TemplateParameterObject $Parameters `
+        -Mode Incremental
+}
+</div></section></section><section class="chapter"><h2 id="container-orchestration" data-toc="container-orchestration">Container Orchestration</h2><section class="chapter"><h3 id="docker-integration" data-toc="docker-integration">Docker Integration</h3><div class="code-block" data-lang="powershell">
+function Build-DockerImage {
+    param(
+        [string]$DockerfilePath,
+        [string]$ImageName,
+        [string]$Tag = &quot;latest&quot;
+    )
+    
+    docker build -t &quot;${ImageName}:${Tag}&quot; -f $DockerfilePath .
+    
+    if ($LASTEXITCODE -eq 0) {
+        Write-Output &quot;Image built successfully: ${ImageName}:${Tag}&quot;
+    }
+    else {
+        throw &quot;Docker build failed&quot;
+    }
+}
+</div></section><section class="chapter"><h3 id="kubernetes-management" data-toc="kubernetes-management">Kubernetes Management</h3><div class="code-block" data-lang="powershell">
+function Deploy-KubernetesApp {
+    param(
+        [string]$Namespace,
+        [string]$DeploymentFile
+    )
+    
+    # Verificar conexão com cluster
+    kubectl cluster-info
+    if ($LASTEXITCODE -ne 0) {
+        throw &quot;Kubernetes cluster não acessível&quot;
+    }
+    
+    # Criar/atualizar namespace
+    kubectl create namespace $Namespace --dry-run=client -o yaml | kubectl apply -f -
+    
+    # Aplicar deployment
+    kubectl apply -f $DeploymentFile -n $Namespace
+}
+</div></section></section><section class="chapter"><h2 id="monitoramento-e-logging" data-toc="monitoramento-e-logging">Monitoramento e Logging</h2><section class="chapter"><h3 id="prometheus-integration" data-toc="prometheus-integration">Prometheus Integration</h3><div class="code-block" data-lang="powershell">
+function Get-PrometheusMetrics {
+    param(
+        [string]$PrometheusUrl,
+        [string]$Query
+    )
+    
+    $endpoint = &quot;$PrometheusUrl/api/v1/query&quot;
+    $response = Invoke-RestMethod -Uri &quot;$endpoint?query=$Query&quot;
+    
+    return $response.data.result
+}
+</div></section><section class="chapter"><h3 id="grafana-dashboard" data-toc="grafana-dashboard">Grafana Dashboard</h3><div class="code-block" data-lang="powershell">
+function New-GrafanaDashboard {
+    param(
+        [string]$GrafanaUrl,
+        [string]$ApiKey,
+        [string]$DashboardJson
+    )
+    
+    $headers = @{
+        Authorization = &quot;Bearer $ApiKey&quot;
+        'Content-Type' = 'application/json'
+    }
+    
+    Invoke-RestMethod `
+        -Uri &quot;$GrafanaUrl/api/dashboards/db&quot; `
+        -Method Post `
+        -Headers $headers `
+        -Body $DashboardJson
+}
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="1-versionamento" data-toc="1-versionamento">1. Versionamento</h3><ul class="list _bullet" id="-n41r0h_31"><li class="list__item" id="-n41r0h_32"><p id="-n41r0h_36">Use controle de vers&atilde;o para scripts</p></li><li class="list__item" id="-n41r0h_33"><p id="-n41r0h_37">Mantenha documenta&ccedil;&atilde;o atualizada</p></li><li class="list__item" id="-n41r0h_34"><p id="-n41r0h_38">Implemente testes automatizados</p></li><li class="list__item" id="-n41r0h_35"><p id="-n41r0h_39">Siga conven&ccedil;&otilde;es de nomenclatura</p></li></ul></section><section class="chapter"><h3 id="2-seguran-a" data-toc="2-seguran-a">2. Seguran&ccedil;a</h3><ul class="list _bullet" id="-n41r0h_40"><li class="list__item" id="-n41r0h_41"><p id="-n41r0h_45">Utilize secrets management</p></li><li class="list__item" id="-n41r0h_42"><p id="-n41r0h_46">Implemente RBAC</p></li><li class="list__item" id="-n41r0h_43"><p id="-n41r0h_47">Audite execu&ccedil;&otilde;es</p></li><li class="list__item" id="-n41r0h_44"><p id="-n41r0h_48">Valide inputs</p></li></ul></section><section class="chapter"><h3 id="3-automa-o" data-toc="3-automa-o">3. Automa&ccedil;&atilde;o</h3><ul class="list _bullet" id="-n41r0h_49"><li class="list__item" id="-n41r0h_50"><p id="-n41r0h_54">Crie pipelines reutiliz&aacute;veis</p></li><li class="list__item" id="-n41r0h_51"><p id="-n41r0h_55">Automatize testes</p></li><li class="list__item" id="-n41r0h_52"><p id="-n41r0h_56">Implemente valida&ccedil;&otilde;es</p></li><li class="list__item" id="-n41r0h_53"><p id="-n41r0h_57">Configure monitoramento</p></li></ul></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-n41r0h_58" type="1"><li class="list__item" id="-n41r0h_59"><p id="-n41r0h_62"><a href="ps-azure-integration.html" id="-n41r0h_63" data-tooltip="&quot;Automatize e gerencie recursos Azure com PowerShell.&quot;">Azure Integration</a></p></li><li class="list__item" id="-n41r0h_60"><p id="-n41r0h_64"><a href="ps-aws-integration.html" id="-n41r0h_65" data-tooltip="&quot;Gerencie sua infraestrutura AWS com o poder do PowerShell.&quot;">AWS Integration</a></p></li><li class="list__item" id="-n41r0h_61"><p id="-n41r0h_66"><a href="ps-security.html" id="-n41r0h_67" data-tooltip="&quot;Segurança não é uma característica, é uma necessidade.&quot;">Security Best Practices</a></p></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="-n41r0h_68"><li class="list__item" id="-n41r0h_71"><p id="-n41r0h_75"><a href="https://docs.microsoft.com/azure/devops" id="-n41r0h_76" data-external="true" rel="noopener noreferrer" target="_blank">Azure DevOps Documentation</a></p></li><li class="list__item" id="-n41r0h_72"><p id="-n41r0h_77"><a href="https://www.jenkins.io/doc" id="-n41r0h_78" data-external="true" rel="noopener noreferrer" target="_blank">Jenkins Documentation</a></p></li><li class="list__item" id="-n41r0h_73"><p id="-n41r0h_79"><a href="https://www.terraform.io/docs" id="-n41r0h_80" data-external="true" rel="noopener noreferrer" target="_blank">Terraform Documentation</a></p></li><li class="list__item" id="-n41r0h_74"><p id="-n41r0h_81"><a href="https://kubernetes.io/docs" id="-n41r0h_82" data-external="true" rel="noopener noreferrer" target="_blank">Kubernetes Documentation</a></p></li></ul><p id="-n41r0h_70"><span class="emphasis" id="-n41r0h_83">&quot;DevOps &eacute; sobre cultura, automa&ccedil;&atilde;o &eacute; apenas uma ferramenta para alcan&ccedil;&aacute;-la.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ps-aws-integration.html" class="navigation-links__prev">AWS PowerShell Integration</a><a href="terminal-comparison.html" class="navigation-links__next">Compara&ccedil;&atilde;o de Terminais</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

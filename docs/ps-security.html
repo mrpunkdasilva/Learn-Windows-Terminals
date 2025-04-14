@@ -1,0 +1,107 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T02:01:02.203184857"><title>Seguran&ccedil;a no PowerShell | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"pol-ticas-de-execu-o","level":0,"title":"Políticas de Execução","anchor":"#pol-ticas-de-execu-o"},{"id":"assinatura-digital","level":0,"title":"Assinatura Digital","anchor":"#assinatura-digital"},{"id":"jea-just-enough-administration","level":0,"title":"JEA (Just Enough Administration)","anchor":"#jea-just-enough-administration"},{"id":"criptografia","level":0,"title":"Criptografia","anchor":"#criptografia"},{"id":"https-e-ssl-tls","level":0,"title":"HTTPS e SSL/TLS","anchor":"#https-e-ssl-tls"},{"id":"auditoria-e-logging","level":0,"title":"Auditoria e Logging","anchor":"#auditoria-e-logging"},{"id":"hardening-de-ambiente","level":0,"title":"Hardening de Ambiente","anchor":"#hardening-de-ambiente"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Seguran&ccedil;a no PowerShell | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-security.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Seguran&ccedil;a no PowerShell | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-security.html#webpage",
+    "url": "writerside-documentation/ps-security.html",
+    "name": "Seguran&ccedil;a no PowerShell | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-security" data-main-title="Segurança no PowerShell" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="powershell.md|PowerShell: A Evolução do Terminal Windows///ps-advanced.md|PowerShell Avançado"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-security" id="ps-security.md">Segurança no PowerShell</h1><aside class="prompt" data-type="tip" data-title="" id="r5ivcz_3"><p id="r5ivcz_14">&quot;Seguran&ccedil;a n&atilde;o &eacute; uma caracter&iacute;stica, &eacute; uma necessidade.&quot;</p></aside><section class="chapter"><h2 id="pol-ticas-de-execu-o" data-toc="pol-ticas-de-execu-o">Pol&iacute;ticas de Execu&ccedil;&atilde;o</h2><section class="chapter"><h3 id="configura-o-de-pol-ticas" data-toc="configura-o-de-pol-ticas">Configura&ccedil;&atilde;o de Pol&iacute;ticas</h3><div class="code-block" data-lang="powershell">
+# Verificar política atual
+Get-ExecutionPolicy -List
+
+# Configurar política
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+
+# Bypass temporário
+powershell.exe -ExecutionPolicy Bypass -File .\script.ps1
+</div></section></section><section class="chapter"><h2 id="assinatura-digital" data-toc="assinatura-digital">Assinatura Digital</h2><section class="chapter"><h3 id="certificados-e-assinaturas" data-toc="certificados-e-assinaturas">Certificados e Assinaturas</h3><div class="code-block" data-lang="powershell">
+# Criar certificado auto-assinado
+$cert = New-SelfSignedCertificate -Subject &quot;CN=PowerShell Code Signing&quot; `
+    -Type CodeSigning -CertStoreLocation &quot;Cert:\CurrentUser\My&quot;
+
+# Assinar script
+Set-AuthenticodeSignature -FilePath .\script.ps1 `
+    -Certificate $cert
+</div></section></section><section class="chapter"><h2 id="jea-just-enough-administration" data-toc="jea-just-enough-administration">JEA (Just Enough Administration)</h2><section class="chapter"><h3 id="configura-o-jea" data-toc="configura-o-jea">Configura&ccedil;&atilde;o JEA</h3><div class="code-block" data-lang="powershell">
+# Criar arquivo de configuração
+New-PSSessionConfigurationFile -Path .\JEAConfig.pssc `
+    -SessionType RestrictedRemoteServer `
+    -VisibleCmdlets &quot;Get-Process&quot;, &quot;Stop-Process&quot; `
+    -VisibleFunctions &quot;Get-CustomInfo&quot;
+
+# Registrar configuração
+Register-PSSessionConfiguration -Path .\JEAConfig.pssc `
+    -Name &quot;RestrictedSession&quot;
+</div></section></section><section class="chapter"><h2 id="criptografia" data-toc="criptografia">Criptografia</h2><section class="chapter"><h3 id="prote-o-de-dados" data-toc="prote-o-de-dados">Prote&ccedil;&atilde;o de Dados</h3><div class="code-block" data-lang="powershell">
+# Criptografar string
+$secureString = ConvertTo-SecureString &quot;SenhaSecreta&quot; `
+    -AsPlainText -Force
+$encrypted = ConvertFrom-SecureString $secureString
+
+# Descriptografar
+$secure = ConvertTo-SecureString $encrypted
+$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
+$plaintext = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+</div></section></section><section class="chapter"><h2 id="https-e-ssl-tls" data-toc="https-e-ssl-tls">HTTPS e SSL/TLS</h2><section class="chapter"><h3 id="configura-o-de-comunica-o-segura" data-toc="configura-o-de-comunica-o-segura">Configura&ccedil;&atilde;o de Comunica&ccedil;&atilde;o Segura</h3><div class="code-block" data-lang="powershell">
+# Configurar HTTPS para remoting
+winrm quickconfig -transport:https
+
+# Verificar certificados
+Get-ChildItem Cert:\LocalMachine\My
+
+# Configurar listener HTTPS
+New-WSManInstance winrm/config/Listener `
+    -SelectorSet @{Transport=&quot;HTTPS&quot;; Address=&quot;*&quot;} `
+    -ValueSet @{CertificateThumbprint=&quot;ABC123...&quot;}
+</div></section></section><section class="chapter"><h2 id="auditoria-e-logging" data-toc="auditoria-e-logging">Auditoria e Logging</h2><section class="chapter"><h3 id="monitoramento-de-atividades" data-toc="monitoramento-de-atividades">Monitoramento de Atividades</h3><div class="code-block" data-lang="powershell">
+# Habilitar logging detalhado
+$logSettings = @{
+    LogPipelineExecutionDetails = $true
+    LogCommandLifecycleEvents = $true
+}
+Set-PSSessionConfiguration -Name Microsoft.PowerShell `
+    -PSVersion &quot;7.0&quot; -SecurityDescriptorSddl $sddl @logSettings
+
+# Verificar logs
+Get-WinEvent -LogName &quot;Windows PowerShell&quot;
+Get-WinEvent -LogName &quot;Microsoft-Windows-PowerShell/Operational&quot;
+</div></section></section><section class="chapter"><h2 id="hardening-de-ambiente" data-toc="hardening-de-ambiente">Hardening de Ambiente</h2><section class="chapter"><h3 id="configura-es-recomendadas" data-toc="configura-es-recomendadas">Configura&ccedil;&otilde;es Recomendadas</h3><div class="code-block" data-lang="powershell">
+# Desabilitar histórico de comandos
+Set-PSReadLineOption -HistorySaveStyle SaveNothing
+
+# Limitar módulos carregados
+$env:PSModulePath = &quot;C:\ApprovedModules&quot;
+
+# Configurar AMSI
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="checklist-de-seguran-a" data-toc="checklist-de-seguran-a">Checklist de Seguran&ccedil;a</h3><div class="code-block" data-lang="powershell">
+# Função de verificação de segurança
+function Test-SecurityCompliance {
+    $results = @{
+        ExecutionPolicy = Get-ExecutionPolicy
+        PSVersion = $PSVersionTable.PSVersion
+        TLSVersion = [Net.ServicePointManager]::SecurityProtocol
+        AMSIEnabled = Get-MpComputerStatus | Select-Object AMServiceEnabled
+    }
+    return $results
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="r5ivcz_31" type="1"><li class="list__item" id="r5ivcz_32"><p id="r5ivcz_34">Configura&ccedil;&atilde;o de Ambiente Seguro</p><div class="code-block" data-lang="powershell">
+# Implemente:
+# - Política de execução apropriada
+# - Assinatura de scripts
+# - Logging adequado
+</div></li><li class="list__item" id="r5ivcz_33"><p id="r5ivcz_36">Implementa&ccedil;&atilde;o JEA</p><div class="code-block" data-lang="powershell">
+# Desenvolva:
+# - Configuração JEA personalizada
+# - Roles e capacidades
+# - Testes de segurança
+</div></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="r5ivcz_38" type="1"><li class="list__item" id="r5ivcz_41"><p id="r5ivcz_44"><a href="ps-remote.html" id="r5ivcz_45" data-tooltip="&quot;Gerencie qualquer servidor Windows, de qualquer lugar.&quot;">Remoting Seguro</a></p></li><li class="list__item" id="r5ivcz_42"><p id="r5ivcz_46"><span id="r5ivcz_47">Compliance e Auditoria</span></p></li><li class="list__item" id="r5ivcz_43"><p id="r5ivcz_48"><span id="r5ivcz_49">DevSecOps</span></p></li></ol><p id="r5ivcz_40"><span class="emphasis" id="r5ivcz_50">&quot;A seguran&ccedil;a &eacute; como uma cebola: tem v&aacute;rias camadas e pode fazer voc&ecirc; chorar.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ps-remote.html" class="navigation-links__prev">PowerShell Remoting</a><a href="ps-debugging.html" class="navigation-links__next">Debugging no PowerShell</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

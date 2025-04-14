@@ -1,0 +1,235 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T02:01:02.322791453"><title>Security Toolkit | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"recursos","level":0,"title":"Recursos","anchor":"#recursos"},{"id":"estrutura-do-projeto","level":0,"title":"Estrutura do Projeto","anchor":"#estrutura-do-projeto"},{"id":"implementa-o-principal","level":0,"title":"Implementação Principal","anchor":"#implementa-o-principal"},{"id":"uso","level":0,"title":"Uso","anchor":"#uso"},{"id":"monitoramento-e-relat-rios","level":0,"title":"Monitoramento e Relatórios","anchor":"#monitoramento-e-relat-rios"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Security Toolkit | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-security-toolkit.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Security Toolkit | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-security-toolkit.html#webpage",
+    "url": "writerside-documentation/ps-security-toolkit.html",
+    "name": "Security Toolkit | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-security-toolkit" data-main-title="Security Toolkit" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="practical-projects.md|Projetos Práticos///powershell-projects.md|Projetos PowerShell"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-security-toolkit" id="ps-security-toolkit.md">Security Toolkit</h1><aside class="prompt" data-type="tip" data-title="" id="z1gvktu_3"><p id="z1gvktu_12">&quot;Ferramentas de seguran&ccedil;a automatizadas com PowerShell para prote&ccedil;&atilde;o e monitoramento de sistemas.&quot;</p></aside><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="z1gvktu_13">Kit de ferramentas de seguran&ccedil;a abrangente desenvolvido em PowerShell para an&aacute;lise, hardening, detec&ccedil;&atilde;o de amea&ccedil;as e resposta a incidentes.</p></section><section class="chapter"><h2 id="recursos" data-toc="recursos">Recursos</h2><ul class="list _bullet" id="z1gvktu_14"><li class="list__item" id="z1gvktu_15"><p id="z1gvktu_21">An&aacute;lise de seguran&ccedil;a automatizada</p></li><li class="list__item" id="z1gvktu_16"><p id="z1gvktu_22">Hardening de sistemas Windows</p></li><li class="list__item" id="z1gvktu_17"><p id="z1gvktu_23">Detec&ccedil;&atilde;o de amea&ccedil;as em tempo real</p></li><li class="list__item" id="z1gvktu_18"><p id="z1gvktu_24">Sistema de resposta a incidentes</p></li><li class="list__item" id="z1gvktu_19"><p id="z1gvktu_25">Gera&ccedil;&atilde;o de relat&oacute;rios de compliance</p></li><li class="list__item" id="z1gvktu_20"><p id="z1gvktu_26">Monitoramento de logs centralizado</p></li></ul></section><section class="chapter"><h2 id="estrutura-do-projeto" data-toc="estrutura-do-projeto">Estrutura do Projeto</h2><div class="code-block" data-lang="powershell">
+SecurityToolkit/
+  ├── src/
+  │   ├── Analysis/
+  │   │   ├── SystemAudit.psm1
+  │   │   ├── VulnerabilityScan.psm1
+  │   │   └── ComplianceCheck.psm1
+  │   ├── Hardening/
+  │   │   ├── SystemHardening.psm1
+  │   │   ├── FirewallConfig.psm1
+  │   │   └── ServiceLockdown.psm1
+  │   ├── Detection/
+  │   │   ├── ThreatDetection.psm1
+  │   │   ├── LogAnalysis.psm1
+  │   │   └── BehaviorMonitor.psm1
+  │   └── Response/
+  │       ├── IncidentResponse.psm1
+  │       ├── ThreatContainment.psm1
+  │       └── SystemRecovery.psm1
+  ├── config/
+  │   ├── security-policies.json
+  │   └── detection-rules.yaml
+  └── reports/
+      ├── audit-reports/
+      └── incident-reports/
+</div></section><section class="chapter"><h2 id="implementa-o-principal" data-toc="implementa-o-principal">Implementa&ccedil;&atilde;o Principal</h2><section class="chapter"><h3 id="an-lise-de-seguran-a" data-toc="an-lise-de-seguran-a">An&aacute;lise de Seguran&ccedil;a</h3><div class="code-block" data-lang="powershell">
+function Start-SecurityAudit {
+    [CmdletBinding()]
+    param(
+        [string]$ComputerName = $env:COMPUTERNAME,
+        [string]$ReportPath = &quot;.\reports\audit-reports&quot;,
+        [string[]]$AuditAreas = @('System', 'Network', 'Users', 'Services')
+    )
+    
+    begin {
+        $results = @{}
+        New-Item -Path $ReportPath -ItemType Directory -Force
+    }
+    
+    process {
+        foreach ($area in $AuditAreas) {
+            Write-Verbose &quot;Auditando área: $area&quot;
+            
+            $results[$area] = switch ($area) {
+                'System' {
+                    Get-SystemSecurityStatus
+                }
+                'Network' {
+                    Get-NetworkSecurityStatus
+                }
+                'Users' {
+                    Get-UserSecurityAudit
+                }
+                'Services' {
+                    Get-ServiceSecurityStatus
+                }
+            }
+        }
+    }
+    
+    end {
+        $report = New-SecurityReport -AuditResults $results
+        $report | Export-Csv -Path &quot;$ReportPath\audit_$(Get-Date -Format 'yyyyMMdd').csv&quot;
+        return $report
+    }
+}
+</div></section><section class="chapter"><h3 id="hardening-de-sistema" data-toc="hardening-de-sistema">Hardening de Sistema</h3><div class="code-block" data-lang="powershell">
+function Invoke-SystemHardening {
+    [CmdletBinding(SupportsShouldProcess)]
+    param(
+        [ValidateSet('Basic', 'Enhanced', 'Maximum')]
+        [string]$SecurityLevel = 'Enhanced',
+        
+        [switch]$ForceRestart
+    )
+    
+    $hardeningTasks = @{
+        'Basic' = @(
+            'Set-SecurePasswordPolicy'
+            'Enable-WindowsFirewall'
+            'Disable-UnnecessaryServices'
+        )
+        'Enhanced' = @(
+            'Enable-BitLocker'
+            'Configure-AuditPolicy'
+            'Enable-AdvancedFirewallRules'
+        )
+        'Maximum' = @(
+            'Enable-AppLocker'
+            'Configure-LAPS'
+            'Enable-CredentialGuard'
+        )
+    }
+    
+    foreach ($task in $hardeningTasks[$SecurityLevel]) {
+        if ($PSCmdlet.ShouldProcess($task)) {
+            &amp; $task
+            Write-Verbose &quot;Completed: $task&quot;
+        }
+    }
+    
+    if ($ForceRestart) {
+        Restart-Computer -Force
+    }
+}
+</div></section><section class="chapter"><h3 id="detec-o-de-amea-as" data-toc="detec-o-de-amea-as">Detec&ccedil;&atilde;o de Amea&ccedil;as</h3><div class="code-block" data-lang="powershell">
+function Start-ThreatDetection {
+    [CmdletBinding()]
+    param(
+        [int]$ScanInterval = 300,
+        [string]$RulesPath = &quot;.\config\detection-rules.yaml&quot;,
+        [string]$LogPath = &quot;.\logs\threat-detection.log&quot;
+    )
+    
+    $rules = Get-Content $RulesPath | ConvertFrom-Yaml
+    
+    while ($true) {
+        $threats = @()
+        
+        # Análise de Processos
+        $suspiciousProcesses = Get-Process | Where-Object {
+            $_.CPU -gt $rules.ProcessThresholds.CpuUsage -or
+            $_.WorkingSet -gt $rules.ProcessThresholds.MemoryUsage
+        }
+        
+        # Análise de Conexões de Rede
+        $suspiciousConnections = Get-NetTCPConnection | Where-Object {
+            $_.RemotePort -in $rules.Network.SuspiciousPorts -or
+            $_.State -eq &quot;Listen&quot;
+        }
+        
+        # Análise de Logs
+        $suspiciousEvents = Get-WinEvent -LogName Security -MaxEvents 100 | 
+            Where-Object { $_.Id -in $rules.Events.SuspiciousIds }
+        
+        $threats += @{
+            Processes = $suspiciousProcesses
+            Connections = $suspiciousConnections
+            Events = $suspiciousEvents
+            Timestamp = Get-Date
+        }
+        
+        if ($threats.Count -gt 0) {
+            Write-Warning &quot;Ameaças detectadas!&quot;
+            $threats | Export-Csv -Path $LogPath -Append
+            Invoke-ThreatResponse -Threats $threats
+        }
+        
+        Start-Sleep -Seconds $ScanInterval
+    }
+}
+</div></section><section class="chapter"><h3 id="resposta-a-incidentes" data-toc="resposta-a-incidentes">Resposta a Incidentes</h3><div class="code-block" data-lang="powershell">
+function Invoke-IncidentResponse {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [PSCustomObject]$Incident,
+        
+        [ValidateSet('Isolate', 'Analyze', 'Remediate')]
+        [string]$Action = 'Analyze'
+    )
+    
+    switch ($Action) {
+        'Isolate' {
+            # Isolar sistema comprometido
+            Disable-NetworkAdapter
+            Stop-SuspiciousProcesses -Processes $Incident.Processes
+        }
+        
+        'Analyze' {
+            # Coletar evidências forenses
+            $evidence = Start-ForensicCollection -Incident $Incident
+            $analysis = Start-ThreatAnalysis -Evidence $evidence
+            
+            return $analysis
+        }
+        
+        'Remediate' {
+            # Remediar ameaças
+            Remove-MaliciousFiles -Paths $Incident.AffectedFiles
+            Reset-CompromisedAccounts -Accounts $Incident.AffectedAccounts
+            Restore-SystemState -BackupPoint $Incident.LastCleanState
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="uso" data-toc="uso">Uso</h2><section class="chapter"><h3 id="configura-o-inicial" data-toc="configura-o-inicial">Configura&ccedil;&atilde;o Inicial</h3><div class="code-block" data-lang="powershell">
+# Instalar módulos necessários
+Install-Module -Name SecurityToolkit -Force
+Install-Module -Name PSWindowsUpdate -Force
+Install-Module -Name AuditPolicyDsc -Force
+
+# Configurar ambiente
+Initialize-SecurityToolkit -ConfigPath &quot;.\config\security-policies.json&quot;
+</div></section><section class="chapter"><h3 id="exemplos-de-uso" data-toc="exemplos-de-uso">Exemplos de Uso</h3><div class="code-block" data-lang="powershell">
+# Executar auditoria completa
+Start-SecurityAudit -AuditAreas @('System', 'Network', 'Users', 'Services')
+
+# Aplicar hardening
+Invoke-SystemHardening -SecurityLevel Enhanced
+
+# Iniciar detecção
+Start-ThreatDetection -ScanInterval 300
+</div></section></section><section class="chapter"><h2 id="monitoramento-e-relat-rios" data-toc="monitoramento-e-relat-rios">Monitoramento e Relat&oacute;rios</h2><section class="chapter"><h3 id="dashboard-de-seguran-a" data-toc="dashboard-de-seguran-a">Dashboard de Seguran&ccedil;a</h3><div class="code-block" data-lang="powershell">
+function Get-SecurityDashboard {
+    [CmdletBinding()]
+    param(
+        [DateTime]$StartDate,
+        [DateTime]$EndDate
+    )
+    
+    $metrics = @{
+        SystemHealth = Get-SystemHealthScore
+        ThreatDetections = Get-ThreatStatistics -StartDate $StartDate -EndDate $EndDate
+        ComplianceStatus = Get-ComplianceStatus
+        PatchStatus = Get-WindowsUpdateStatus
+    }
+    
+    return $metrics
+}
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="z1gvktu_42" type="1"><li class="list__item" id="z1gvktu_43"><p id="z1gvktu_47">Implementar machine learning para detec&ccedil;&atilde;o</p></li><li class="list__item" id="z1gvktu_44"><p id="z1gvktu_48">Adicionar suporte a containers</p></li><li class="list__item" id="z1gvktu_45"><p id="z1gvktu_49">Desenvolver integra&ccedil;&atilde;o com SIEM</p></li><li class="list__item" id="z1gvktu_46"><p id="z1gvktu_50">Expandir capacidades forenses</p></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="z1gvktu_51"><li class="list__item" id="z1gvktu_54"><p id="z1gvktu_57"><a href="https://docs.microsoft.com/windows-server/security/security-guidance" id="z1gvktu_58" data-external="true" rel="noopener noreferrer" target="_blank">Windows Security Best Practices</a></p></li><li class="list__item" id="z1gvktu_55"><p id="z1gvktu_59"><a href="https://docs.microsoft.com/powershell/module/microsoft.powershell.security" id="z1gvktu_60" data-external="true" rel="noopener noreferrer" target="_blank">PowerShell Security Module</a></p></li><li class="list__item" id="z1gvktu_56"><p id="z1gvktu_61"><a href="https://www.cisecurity.org/cis-benchmarks/" id="z1gvktu_62" data-external="true" rel="noopener noreferrer" target="_blank">CIS Benchmarks</a></p></li></ul><p id="z1gvktu_53"><span class="emphasis" id="z1gvktu_63">&quot;Seguran&ccedil;a &eacute; um processo, n&atilde;o um produto.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ps-cloud-automation.html" class="navigation-links__prev">Cloud Automation</a><a href="ps-devops-tools.html" class="navigation-links__next">DevOps Tools</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

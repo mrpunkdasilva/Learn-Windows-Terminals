@@ -1,0 +1,140 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T02:01:02.350184"><title>Tratamento de Erros no PowerShell | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos","level":0,"title":"Fundamentos","anchor":"#fundamentos"},{"id":"try-catch-finally","level":0,"title":"Try-Catch-Finally","anchor":"#try-catch-finally"},{"id":"logging","level":0,"title":"Logging","anchor":"#logging"},{"id":"debug-e-troubleshooting","level":0,"title":"Debug e Troubleshooting","anchor":"#debug-e-troubleshooting"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Tratamento de Erros no PowerShell | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ps-error-handling.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Tratamento de Erros no PowerShell | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ps-error-handling.html#webpage",
+    "url": "writerside-documentation/ps-error-handling.html",
+    "name": "Tratamento de Erros no PowerShell | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ps-error-handling" data-main-title="Tratamento de Erros no PowerShell" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="powershell.md|PowerShell: A Evolução do Terminal Windows///ps-advanced.md|PowerShell Avançado"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ps-error-handling" id="ps-error-handling.md">Tratamento de Erros no PowerShell</h1><aside class="prompt" data-type="tip" data-title="" id="-24ww1z_3"><p id="-24ww1z_11">&quot;Erros s&atilde;o inevit&aacute;veis, trat&aacute;-los adequadamente &eacute; essencial.&quot;</p></aside><section class="chapter"><h2 id="fundamentos" data-toc="fundamentos">Fundamentos</h2><section class="chapter"><h3 id="tipos-de-erros" data-toc="tipos-de-erros">Tipos de Erros</h3><ul class="list _bullet" id="-24ww1z_14"><li class="list__item" id="-24ww1z_15"><p id="-24ww1z_18">Erros de termina&ccedil;&atilde;o (Terminating)</p></li><li class="list__item" id="-24ww1z_16"><p id="-24ww1z_19">Erros de n&atilde;o-termina&ccedil;&atilde;o (Non-terminating)</p></li><li class="list__item" id="-24ww1z_17"><p id="-24ww1z_20">Exce&ccedil;&otilde;es gerenciadas (.NET)</p></li></ul></section><section class="chapter"><h3 id="erroractionpreference" data-toc="erroractionpreference">ErrorActionPreference</h3><div class="code-block" data-lang="powershell">
+# Configurações globais
+$ErrorActionPreference = 'Stop'        # Para em qualquer erro
+$ErrorActionPreference = 'Continue'    # Continua após erro
+$ErrorActionPreference = 'SilentlyContinue' # Ignora erros
+$ErrorActionPreference = 'Inquire'     # Pergunta o que fazer
+</div></section></section><section class="chapter"><h2 id="try-catch-finally" data-toc="try-catch-finally">Try-Catch-Finally</h2><section class="chapter"><h3 id="estrutura-b-sica" data-toc="estrutura-b-sica">Estrutura B&aacute;sica</h3><div class="code-block" data-lang="powershell">
+try {
+    # Código que pode gerar erro
+    Get-Process -Name &quot;NonExistentProcess&quot;
+} catch {
+    # Tratamento do erro
+    Write-Error &quot;Processo não encontrado: $_&quot;
+} finally {
+    # Sempre executa
+    Write-Host &quot;Operação finalizada&quot;
+}
+</div></section><section class="chapter"><h3 id="tipos-espec-ficos" data-toc="tipos-espec-ficos">Tipos Espec&iacute;ficos</h3><div class="code-block" data-lang="powershell">
+try {
+    throw [System.IO.FileNotFoundException]::new(
+        &quot;Arquivo não encontrado&quot;
+    )
+} catch [System.IO.FileNotFoundException] {
+    Write-Error &quot;Arquivo não existe&quot;
+} catch [System.Exception] {
+    Write-Error &quot;Erro genérico: $_&quot;
+}
+</div></section></section><section class="chapter"><h2 id="logging" data-toc="logging">Logging</h2><section class="chapter"><h3 id="sistema-de-log" data-toc="sistema-de-log">Sistema de Log</h3><div class="code-block" data-lang="powershell">
+function Write-Log {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [string]$Message,
+        
+        [ValidateSet('INFO','WARN','ERROR')]
+        [string]$Level = 'INFO',
+        
+        [string]$LogPath = &quot;.\app.log&quot;
+    )
+    
+    $timestamp = Get-Date -Format &quot;yyyy-MM-dd HH:mm:ss&quot;
+    $logLine = &quot;$timestamp [$Level] $Message&quot;
+    Add-Content -Path $LogPath -Value $logLine
+    
+    if ($Level -eq 'ERROR') {
+        Write-Error $Message
+    }
+}
+</div></section></section><section class="chapter"><h2 id="debug-e-troubleshooting" data-toc="debug-e-troubleshooting">Debug e Troubleshooting</h2><section class="chapter"><h3 id="ferramentas-de-debug" data-toc="ferramentas-de-debug">Ferramentas de Debug</h3><div class="code-block" data-lang="powershell">
+# Break points
+Set-PSBreakpoint -Script .\script.ps1 -Line 10
+Set-PSBreakpoint -Command Get-Process
+
+# Trace
+Trace-Command -Name ParameterBinding -Expression {
+    Get-Process
+} -PSHost
+</div></section><section class="chapter"><h3 id="verbose-output" data-toc="verbose-output">Verbose Output</h3><div class="code-block" data-lang="powershell">
+function Get-SystemInfo {
+    [CmdletBinding()]
+    param()
+    
+    Write-Verbose &quot;Coletando informações...&quot;
+    Get-ComputerInfo
+    Write-Verbose &quot;Coleta finalizada&quot;
+}
+
+Get-SystemInfo -Verbose
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="valida-o-de-entrada" data-toc="valida-o-de-entrada">Valida&ccedil;&atilde;o de Entrada</h3><div class="code-block" data-lang="powershell">
+function Set-UserProfile {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string]$Username,
+        
+        [ValidateRange(0,120)]
+        [int]$Age,
+        
+        [ValidateScript({Test-Path $_})]
+        [string]$ProfilePath
+    )
+}
+</div></section><section class="chapter"><h3 id="tratamento-robusto" data-toc="tratamento-robusto">Tratamento Robusto</h3><div class="code-block" data-lang="powershell">
+function Invoke-RiskyOperation {
+    [CmdletBinding()]
+    param($Path)
+    
+    begin {
+        Write-Log &quot;Iniciando operação&quot; -Level INFO
+    }
+    
+    process {
+        try {
+            # Operação principal
+            Write-Verbose &quot;Processando $Path&quot;
+            
+            if (-not (Test-Path $Path)) {
+                throw &quot;Caminho não existe: $Path&quot;
+            }
+            
+            # Mais operações...
+            
+        } catch {
+            Write-Log $_.Exception.Message -Level ERROR
+            throw
+        }
+    }
+    
+    end {
+        Write-Log &quot;Operação finalizada&quot; -Level INFO
+    }
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><ol class="list _decimal" id="-24ww1z_36" type="1"><li class="list__item" id="-24ww1z_37"><p id="-24ww1z_39">Sistema de Log</p><div class="code-block" data-lang="powershell">
+# Implemente um sistema de log que:
+# - Registra em arquivo
+# - Suporta níveis diferentes
+# - Inclui stack trace
+</div></li><li class="list__item" id="-24ww1z_38"><p id="-24ww1z_41">Tratamento Avan&ccedil;ado</p><div class="code-block" data-lang="powershell">
+# Crie uma função que:
+# - Valida entradas
+# - Trata múltiplos erros
+# - Usa logging
+# - Limpa recursos
+</div></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-24ww1z_43" type="1"><li class="list__item" id="-24ww1z_46"><p id="-24ww1z_49"><a href="ps-advanced.html" id="-24ww1z_50" data-tooltip="&quot;Domine os recursos avançados para elevar seu domínio do PowerShell.&quot;">Advanced PowerShell</a></p></li><li class="list__item" id="-24ww1z_47"><p id="-24ww1z_51"><a href="ps-debugging.html" id="-24ww1z_52" data-tooltip="&quot;Debug é como ser um detetive em um crime que você mesmo cometeu.&quot;">Debugging</a></p></li><li class="list__item" id="-24ww1z_48"><p id="-24ww1z_53"><a href="best-practices.html" id="-24ww1z_54" data-tooltip="&quot;Boas práticas hoje, menos problemas amanhã.&quot;">Best Practices</a></p></li></ol><p id="-24ww1z_45"><span class="emphasis" id="-24ww1z_55">&quot;Erros bem tratados s&atilde;o oportunidades de melhoria.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="ps-modules.html" class="navigation-links__prev">M&oacute;dulos PowerShell</a><a href="ps-remote.html" class="navigation-links__next">PowerShell Remoting</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T02:01:02.192499991"><title>Analisador de Logs em CMD | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"implementa-o-base","level":0,"title":"Implementação Base","anchor":"#implementa-o-base"},{"id":"funcionalidades-avan-adas","level":0,"title":"Funcionalidades Avançadas","anchor":"#funcionalidades-avan-adas"},{"id":"uso-do-sistema","level":0,"title":"Uso do Sistema","anchor":"#uso-do-sistema"},{"id":"melhores-pr-ticas","level":0,"title":"Melhores Práticas","anchor":"#melhores-pr-ticas"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Analisador de Logs em CMD | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/cmd-log-analyzer.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Analisador de Logs em CMD | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/cmd-log-analyzer.html#webpage",
+    "url": "writerside-documentation/cmd-log-analyzer.html",
+    "name": "Analisador de Logs em CMD | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="cmd-log-analyzer" data-main-title="Analisador de Logs em CMD" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="practical-projects.md|Projetos Práticos///cmd-projects.md|Projetos CMD"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cmd-log-analyzer" id="cmd-log-analyzer.md">Analisador de Logs em CMD</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="ah3ayj_9">Sistema avan&ccedil;ado para an&aacute;lise e processamento de logs usando CMD, com recursos de filtragem, agrega&ccedil;&atilde;o e gera&ccedil;&atilde;o de relat&oacute;rios.</p></section><section class="chapter"><h2 id="implementa-o-base" data-toc="implementa-o-base">Implementa&ccedil;&atilde;o Base</h2><section class="chapter"><h3 id="parser-de-logs" data-toc="parser-de-logs">Parser de Logs</h3><div class="code-block" data-lang="batch">
+@echo off
+setlocal enabledelayedexpansion
+
+:: Configurações
+set &quot;LOG_DIR=logs&quot;
+set &quot;REPORT_DIR=reports&quot;
+set &quot;DATE_FORMAT=%date:~-4%%date:~3,2%%date:~0,2%&quot;
+
+:parseLog
+echo === Log Parser v1.0 ===
+echo Data: %date% Hora: %time%
+
+:: Cria diretório de relatórios se não existir
+if not exist &quot;%REPORT_DIR%&quot; mkdir &quot;%REPORT_DIR%&quot;
+
+:: Loop através dos arquivos de log
+for %%f in (%LOG_DIR%\*.log) do (
+    echo Processando: %%f
+    call :processLogFile &quot;%%f&quot;
+)
+
+exit /b 0
+
+:processLogFile
+set &quot;LOG_FILE=%~1&quot;
+set &quot;OUTPUT_FILE=%REPORT_DIR%\report_%DATE_FORMAT%.txt&quot;
+
+:: Contadores
+set &quot;ERROR_COUNT=0&quot;
+set &quot;WARN_COUNT=0&quot;
+set &quot;INFO_COUNT=0&quot;
+
+:: Processa linha por linha
+for /f &quot;tokens=1,2,* delims=[]&quot; %%a in ('type &quot;%LOG_FILE%&quot;') do (
+    set &quot;LOG_LEVEL=%%b&quot;
+    set &quot;MESSAGE=%%c&quot;
+    
+    :: Classifica por nível
+    if &quot;!LOG_LEVEL!&quot;==&quot;ERROR&quot; set /a ERROR_COUNT+=1
+    if &quot;!LOG_LEVEL!&quot;==&quot;WARN&quot; set /a WARN_COUNT+=1
+    if &quot;!LOG_LEVEL!&quot;==&quot;INFO&quot; set /a INFO_COUNT+=1
+    
+    :: Armazena mensagens de erro para análise
+    if &quot;!LOG_LEVEL!&quot;==&quot;ERROR&quot; (
+        echo %%a [ERROR] !MESSAGE! &gt;&gt; &quot;%REPORT_DIR%\errors.txt&quot;
+    )
+)
+
+:: Gera relatório
+echo === Relatório: %LOG_FILE% === &gt;&gt; &quot;%OUTPUT_FILE%&quot;
+echo Erros: %ERROR_COUNT% &gt;&gt; &quot;%OUTPUT_FILE%&quot;
+echo Avisos: %WARN_COUNT% &gt;&gt; &quot;%OUTPUT_FILE%&quot;
+echo Informações: %INFO_COUNT% &gt;&gt; &quot;%OUTPUT_FILE%&quot;
+echo. &gt;&gt; &quot;%OUTPUT_FILE%&quot;
+
+exit /b 0
+</div></section><section class="chapter"><h3 id="an-lise-de-padr-es" data-toc="an-lise-de-padr-es">An&aacute;lise de Padr&otilde;es</h3><div class="code-block" data-lang="batch">
+:: Detector de padrões
+:patternAnalysis
+set &quot;PATTERN_FILE=patterns.txt&quot;
+set &quot;LOG_FILE=%~1&quot;
+
+echo Analisando padrões em %LOG_FILE%...
+
+:: Carrega padrões conhecidos
+for /f &quot;tokens=1,* delims==&quot; %%a in (%PATTERN_FILE%) do (
+    set &quot;PATTERN_NAME=%%a&quot;
+    set &quot;PATTERN_REGEX=%%b&quot;
+    
+    :: Busca padrão no log
+    findstr /r /c:&quot;!PATTERN_REGEX!&quot; &quot;%LOG_FILE%&quot; &gt; nul
+    if not errorlevel 1 (
+        echo Padrão detectado: !PATTERN_NAME!
+        call :alertPattern &quot;!PATTERN_NAME!&quot; &quot;%LOG_FILE%&quot;
+    )
+)
+
+exit /b 0
+
+:alertPattern
+set &quot;PATTERN=%~1&quot;
+set &quot;SOURCE=%~2&quot;
+echo [ALERT] Padrão %PATTERN% detectado em %SOURCE% &gt;&gt; &quot;%REPORT_DIR%\alerts.txt&quot;
+exit /b 0
+</div></section><section class="chapter"><h3 id="agrega-o-e-estat-sticas" data-toc="agrega-o-e-estat-sticas">Agrega&ccedil;&atilde;o e Estat&iacute;sticas</h3><div class="code-block" data-lang="batch">
+:: Gerador de estatísticas
+:generateStats
+set &quot;LOG_FILE=%~1&quot;
+set &quot;STATS_FILE=%REPORT_DIR%\statistics.csv&quot;
+
+:: Cabeçalho do CSV
+if not exist &quot;%STATS_FILE%&quot; (
+    echo Data,Arquivo,Erros,Avisos,Infos,TotalLinhas &gt; &quot;%STATS_FILE%&quot;
+)
+
+:: Calcula estatísticas
+for /f %%a in ('type &quot;%LOG_FILE%&quot; ^| find /c /v &quot;&quot;') do set &quot;TOTAL_LINES=%%a&quot;
+for /f %%a in ('findstr /i &quot;error&quot; &quot;%LOG_FILE%&quot; ^| find /c /v &quot;&quot;') do set &quot;ERROR_COUNT=%%a&quot;
+for /f %%a in ('findstr /i &quot;warn&quot; &quot;%LOG_FILE%&quot; ^| find /c /v &quot;&quot;') do set &quot;WARN_COUNT=%%a&quot;
+for /f %%a in ('findstr /i &quot;info&quot; &quot;%LOG_FILE%&quot; ^| find /c /v &quot;&quot;') do set &quot;INFO_COUNT=%%a&quot;
+
+:: Adiciona linha ao CSV
+echo %date%,%LOG_FILE%,%ERROR_COUNT%,%WARN_COUNT%,%INFO_COUNT%,%TOTAL_LINES% &gt;&gt; &quot;%STATS_FILE%&quot;
+
+exit /b 0
+</div></section></section><section class="chapter"><h2 id="funcionalidades-avan-adas" data-toc="funcionalidades-avan-adas">Funcionalidades Avan&ccedil;adas</h2><section class="chapter"><h3 id="monitor-em-tempo-real" data-toc="monitor-em-tempo-real">Monitor em Tempo Real</h3><div class="code-block" data-lang="batch">
+:: Monitor live de logs
+:liveMonitor
+set &quot;TARGET_LOG=%~1&quot;
+set &quot;REFRESH_RATE=2&quot;
+
+:monitorLoop
+cls
+echo === Monitor de Logs em Tempo Real ===
+echo Arquivo: %TARGET_LOG%
+echo Pressione Ctrl+C para sair
+echo.
+
+:: Exibe últimas linhas
+tail -n 20 &quot;%TARGET_LOG%&quot;
+
+:: Estatísticas rápidas
+call :quickStats &quot;%TARGET_LOG%&quot;
+
+timeout /t %REFRESH_RATE% &gt; nul
+goto monitorLoop
+
+:quickStats
+set &quot;LOG=%~1&quot;
+echo.
+echo === Estatísticas Rápidas ===
+for /f %%a in ('findstr /i &quot;error&quot; &quot;%LOG%&quot; ^| find /c /v &quot;&quot;') do echo Erros (última hora): %%a
+for /f %%a in ('findstr /i &quot;warn&quot; &quot;%LOG%&quot; ^| find /c /v &quot;&quot;') do echo Avisos (última hora): %%a
+exit /b 0
+</div></section><section class="chapter"><h3 id="sistema-de-alertas" data-toc="sistema-de-alertas">Sistema de Alertas</h3><div class="code-block" data-lang="batch">
+:: Configuração de alertas
+set &quot;ALERT_THRESHOLD_ERROR=10&quot;
+set &quot;ALERT_THRESHOLD_WARN=50&quot;
+set &quot;NOTIFICATION_CMD=notify.bat&quot;
+
+:checkAlerts
+set &quot;LOG_FILE=%~1&quot;
+
+:: Verifica thresholds
+call :countErrors &quot;%LOG_FILE%&quot;
+if %ERROR_COUNT% gtr %ALERT_THRESHOLD_ERROR% (
+    call :triggerAlert &quot;Alto número de erros: %ERROR_COUNT%&quot;
+)
+
+call :countWarnings &quot;%LOG_FILE%&quot;
+if %WARN_COUNT% gtr %ALERT_THRESHOLD_WARN% (
+    call :triggerAlert &quot;Alto número de avisos: %WARN_COUNT%&quot;
+)
+
+exit /b 0
+
+:triggerAlert
+set &quot;MESSAGE=%~1&quot;
+echo [ALERT] %date% %time% - %MESSAGE% &gt;&gt; &quot;%REPORT_DIR%\alerts.log&quot;
+call &quot;%NOTIFICATION_CMD%&quot; &quot;%MESSAGE%&quot;
+exit /b 0
+</div></section></section><section class="chapter"><h2 id="uso-do-sistema" data-toc="uso-do-sistema">Uso do Sistema</h2><section class="chapter"><h3 id="execu-o-b-sica" data-toc="execu-o-b-sica">Execu&ccedil;&atilde;o B&aacute;sica</h3><div class="code-block" data-lang="batch">
+:: Análise simples
+analyzer.bat &quot;app.log&quot;
+
+:: Monitoramento contínuo
+analyzer.bat --monitor &quot;app.log&quot;
+
+:: Geração de relatório
+analyzer.bat --report &quot;app.log&quot;
+</div></section><section class="chapter"><h3 id="configura-o-avan-ada" data-toc="configura-o-avan-ada">Configura&ccedil;&atilde;o Avan&ccedil;ada</h3><div class="code-block" data-lang="batch">
+:: Configurações personalizadas
+set &quot;CUSTOM_PATTERNS=patterns.txt&quot;
+set &quot;ALERT_CONFIG=alerts.conf&quot;
+set &quot;REPORT_TEMPLATE=template.html&quot;
+
+:: Execução com configurações
+analyzer.bat --config &quot;%CUSTOM_PATTERNS%&quot; --alerts &quot;%ALERT_CONFIG%&quot; --template &quot;%REPORT_TEMPLATE%&quot; &quot;app.log&quot;
+</div></section></section><section class="chapter"><h2 id="melhores-pr-ticas" data-toc="melhores-pr-ticas">Melhores Pr&aacute;ticas</h2><ol class="list _decimal" id="ah3ayj_24" type="1"><li class="list__item" id="ah3ayj_25"><p id="ah3ayj_28"><span class="control" id="ah3ayj_30">Organiza&ccedil;&atilde;o de Logs</span></p><ul class="list _bullet" id="ah3ayj_29"><li class="list__item" id="ah3ayj_31"><p id="ah3ayj_34">Rota&ccedil;&atilde;o autom&aacute;tica</p></li><li class="list__item" id="ah3ayj_32"><p id="ah3ayj_35">Compress&atilde;o de hist&oacute;rico</p></li><li class="list__item" id="ah3ayj_33"><p id="ah3ayj_36">Nomenclatura padronizada</p></li></ul></li><li class="list__item" id="ah3ayj_26"><p id="ah3ayj_37"><span class="control" id="ah3ayj_39">Monitoramento</span></p><ul class="list _bullet" id="ah3ayj_38"><li class="list__item" id="ah3ayj_40"><p id="ah3ayj_43">Verifica&ccedil;&otilde;es regulares</p></li><li class="list__item" id="ah3ayj_41"><p id="ah3ayj_44">Alertas proativos</p></li><li class="list__item" id="ah3ayj_42"><p id="ah3ayj_45">Backup de relat&oacute;rios</p></li></ul></li><li class="list__item" id="ah3ayj_27"><p id="ah3ayj_46"><span class="control" id="ah3ayj_48">Performance</span></p><ul class="list _bullet" id="ah3ayj_47"><li class="list__item" id="ah3ayj_49"><p id="ah3ayj_52">Filtragem eficiente</p></li><li class="list__item" id="ah3ayj_50"><p id="ah3ayj_53">Processamento otimizado</p></li><li class="list__item" id="ah3ayj_51"><p id="ah3ayj_54">Limpeza peri&oacute;dica</p></li></ul></li></ol></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h3><ol class="list _decimal" id="ah3ayj_56" type="1"><li class="list__item" id="ah3ayj_57"><p id="ah3ayj_60"><span class="control" id="ah3ayj_62">Logs Inacess&iacute;veis</span></p><ul class="list _bullet" id="ah3ayj_61"><li class="list__item" id="ah3ayj_63"><p id="ah3ayj_66">Verificar permiss&otilde;es</p></li><li class="list__item" id="ah3ayj_64"><p id="ah3ayj_67">Confirmar caminhos</p></li><li class="list__item" id="ah3ayj_65"><p id="ah3ayj_68">Validar formato</p></li></ul></li><li class="list__item" id="ah3ayj_58"><p id="ah3ayj_69"><span class="control" id="ah3ayj_71">Alertas Falsos</span></p><ul class="list _bullet" id="ah3ayj_70"><li class="list__item" id="ah3ayj_72"><p id="ah3ayj_75">Ajustar thresholds</p></li><li class="list__item" id="ah3ayj_73"><p id="ah3ayj_76">Refinar padr&otilde;es</p></li><li class="list__item" id="ah3ayj_74"><p id="ah3ayj_77">Validar regras</p></li></ul></li><li class="list__item" id="ah3ayj_59"><p id="ah3ayj_78"><span class="control" id="ah3ayj_80">Performance Baixa</span></p><ul class="list _bullet" id="ah3ayj_79"><li class="list__item" id="ah3ayj_81"><p id="ah3ayj_84">Limitar tamanho de logs</p></li><li class="list__item" id="ah3ayj_82"><p id="ah3ayj_85">Otimizar express&otilde;es</p></li><li class="list__item" id="ah3ayj_83"><p id="ah3ayj_86">Aumentar intervalo de an&aacute;lise</p></li></ul></li></ol></section></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="cmd-deployment-automation.html" class="navigation-links__prev">Automa&ccedil;&atilde;o de Deploy com CMD</a><a href="powershell-projects.html" class="navigation-links__next">Projetos PowerShell</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

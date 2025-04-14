@@ -1,0 +1,304 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T02:01:02.238625792"><title>Automa&ccedil;&atilde;o CI/CD H&iacute;brida | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"estrutura-do-pipeline","level":0,"title":"Estrutura do Pipeline","anchor":"#estrutura-do-pipeline"},{"id":"est-gios-do-pipeline","level":0,"title":"Estágios do Pipeline","anchor":"#est-gios-do-pipeline"},{"id":"monitoramento-e-logs","level":0,"title":"Monitoramento e Logs","anchor":"#monitoramento-e-logs"},{"id":"integra-o-com-ferramentas","level":0,"title":"Integração com Ferramentas","anchor":"#integra-o-com-ferramentas"},{"id":"uso-do-sistema","level":0,"title":"Uso do Sistema","anchor":"#uso-do-sistema"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"},{"id":"recursos-adicionais","level":0,"title":"Recursos Adicionais","anchor":"#recursos-adicionais"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Automa&ccedil;&atilde;o CI/CD H&iacute;brida | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/ci-cd-automation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Automa&ccedil;&atilde;o CI/CD H&iacute;brida | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/ci-cd-automation.html#webpage",
+    "url": "writerside-documentation/ci-cd-automation.html",
+    "name": "Automa&ccedil;&atilde;o CI/CD H&iacute;brida | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="ci-cd-automation" data-main-title="Automação CI/CD Híbrida" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="practical-projects.md|Projetos Práticos///advanced-projects.md|Projetos Avançados"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="ci-cd-automation" id="ci-cd-automation.md">Automação CI/CD Híbrida</h1><aside class="prompt" data-type="tip" data-title="" id="etpv4x_3"><p id="etpv4x_12">&quot;Automatize seu pipeline de desenvolvimento com a flexibilidade de CMD e PowerShell.&quot;</p></aside><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="etpv4x_13">Sistema de CI/CD que combina:</p><ul class="list _bullet" id="etpv4x_14"><li class="list__item" id="etpv4x_15"><p id="etpv4x_19">Scripts CMD para compatibilidade e opera&ccedil;&otilde;es b&aacute;sicas</p></li><li class="list__item" id="etpv4x_16"><p id="etpv4x_20">PowerShell para opera&ccedil;&otilde;es avan&ccedil;adas e integra&ccedil;&otilde;es</p></li><li class="list__item" id="etpv4x_17"><p id="etpv4x_21">Suporte multi-ambiente</p></li><li class="list__item" id="etpv4x_18"><p id="etpv4x_22">Monitoramento em tempo real</p></li></ul></section><section class="chapter"><h2 id="estrutura-do-pipeline" data-toc="estrutura-do-pipeline">Estrutura do Pipeline</h2><section class="chapter"><h3 id="configura-o-base" data-toc="configura-o-base">Configura&ccedil;&atilde;o Base</h3><div class="code-block" data-lang="batch">
+@echo off
+:: Pipeline Config - CMD
+set &quot;PROJECT_ROOT=%~dp0&quot;
+set &quot;BUILD_NUMBER=%1&quot;
+set &quot;ENVIRONMENT=%2&quot;
+set &quot;ARTIFACTS_DIR=%PROJECT_ROOT%artifacts&quot;
+
+:: Validação básica
+if &quot;%BUILD_NUMBER%&quot;==&quot;&quot; (
+    echo Erro: Build number não especificado
+    exit /b 1
+)
+
+:: Setup inicial
+call :setupEnvironment || exit /b 1
+call :validateRequirements || exit /b 1
+
+:: Executa pipeline PowerShell
+powershell.exe -File &quot;%PROJECT_ROOT%\pipeline.ps1&quot; ^
+    -BuildNumber &quot;%BUILD_NUMBER%&quot; ^
+    -Environment &quot;%ENVIRONMENT%&quot; ^
+    -ArtifactsDir &quot;%ARTIFACTS_DIR%&quot;
+
+exit /b %ERRORLEVEL%
+
+:setupEnvironment
+    mkdir &quot;%ARTIFACTS_DIR%&quot; 2&gt;nul
+    echo Ambiente configurado: %ENVIRONMENT%
+    exit /b 0
+
+:validateRequirements
+    where git &gt;nul 2&gt;nul || (
+        echo Git não encontrado
+        exit /b 1
+    )
+    exit /b 0
+</div></section><section class="chapter"><h3 id="pipeline-principal" data-toc="pipeline-principal">Pipeline Principal</h3><div class="code-block" data-lang="powershell">
+# pipeline.ps1
+param(
+    [Parameter(Mandatory=$true)]
+    [string]$BuildNumber,
+    
+    [Parameter(Mandatory=$true)]
+    [string]$Environment,
+    
+    [string]$ArtifactsDir
+)
+
+class Pipeline {
+    [string]$BuildNumber
+    [string]$Environment
+    [string]$Status = &quot;Running&quot;
+    [System.Collections.ArrayList]$Stages
+    
+    Pipeline([string]$bn, [string]$env) {
+        $this-&gt;BuildNumber = $bn
+        $this-&gt;Environment = $env
+        $this-&gt;Stages = @()
+    }
+    
+    [void]AddStage([string]$name, [scriptblock]$action) {
+        $this-&gt;Stages.Add(@{
+            Name = $name
+            Action = $action
+            Status = &quot;Pending&quot;
+        })
+    }
+    
+    [bool]Execute() {
+        foreach ($stage in $this-&gt;Stages) {
+            try {
+                Write-Host &quot;Executando $($stage.Name)...&quot;
+                &amp; $stage.Action
+                $stage.Status = &quot;Success&quot;
+            }
+            catch {
+                $stage.Status = &quot;Failed&quot;
+                $this-&gt;Status = &quot;Failed&quot;
+                return $false
+            }
+        }
+        $this-&gt;Status = &quot;Success&quot;
+        return $true
+    }
+}
+</div></section></section><section class="chapter"><h2 id="est-gios-do-pipeline" data-toc="est-gios-do-pipeline">Est&aacute;gios do Pipeline</h2><section class="chapter"><h3 id="1-build" data-toc="1-build">1. Build</h3><div class="code-block" data-lang="powershell">
+function Start-BuildStage {
+    # Compilação
+    try {
+        dotnet build --configuration Release
+        
+        # Build legado (CMD)
+        $buildCmd = @&quot;
+            @echo off
+            call build.bat
+            if errorlevel 1 exit /b 1
+&quot;@
+        $buildCmd | Out-File &quot;temp_build.bat&quot; -Encoding ASCII
+        cmd /c &quot;temp_build.bat&quot;
+        Remove-Item &quot;temp_build.bat&quot;
+    }
+    catch {
+        throw &quot;Erro no build: $_&quot;
+    }
+}
+</div></section><section class="chapter"><h3 id="2-testes" data-toc="2-testes">2. Testes</h3><div class="code-block" data-lang="powershell">
+function Start-TestStage {
+    # Testes unitários
+    dotnet test --no-build --configuration Release
+    
+    # Testes de integração
+    $testScript = @&quot;
+        @echo off
+        echo Executando testes legados...
+        call integration_tests.bat
+        if errorlevel 1 (
+            echo Falha nos testes legados
+            exit /b 1
+        )
+&quot;@
+    $testScript | Out-File &quot;temp_test.bat&quot; -Encoding ASCII
+    cmd /c &quot;temp_test.bat&quot;
+    Remove-Item &quot;temp_test.bat&quot;
+}
+</div></section><section class="chapter"><h3 id="3-deploy" data-toc="3-deploy">3. Deploy</h3><div class="code-block" data-lang="powershell">
+function Start-DeployStage {
+    param(
+        [string]$Environment,
+        [string]$Version
+    )
+    
+    switch ($Environment) {
+        &quot;dev&quot; { 
+            Deploy-ToDev -Version $Version 
+        }
+        &quot;staging&quot; { 
+            Deploy-ToStaging -Version $Version 
+        }
+        &quot;prod&quot; { 
+            Deploy-ToProduction -Version $Version 
+        }
+    }
+}
+
+function Deploy-ToProduction {
+    param([string]$Version)
+    
+    # Validação de produção
+    $validation = @&quot;
+        @echo off
+        echo Validando ambiente de produção...
+        call validate_prod.bat
+        if errorlevel 1 (
+            echo Ambiente de produção não está pronto
+            exit /b 1
+        )
+&quot;@
+    
+    # Deploy com rollback
+    try {
+        # Backup
+        Backup-Production
+        
+        # Deploy
+        Execute-ProductionDeploy -Version $Version
+        
+        # Smoke tests
+        Test-Deployment -Environment &quot;prod&quot;
+    }
+    catch {
+        Write-Warning &quot;Erro no deploy: $_&quot;
+        Restore-Production
+        throw
+    }
+}
+</div></section></section><section class="chapter"><h2 id="monitoramento-e-logs" data-toc="monitoramento-e-logs">Monitoramento e Logs</h2><section class="chapter"><h3 id="sistema-de-logging" data-toc="sistema-de-logging">Sistema de Logging</h3><div class="code-block" data-lang="powershell">
+class PipelineLogger {
+    [string]$LogPath
+    [string]$CurrentBuild
+    
+    PipelineLogger([string]$path, [string]$build) {
+        $this-&gt;LogPath = $path
+        $this-&gt;CurrentBuild = $build
+    }
+    
+    [void]Log([string]$message, [string]$level = &quot;INFO&quot;) {
+        $timestamp = Get-Date -Format &quot;yyyy-MM-dd HH:mm:ss&quot;
+        $logEntry = &quot;[$timestamp][$level][Build $($this-&gt;CurrentBuild)] $message&quot;
+        
+        # Log em arquivo
+        Add-Content -Path $this-&gt;LogPath -Value $logEntry
+        
+        # Log no console
+        Write-Host $logEntry
+    }
+    
+    [void]LogError([string]$message) {
+        $this-&gt;Log($message, &quot;ERROR&quot;)
+    }
+}
+</div></section><section class="chapter"><h3 id="m-tricas-de-pipeline" data-toc="m-tricas-de-pipeline">M&eacute;tricas de Pipeline</h3><div class="code-block" data-lang="powershell">
+class PipelineMetrics {
+    [DateTime]$StartTime
+    [hashtable]$StageMetrics = @{}
+    
+    [void]StartStage([string]$name) {
+        $this-&gt;StageMetrics[$name] = @{
+            StartTime = Get-Date
+            EndTime = $null
+            Duration = $null
+            Status = &quot;Running&quot;
+        }
+    }
+    
+    [void]EndStage([string]$name, [bool]$success) {
+        $metrics = $this-&gt;StageMetrics[$name]
+        $metrics.EndTime = Get-Date
+        $metrics.Duration = $metrics.EndTime - $metrics.StartTime
+        $metrics.Status = if ($success) { &quot;Success&quot; } else { &quot;Failed&quot; }
+    }
+    
+    [hashtable]GetReport() {
+        return @{
+            TotalDuration = (Get-Date) - $this-&gt;StartTime
+            Stages = $this-&gt;StageMetrics
+            SuccessRate = $this-&gt;CalculateSuccessRate()
+        }
+    }
+}
+</div></section></section><section class="chapter"><h2 id="integra-o-com-ferramentas" data-toc="integra-o-com-ferramentas">Integra&ccedil;&atilde;o com Ferramentas</h2><section class="chapter"><h3 id="jenkins-integration" data-toc="jenkins-integration">Jenkins Integration</h3><div class="code-block" data-lang="powershell">
+function Connect-Jenkins {
+    param(
+        [string]$JenkinsUrl,
+        [PSCredential]$Credential
+    )
+    
+    # Autenticação
+    $auth = [Convert]::ToBase64String(
+        [Text.Encoding]::ASCII.GetBytes(
+            &quot;$($Credential.UserName):$($Credential.GetNetworkCredential().Password)&quot;
+        )
+    )
+    
+    # Headers
+    $script:JenkinsHeaders = @{
+        Authorization = &quot;Basic $auth&quot;
+    }
+    
+    # Test connection
+    try {
+        Invoke-RestMethod -Uri &quot;$JenkinsUrl/api/json&quot; -Headers $script:JenkinsHeaders
+        return $true
+    }
+    catch {
+        Write-Error &quot;Falha na conexão com Jenkins: $_&quot;
+        return $false
+    }
+}
+</div></section><section class="chapter"><h3 id="azure-devops-integration" data-toc="azure-devops-integration">Azure DevOps Integration</h3><div class="code-block" data-lang="powershell">
+function Start-AzureDevOpsPipeline {
+    param(
+        [string]$Organization,
+        [string]$Project,
+        [string]$PipelineId
+    )
+    
+    # Configuração Azure CLI
+    az devops configure --defaults organization=$Organization project=$Project
+    
+    # Trigger pipeline
+    az pipelines run --id $PipelineId --branch main
+}
+</div></section></section><section class="chapter"><h2 id="uso-do-sistema" data-toc="uso-do-sistema">Uso do Sistema</h2><section class="chapter"><h3 id="execu-o-b-sica" data-toc="execu-o-b-sica">Execu&ccedil;&atilde;o B&aacute;sica</h3><div class="code-block" data-lang="batch">
+@echo off
+:: Executa pipeline
+pipeline.bat &quot;1.0.0&quot; &quot;staging&quot;
+</div></section><section class="chapter"><h3 id="pipeline-avan-ado" data-toc="pipeline-avan-ado">Pipeline Avan&ccedil;ado</h3><div class="code-block" data-lang="powershell">
+# Cria pipeline
+$pipeline = [Pipeline]::new(&quot;1.0.0&quot;, &quot;staging&quot;)
+
+# Adiciona estágios
+$pipeline.AddStage(&quot;Build&quot;, { Start-BuildStage })
+$pipeline.AddStage(&quot;Test&quot;, { Start-TestStage })
+$pipeline.AddStage(&quot;Deploy&quot;, { Start-DeployStage -Environment &quot;staging&quot; -Version &quot;1.0.0&quot; })
+
+# Executa
+$pipeline.Execute()
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="etpv4x_45" type="1"><li class="list__item" id="etpv4x_46"><p id="etpv4x_50">Implementar an&aacute;lise de qualidade de c&oacute;digo</p></li><li class="list__item" id="etpv4x_47"><p id="etpv4x_51">Adicionar testes de seguran&ccedil;a automatizados</p></li><li class="list__item" id="etpv4x_48"><p id="etpv4x_52">Expandir integra&ccedil;&otilde;es com outras ferramentas</p></li><li class="list__item" id="etpv4x_49"><p id="etpv4x_53">Implementar deploy blue-green</p></li></ol></section><section class="chapter"><h2 id="recursos-adicionais" data-toc="recursos-adicionais">Recursos Adicionais</h2><ul class="list _bullet" id="etpv4x_54"><li class="list__item" id="etpv4x_57"><p id="etpv4x_60"><a href="https://www.jenkins.io/doc/book/using/remote-access-api/" id="etpv4x_61" data-external="true" rel="noopener noreferrer" target="_blank">Jenkins API Documentation</a></p></li><li class="list__item" id="etpv4x_58"><p id="etpv4x_62"><a href="https://docs.microsoft.com/rest/api/azure/devops" id="etpv4x_63" data-external="true" rel="noopener noreferrer" target="_blank">Azure DevOps REST API</a></p></li><li class="list__item" id="etpv4x_59"><p id="etpv4x_64"><a href="ps-reference.html" id="etpv4x_65" data-tooltip="&quot;PowerShell: onde comandos encontram objetos.&quot;">PowerShell Pipeline Documentation</a></p></li></ul><p id="etpv4x_56"><span class="emphasis" id="etpv4x_66">&quot;Automatize com confian&ccedil;a, deploy com seguran&ccedil;a.&quot;</span></p></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="hybrid-terminal-projects.html" class="navigation-links__prev">Projetos H&iacute;bridos CMD/PowerShell</a><a href="cloud-management.html" class="navigation-links__next">Gerenciamento Multi-Cloud</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

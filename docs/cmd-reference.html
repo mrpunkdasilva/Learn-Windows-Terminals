@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="vivid" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="built-on" content="2025-04-14T02:01:02.203127902"><title>Refer&ecirc;ncia CMD | Learn Windows Terminals</title><script type="application/json" id="virtual-toc-data">[{"id":"comandos-essenciais","level":0,"title":"Comandos Essenciais","anchor":"#comandos-essenciais"},{"id":"par-metros-comuns","level":0,"title":"Parâmetros Comuns","anchor":"#par-metros-comuns"},{"id":"operadores","level":0,"title":"Operadores","anchor":"#operadores"},{"id":"vari-veis-ambiente","level":0,"title":"Variáveis Ambiente","anchor":"#vari-veis-ambiente"},{"id":"c-digos-de-retorno","level":0,"title":"Códigos de Retorno","anchor":"#c-digos-de-retorno"},{"id":"exemplos-pr-ticos","level":0,"title":"Exemplos Práticos","anchor":"#exemplos-pr-ticos"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"dicas-avan-adas","level":0,"title":"Dicas Avançadas","anchor":"#dicas-avan-adas"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="learn-windows-terminals/images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Refer&ecirc;ncia CMD | Learn Windows Terminals"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Windows Terminals Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/cmd-reference.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Refer&ecirc;ncia CMD | Learn Windows Terminals"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/cmd-reference.html#webpage",
+    "url": "writerside-documentation/cmd-reference.html",
+    "name": "Refer&ecirc;ncia CMD | Learn Windows Terminals",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Windows Terminals Help"
+}</script><!-- End Schema.org --></head><body data-id="cmd-reference" data-main-title="Referência CMD" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="reference.md|Referência Completa"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Windows Terminals  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="cmd-reference" id="cmd-reference.md">Referência CMD</h1><aside class="prompt" data-type="tip" data-title="" id="mh55n9_3"><p id="mh55n9_12">&quot;Todo comando tem seu prop&oacute;sito, todo par&acirc;metro sua raz&atilde;o.&quot;</p></aside><section class="chapter"><h2 id="comandos-essenciais" data-toc="comandos-essenciais">Comandos Essenciais</h2><section class="chapter"><h3 id="navega-o" data-toc="navega-o">Navega&ccedil;&atilde;o</h3><div class="code-block" data-lang="batch">
+cd [path]        :: Muda diretório
+dir [options]    :: Lista arquivos
+path [options]   :: Mostra/define PATH
+</div></section><section class="chapter"><h3 id="arquivos" data-toc="arquivos">Arquivos</h3><div class="code-block" data-lang="batch">
+copy [src] [dst] :: Copia arquivos
+move [src] [dst] :: Move arquivos
+del [file]       :: Deleta arquivos
+ren [old] [new]  :: Renomeia
+</div></section><section class="chapter"><h3 id="sistema" data-toc="sistema">Sistema</h3><div class="code-block" data-lang="batch">
+tasklist        :: Lista processos
+taskkill        :: Termina processo
+systeminfo      :: Info sistema
+sfc             :: System File Checker
+</div></section></section><section class="chapter"><h2 id="par-metros-comuns" data-toc="par-metros-comuns">Par&acirc;metros Comuns</h2><section class="chapter"><h3 id="diret-rios" data-toc="diret-rios">Diret&oacute;rios</h3><div class="table-wrapper"><table class="wide" id="mh55n9_21"><thead><tr class="ijRowHead" id="mh55n9_22"><th id="mh55n9_27"><p>Par&acirc;metro</p></th><th id="mh55n9_28"><p>Descri&ccedil;&atilde;o</p></th></tr></thead><tbody><tr id="mh55n9_23"><td id="mh55n9_29"><p><code class="code" id="mh55n9_31">/s</code></p></td><td id="mh55n9_30"><p>Recursivo</p></td></tr><tr id="mh55n9_24"><td id="mh55n9_32"><p><code class="code" id="mh55n9_34">/a</code></p></td><td id="mh55n9_33"><p>Atributos</p></td></tr><tr id="mh55n9_25"><td id="mh55n9_35"><p><code class="code" id="mh55n9_37">/b</code></p></td><td id="mh55n9_36"><p>B&aacute;sico</p></td></tr><tr id="mh55n9_26"><td id="mh55n9_38"><p><code class="code" id="mh55n9_40">/p</code></p></td><td id="mh55n9_39"><p>Pausa</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="arquivos" data-toc="arquivos">Arquivos</h3><div class="table-wrapper"><table class="wide" id="mh55n9_41"><thead><tr class="ijRowHead" id="mh55n9_42"><th id="mh55n9_47"><p>Par&acirc;metro</p></th><th id="mh55n9_48"><p>Uso</p></th></tr></thead><tbody><tr id="mh55n9_43"><td id="mh55n9_49"><p><code class="code" id="mh55n9_51">/y</code></p></td><td id="mh55n9_50"><p>Confirma</p></td></tr><tr id="mh55n9_44"><td id="mh55n9_52"><p><code class="code" id="mh55n9_54">/v</code></p></td><td id="mh55n9_53"><p>Verbose</p></td></tr><tr id="mh55n9_45"><td id="mh55n9_55"><p><code class="code" id="mh55n9_57">/q</code></p></td><td id="mh55n9_56"><p>Quiet</p></td></tr><tr id="mh55n9_46"><td id="mh55n9_58"><p><code class="code" id="mh55n9_60">/f</code></p></td><td id="mh55n9_59"><p>For&ccedil;a</p></td></tr></tbody></table></div></section></section><section class="chapter"><h2 id="operadores" data-toc="operadores">Operadores</h2><section class="chapter"><h3 id="redirecionamento" data-toc="redirecionamento">Redirecionamento</h3><div class="code-block" data-lang="batch">
+&gt;   :: Saída
+&gt;&gt;  :: Append
+&lt;   :: Entrada
+|   :: Pipe
+</div></section><section class="chapter"><h3 id="condicionais" data-toc="condicionais">Condicionais</h3><div class="code-block" data-lang="batch">
+&amp;&amp;  :: AND
+||  :: OR
+^   :: Escape
+</div></section></section><section class="chapter"><h2 id="vari-veis-ambiente" data-toc="vari-veis-ambiente">Vari&aacute;veis Ambiente</h2><section class="chapter"><h3 id="sistema" data-toc="sistema">Sistema</h3><div class="code-block" data-lang="batch">
+%PATH%          :: Caminhos
+%SYSTEMROOT%    :: Windows
+%TEMP%          :: Temporário
+%USERPROFILE%   :: Usuário
+</div></section><section class="chapter"><h3 id="customizadas" data-toc="customizadas">Customizadas</h3><div class="code-block" data-lang="batch">
+set VAR=valor   :: Define
+echo %VAR%      :: Usa
+setx VAR valor  :: Permanente
+</div></section></section><section class="chapter"><h2 id="c-digos-de-retorno" data-toc="c-digos-de-retorno">C&oacute;digos de Retorno</h2><div class="table-wrapper"><table class="wide" id="mh55n9_69"><thead><tr class="ijRowHead" id="mh55n9_70"><th id="mh55n9_75"><p>C&oacute;digo</p></th><th id="mh55n9_76"><p>Significado</p></th></tr></thead><tbody><tr id="mh55n9_71"><td id="mh55n9_77"><p>0</p></td><td id="mh55n9_78"><p>Sucesso</p></td></tr><tr id="mh55n9_72"><td id="mh55n9_79"><p>1</p></td><td id="mh55n9_80"><p>Erro geral</p></td></tr><tr id="mh55n9_73"><td id="mh55n9_81"><p>2</p></td><td id="mh55n9_82"><p>Arquivo n&atilde;o encontrado</p></td></tr><tr id="mh55n9_74"><td id="mh55n9_83"><p>3</p></td><td id="mh55n9_84"><p>Path n&atilde;o encontrado</p></td></tr></tbody></table></div></section><section class="chapter"><h2 id="exemplos-pr-ticos" data-toc="exemplos-pr-ticos">Exemplos Pr&aacute;ticos</h2><section class="chapter"><h3 id="backup" data-toc="backup">Backup</h3><div class="code-block" data-lang="batch">
+:: Backup com data
+for /f &quot;tokens=1-3 delims=/ &quot; %%a in ('%date%') do (
+    set BACKUP=backup_%%c%%a%%b
+)
+xcopy /s /i &quot;source&quot; &quot;%BACKUP%&quot;
+</div></section><section class="chapter"><h3 id="limpeza" data-toc="limpeza">Limpeza</h3><div class="code-block" data-lang="batch">
+:: Limpa temporários
+del /s /q %temp%\*.*
+for /d %%x in (%temp%\*) do rd /s /q &quot;%%x&quot;
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="erros-comuns" data-toc="erros-comuns">Erros Comuns</h3><ol class="list _decimal" id="mh55n9_90" type="1"><li class="list__item" id="mh55n9_91"><p id="mh55n9_93">'X' n&atilde;o &eacute; reconhecido</p><ul class="list _bullet" id="mh55n9_94"><li class="list__item" id="mh55n9_95"><p id="mh55n9_97">Verificar PATH</p></li><li class="list__item" id="mh55n9_96"><p id="mh55n9_98">Confirmar extens&atilde;o</p></li></ul></li><li class="list__item" id="mh55n9_92"><p id="mh55n9_99">Acesso negado</p><ul class="list _bullet" id="mh55n9_100"><li class="list__item" id="mh55n9_101"><p id="mh55n9_103">Executar como admin</p></li><li class="list__item" id="mh55n9_102"><p id="mh55n9_104">Verificar permiss&otilde;es</p></li></ul></li></ol></section></section><section class="chapter"><h2 id="dicas-avan-adas" data-toc="dicas-avan-adas">Dicas Avan&ccedil;adas</h2><section class="chapter"><h3 id="performance" data-toc="performance">Performance</h3><div class="code-block" data-lang="batch">
+:: Desativa echo
+@echo off
+:: Processa rápido
+setlocal enabledelayedexpansion
+</div></section><section class="chapter"><h3 id="debugging" data-toc="debugging">Debugging</h3><div class="code-block" data-lang="batch">
+:: Debug mode
+echo on
+set
+pause
+</div><p id="mh55n9_110"><span class="emphasis" id="mh55n9_111">&quot;Um comando bem documentado vale por mil tentativas e erros.&quot;</span></p></section></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="reference.html" class="navigation-links__prev">Refer&ecirc;ncia Completa</a><a href="ps-reference.html" class="navigation-links__next">Refer&ecirc;ncia PowerShell</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
